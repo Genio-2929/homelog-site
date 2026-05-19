@@ -1179,12 +1179,42 @@ button {
   gap: 12px;
 }
 
+.structured-sections {
+  display: grid;
+  gap: 18px;
+}
+
+.structured-section {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.structured-section h3,
+.review-subtitle {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+}
+
 .structured-select {
   display: grid;
   gap: 6px;
   color: var(--muted);
   font-size: 0.88rem;
   font-weight: 600;
+}
+
+.structured-select small,
+.structured-checkbox-group p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .structured-select select {
@@ -1194,6 +1224,35 @@ button {
   border-radius: var(--radius-sm);
   background: white;
   color: var(--text);
+}
+
+.structured-checkbox-group {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 10px;
+}
+
+.structured-checkboxes {
+  gap: 8px;
+}
+
+.review-guidelines {
+  padding: 16px 18px;
+  border: 1px solid rgba(25, 107, 91, 0.22);
+  border-radius: var(--radius-lg);
+  background: rgba(229, 246, 239, 0.72);
+}
+
+.review-guidelines h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.review-guidelines ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .fit-option {

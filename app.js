@@ -27,6 +27,7 @@
     deleteFamily: "家族を削除",
     deleteFamilyLabel: "この家族を削除",
     geocodeFailed: "住所から位置を取得できませんでした。住所を確認してください。",
+    geocodeFallback: "住所の自動取得に失敗したため、Red Deer内の参考位置として追加しました。",
     familyNameSameAsArea: "家族名とエリア名は分けて入力してください。",
     adminRatingOnly: "管理者による評価のみ",
     refineSearch: "検索条件を変えてもう一度探してください。",
@@ -70,9 +71,9 @@
     searchResults: "検索結果",
     noResults: "条件に一致するホストファミリーが見つかりません。",
     reviewForm: "レビュー投稿フォーム",
-    reviewLead: "レビューする家族を選び、カテゴリごとに星5段階で評価して本文を書き込めます。",
+    reviewLead: "生活環境、ルール、英語環境、相性を比較できる形で記録します。自由記述は補足として使います。",
     reviewPlaceholder:
-      "レビュー例：英語で話す機会は多く、困った時に相談しやすかったです。門限や外泊ルールは最初に説明されました。",
+      "生活環境、日課、サポートについて書いてください。\n個人攻撃や個人を特定できる情報は避けてください。",
     submitReview: "匿名レビューを投稿する",
     submitted: "レビューを保存しました。検索結果と最近のレビューに反映されています。",
     recentReviews: "最近のレビュー",
@@ -117,6 +118,7 @@
     exactAddressHidden: "正確な住所は非公開",
     approximatePins: "ピンはエリア単位の参考位置",
     mapUse: "通学、近隣環境、冬のアクセスを比較",
+    mapZoomLimited: "ホストのプライバシー保護のため、地図の拡大には制限があります。",
     quickFilters: "クイックフィルター",
     clearFilters: "解除",
     nearSchool: "学校に近い",
@@ -141,6 +143,37 @@
     verifiedStatus: "確認状況",
     commuteSummary: "通学・安全・サポート要約",
     structuredReview: "生活条件レビュー",
+    homeEnvironment: "HOME ENVIRONMENT",
+    rulesStructure: "RULES & STRUCTURE",
+    languageEnvironmentTitle: "LANGUAGE ENVIRONMENT",
+    socialAtmosphereTitle: "SOCIAL ATMOSPHERE",
+    studentMatching: "STUDENT MATCHING",
+    recommendationTitle: "RECOMMENDATION",
+    additionalNotes: "ADDITIONAL NOTES",
+    noiseLevel: "生活音",
+    noiseLevelQuestion: "家の環境はどのような雰囲気でしたか？",
+    privacyLevel: "個人スペース",
+    privacyLevelQuestion: "自分の空間はどれくらいありましたか？",
+    bathroomSituation: "バスルーム",
+    bathroomQuestion: "バスルームの利用状況は？",
+    rulesFlexibility: "門限・ハウスルール",
+    rulesQuestion: "家のルールはどう感じましたか？",
+    householdInteraction: "家庭内の関わり",
+    interactionQuestion: "一緒に食事や時間を過ごす頻度は？",
+    englishEnvironment: "英語環境",
+    englishEnvironmentQuestion: "日常の会話は主に何語でしたか？",
+    socialAtmosphere: "家庭の雰囲気",
+    socialAtmosphereQuestion: "家の雰囲気はどう感じましたか？",
+    goodMatchFor: "相性がよい学生",
+    goodMatchQuestion: "この家庭はどんな学生に合うと思いますか？",
+    recommendation: "おすすめ度",
+    recommendationQuestion: "このホームステイをおすすめしますか？",
+    privacyGuidelinesTitle: "Privacy & Review Guidelines",
+    privacyGuidelineAddress: "正確な住所を書かない",
+    privacyGuidelineNames: "家族メンバーの名前を書かない",
+    privacyGuidelineContact: "電話番号や連絡先を書かない",
+    privacyGuidelineConditions: "生活条件とサポートに集中する",
+    privacyGuidelineAttacks: "個人攻撃は禁止",
     curfew: "門限",
     meals: "食事",
     privacy: "プライバシー",
@@ -160,6 +193,44 @@
     yesOption: "はい",
     maybeOption: "たぶん",
     noOption: "いいえ",
+    veryQuietOption: "とても静か",
+    mostlyQuietOption: "だいたい静か",
+    balancedOption: "バランス型",
+    oftenNoisyOption: "にぎやかなことが多い",
+    veryNoisyOption: "とてもにぎやか",
+    veryPrivateOption: "かなり個人空間がある",
+    mostlyPrivateOption: "だいたい個人空間がある",
+    sharedOccasionallyOption: "時々共有",
+    limitedPrivacyOption: "個人空間は限られる",
+    bathroomPrivateOption: "専用",
+    sharedOneTwoOption: "1〜2人と共有",
+    sharedSeveralOption: "複数人と共有",
+    inconvenientOption: "不便",
+    veryFlexibleOption: "とても柔軟",
+    mostlyFlexibleOption: "だいたい柔軟",
+    veryStrictOption: "とても厳しい",
+    veryOftenOption: "とても多い",
+    sometimesOption: "時々",
+    rarelyOption: "少ない",
+    almostNeverOption: "ほとんどない",
+    englishOnlyOption: "英語のみ",
+    mostlyEnglishOption: "ほぼ英語",
+    mixedLanguagesOption: "複数言語",
+    mostlyNonEnglishOption: "英語以外が多い",
+    veryWelcomingOption: "とても歓迎的",
+    friendlyOption: "親しみやすい",
+    neutralOption: "中立的",
+    distantOption: "距離がある",
+    uncomfortableOption: "居心地が悪い",
+    quietStudentsOption: "静かな環境が好きな学生",
+    independentStudentsOption: "自立した学生",
+    socialStudentsOption: "交流したい学生",
+    beginnerEnglishLearnersOption: "英語初級者",
+    strongEnglishImmersionOption: "英語漬けを求める学生",
+    studentAthletesOption: "学生アスリート",
+    studentsWithoutCarsOption: "車がない学生",
+    preferStructureOption: "決まったルールが好きな学生",
+    preferFreedomOption: "自由度を重視する学生",
     safetyDesignTitle: "安全性を前提にした設計",
     safetyDesignText: "HomeLogは、留学生の体験を共有しながら、住所・連絡先・家族構成などの個人情報を公開しない設計です。",
     safetyPointAddress: "正確な住所は公開しません",
@@ -172,6 +243,10 @@
     analyticsRisks: "注意シグナル",
     analyticsStrongest: "強いカテゴリ",
     analyticsAttention: "改善が必要な領域",
+    analyticsCommonStrengths: "よくある強み",
+    analyticsCommonConcerns: "よくある懸念",
+    analyticsAtmosphere: "家庭の雰囲気",
+    analyticsRuleStrictness: "ルールの厳しさ",
     noAnalytics: "レビューや家族データが増えると分析が表示されます。",
     riskLowRules: "ルールの不一致",
     riskCommute: "通学・冬の移動",
@@ -219,6 +294,7 @@
     deleteFamily: "Delete family",
     deleteFamilyLabel: "Delete this family",
     geocodeFailed: "Could not place the pin from that address. Check the address and try again.",
+    geocodeFallback: "Address lookup failed, so the family was added at an approximate Red Deer placement.",
     familyNameSameAsArea: "Enter a family name that is different from the area name.",
     adminRatingOnly: "Admin rating only",
     refineSearch: "Change the search terms and try again.",
@@ -261,9 +337,9 @@
     searchResults: "Search results",
     noResults: "No host families match those conditions.",
     reviewForm: "Review form",
-    reviewLead: "Choose a family, rate each category from 1 to 5 stars, and write your review.",
+    reviewLead: "Record living conditions, rules, language environment, and fit in a comparable format. Notes are used as supporting context.",
     reviewPlaceholder:
-      "Example: I had many chances to speak English and it was easy to ask for help. Curfew and overnight rules were explained at the beginning.",
+      "Describe the living environment, routines, and support.\nAvoid personal attacks or identifying information.",
     submitReview: "Post anonymous review",
     submitted: "Review saved. It now appears in search results and recent reviews.",
     recentReviews: "Recent reviews",
@@ -308,6 +384,7 @@
     exactAddressHidden: "Exact address hidden",
     approximatePins: "Area-level approximate pins",
     mapUse: "Compare commute, neighborhood, and winter access",
+    mapZoomLimited: "Zoom is limited to protect host privacy.",
     quickFilters: "Quick filters",
     clearFilters: "Clear",
     nearSchool: "Near school",
@@ -332,6 +409,37 @@
     verifiedStatus: "Verification",
     commuteSummary: "Commute, safety, and support summary",
     structuredReview: "Structured living review",
+    homeEnvironment: "HOME ENVIRONMENT",
+    rulesStructure: "RULES & STRUCTURE",
+    languageEnvironmentTitle: "LANGUAGE ENVIRONMENT",
+    socialAtmosphereTitle: "SOCIAL ATMOSPHERE",
+    studentMatching: "STUDENT MATCHING",
+    recommendationTitle: "RECOMMENDATION",
+    additionalNotes: "ADDITIONAL NOTES",
+    noiseLevel: "Noise Level",
+    noiseLevelQuestion: "How would you describe the home environment?",
+    privacyLevel: "Privacy Level",
+    privacyLevelQuestion: "How much personal space did you have?",
+    bathroomSituation: "Bathroom Situation",
+    bathroomQuestion: "Bathroom access was:",
+    rulesFlexibility: "Curfew / House Rules",
+    rulesQuestion: "House rules felt:",
+    householdInteraction: "Household Interaction",
+    interactionQuestion: "How often did you eat or spend time together?",
+    englishEnvironment: "English Environment",
+    englishEnvironmentQuestion: "Daily communication was mostly:",
+    socialAtmosphere: "Social Atmosphere",
+    socialAtmosphereQuestion: "The home atmosphere felt:",
+    goodMatchFor: "Good Match For",
+    goodMatchQuestion: "Who do you think this home fits best?",
+    recommendation: "Would You Recommend This Homestay?",
+    recommendationQuestion: "Would you recommend this homestay?",
+    privacyGuidelinesTitle: "Privacy & Review Guidelines",
+    privacyGuidelineAddress: "Do not post exact addresses",
+    privacyGuidelineNames: "Do not post family member names",
+    privacyGuidelineContact: "Do not post phone numbers or contact details",
+    privacyGuidelineConditions: "Focus on living conditions and support",
+    privacyGuidelineAttacks: "Personal attacks are prohibited",
     curfew: "Curfew",
     meals: "Meals",
     privacy: "Privacy",
@@ -351,6 +459,44 @@
     yesOption: "Yes",
     maybeOption: "Maybe",
     noOption: "No",
+    veryQuietOption: "Very quiet",
+    mostlyQuietOption: "Mostly quiet",
+    balancedOption: "Balanced",
+    oftenNoisyOption: "Often noisy",
+    veryNoisyOption: "Very noisy",
+    veryPrivateOption: "Very private",
+    mostlyPrivateOption: "Mostly private",
+    sharedOccasionallyOption: "Shared occasionally",
+    limitedPrivacyOption: "Limited privacy",
+    bathroomPrivateOption: "Private",
+    sharedOneTwoOption: "Shared with 1-2 people",
+    sharedSeveralOption: "Shared with several people",
+    inconvenientOption: "Inconvenient",
+    veryFlexibleOption: "Very flexible",
+    mostlyFlexibleOption: "Mostly flexible",
+    veryStrictOption: "Very strict",
+    veryOftenOption: "Very often",
+    sometimesOption: "Sometimes",
+    rarelyOption: "Rarely",
+    almostNeverOption: "Almost never",
+    englishOnlyOption: "English only",
+    mostlyEnglishOption: "Mostly English",
+    mixedLanguagesOption: "Mixed languages",
+    mostlyNonEnglishOption: "Mostly non-English",
+    veryWelcomingOption: "Very welcoming",
+    friendlyOption: "Friendly",
+    neutralOption: "Neutral",
+    distantOption: "Distant",
+    uncomfortableOption: "Uncomfortable",
+    quietStudentsOption: "Quiet students",
+    independentStudentsOption: "Independent students",
+    socialStudentsOption: "Social students",
+    beginnerEnglishLearnersOption: "Beginner English learners",
+    strongEnglishImmersionOption: "Strong English immersion",
+    studentAthletesOption: "Student athletes",
+    studentsWithoutCarsOption: "Students without cars",
+    preferStructureOption: "Students who prefer structure",
+    preferFreedomOption: "Students who prefer freedom",
     safetyDesignTitle: "Safety by design",
     safetyDesignText: "HomeLog shares student experience while keeping exact addresses, contact details, and family composition out of public view.",
     safetyPointAddress: "Exact addresses are hidden",
@@ -363,6 +509,10 @@
     analyticsRisks: "Common risk signals",
     analyticsStrongest: "Strongest categories",
     analyticsAttention: "Areas needing attention",
+    analyticsCommonStrengths: "Most common strengths",
+    analyticsCommonConcerns: "Most common concerns",
+    analyticsAtmosphere: "Average atmosphere",
+    analyticsRuleStrictness: "Average rule strictness",
     noAnalytics: "Analytics will appear as host and review data grows.",
     riskLowRules: "Rules mismatch",
     riskCommute: "Commute and winter access",
@@ -473,7 +623,48 @@
     ["petFriendly", "ペット好き向け"],
   ];
 
-  const structuredReviewFields = [
+  const structuredReviewSections = [
+    {
+      title: "homeEnvironment",
+      fields: [
+        { key: "noiseLevel", question: "noiseLevelQuestion", options: ["veryQuiet", "mostlyQuiet", "balanced", "oftenNoisy", "veryNoisy"] },
+        { key: "privacyLevel", question: "privacyLevelQuestion", options: ["veryPrivate", "mostlyPrivate", "sharedOccasionally", "limitedPrivacy"] },
+        { key: "bathroomSituation", question: "bathroomQuestion", options: ["private", "sharedOneTwo", "sharedSeveral", "inconvenient"] },
+      ],
+    },
+    {
+      title: "rulesStructure",
+      fields: [
+        { key: "rulesFlexibility", question: "rulesQuestion", options: ["veryFlexible", "mostlyFlexible", "balanced", "strict", "veryStrict"] },
+        { key: "householdInteraction", question: "interactionQuestion", options: ["veryOften", "sometimes", "rarely", "almostNever"] },
+      ],
+    },
+    {
+      title: "languageEnvironmentTitle",
+      fields: [{ key: "englishEnvironment", question: "englishEnvironmentQuestion", options: ["englishOnly", "mostlyEnglish", "mixedLanguages", "mostlyNonEnglish"] }],
+    },
+    {
+      title: "socialAtmosphereTitle",
+      fields: [{ key: "socialAtmosphere", question: "socialAtmosphereQuestion", options: ["veryWelcoming", "friendly", "neutral", "distant", "uncomfortable"] }],
+    },
+    {
+      title: "studentMatching",
+      fields: [
+        {
+          key: "goodMatchFor",
+          question: "goodMatchQuestion",
+          type: "checkbox",
+          options: ["quietStudents", "independentStudents", "socialStudents", "beginnerEnglishLearners", "strongEnglishImmersion", "studentAthletes", "studentsWithoutCars", "preferStructure", "preferFreedom"],
+        },
+      ],
+    },
+    {
+      title: "recommendationTitle",
+      fields: [{ key: "recommendation", question: "recommendationQuestion", options: ["yes", "maybe", "no"] }],
+    },
+  ];
+
+  const legacyStructuredReviewFields = [
     ["curfew", ["strict", "normal", "flexible", "unknown"]],
     ["meals", ["enough", "normal", "notEnough", "unknown"]],
     ["privacy", ["private", "shared", "limited", "unknown"]],
@@ -482,13 +673,51 @@
   ];
 
   const structuredOptionLabels = {
+    veryQuiet: "veryQuietOption",
+    mostlyQuiet: "mostlyQuietOption",
+    balanced: "balancedOption",
+    oftenNoisy: "oftenNoisyOption",
+    veryNoisy: "veryNoisyOption",
+    veryPrivate: "veryPrivateOption",
+    mostlyPrivate: "mostlyPrivateOption",
+    sharedOccasionally: "sharedOccasionallyOption",
+    limitedPrivacy: "limitedPrivacyOption",
+    "bathroomSituation.private": "bathroomPrivateOption",
+    private: "privateOption",
+    sharedOneTwo: "sharedOneTwoOption",
+    sharedSeveral: "sharedSeveralOption",
+    inconvenient: "inconvenientOption",
+    veryFlexible: "veryFlexibleOption",
+    mostlyFlexible: "mostlyFlexibleOption",
     strict: "strictOption",
+    veryStrict: "veryStrictOption",
+    veryOften: "veryOftenOption",
+    sometimes: "sometimesOption",
+    rarely: "rarelyOption",
+    almostNever: "almostNeverOption",
+    englishOnly: "englishOnlyOption",
+    mostlyEnglish: "mostlyEnglishOption",
+    mixedLanguages: "mixedLanguagesOption",
+    mostlyNonEnglish: "mostlyNonEnglishOption",
+    veryWelcoming: "veryWelcomingOption",
+    friendly: "friendlyOption",
+    neutral: "neutralOption",
+    distant: "distantOption",
+    uncomfortable: "uncomfortableOption",
+    quietStudents: "quietStudentsOption",
+    independentStudents: "independentStudentsOption",
+    socialStudents: "socialStudentsOption",
+    beginnerEnglishLearners: "beginnerEnglishLearnersOption",
+    strongEnglishImmersion: "strongEnglishImmersionOption",
+    studentAthletes: "studentAthletesOption",
+    studentsWithoutCars: "studentsWithoutCarsOption",
+    preferStructure: "preferStructureOption",
+    preferFreedom: "preferFreedomOption",
     normal: "normalOption",
     flexible: "flexibleOption",
     unknown: "unknownOption",
     enough: "enoughOption",
     notEnough: "notEnoughOption",
-    private: "privateOption",
     shared: "sharedOption",
     limited: "limitedOption",
     easy: "easyOption",
@@ -500,11 +729,11 @@
 
   const quickFilters = [
     { key: "nearSchool", label: "nearSchool", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "transportation")) >= 4.4 },
-    { key: "quietHome", label: "quietHome", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "study")) >= 4.5 },
-    { key: "flexibleRules", label: "flexibleRules", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "rules")) >= 4.2 },
-    { key: "strongEnglish", label: "strongEnglish", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "englishEnvironment")) >= 4.5 },
+    { key: "quietHome", label: "quietHome", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "study")) >= 4.5 || hostReviews(host).some((review) => ["veryQuiet", "mostlyQuiet"].includes(review.structured && review.structured.noiseLevel)) },
+    { key: "flexibleRules", label: "flexibleRules", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "rules")) >= 4.2 || hostReviews(host).some((review) => ["veryFlexible", "mostlyFlexible"].includes(review.structured && review.structured.rulesFlexibility)) },
+    { key: "strongEnglish", label: "strongEnglish", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "englishEnvironment")) >= 4.5 || hostReviews(host).some((review) => ["englishOnly", "mostlyEnglish"].includes(review.structured && review.structured.englishEnvironment)) },
     { key: "goodIntroverts", label: "goodIntroverts", match: (host) => getHostFit(host).some((fit) => fit.toLowerCase().includes("introvert") || fit.includes("内向")) },
-    { key: "sportsFriendly", label: "sportsFriendly", match: (host) => getHostFit(host).some((fit) => fit.toLowerCase().includes("sports") || fit.includes("スポーツ")) },
+    { key: "sportsFriendly", label: "sportsFriendly", match: (host) => getHostFit(host).some((fit) => fit.toLowerCase().includes("sports") || fit.includes("スポーツ")) || hostReviews(host).some((review) => Array.isArray(review.structured && review.structured.goodMatchFor) && review.structured.goodMatchFor.includes("studentAthletes")) },
     { key: "winterSupport", label: "winterSupport", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "rideSupport")) >= 4.2 || Number(host.criteria.winterCommute) >= 4.2 },
     { key: "highSafety", label: "highSafety", match: (host) => groupScore(host, criteriaGroups.find((group) => group.key === "safetyEnvironment")) >= 4.6 },
     { key: "mealSupport", label: "mealSupport", match: (host) => host.tags.some((tag) => String(tag).includes("食") || String(tag).toLowerCase().includes("meal")) },
@@ -701,11 +930,15 @@
     reviewScores: { ...defaultScores },
     reviewFit: [],
     reviewStructured: {
-      curfew: "unknown",
-      meals: "unknown",
-      privacy: "unknown",
-      communication: "unknown",
-      recommend: "maybe",
+      noiseLevel: "balanced",
+      privacyLevel: "mostlyPrivate",
+      bathroomSituation: "sharedOneTwo",
+      rulesFlexibility: "balanced",
+      householdInteraction: "sometimes",
+      englishEnvironment: "mostlyEnglish",
+      socialAtmosphere: "friendly",
+      goodMatchFor: [],
+      recommendation: "maybe",
     },
     activeFilters: [],
     submitted: false,
@@ -716,6 +949,7 @@
 
   let leafletMap = null;
   let apiSyncStarted = false;
+  let hostSyncStarted = false;
 
   function loadLanguage() {
     if (typeof localStorage === "undefined") return "ja";
@@ -807,6 +1041,10 @@
 
   function canModerateReviews() {
     return isModerator() || isAdmin();
+  }
+
+  function canAddFamily() {
+    return Boolean(currentUser);
   }
 
   function localizedCriteria(group) {
@@ -921,6 +1159,31 @@
     return [...grouped.values()];
   }
 
+  function knownHostIds() {
+    return new Set(allHosts().flatMap((host) => [host.id, ...(host.duplicateIds || [])]).map(Number));
+  }
+
+  function visibleReviews() {
+    const ids = knownHostIds();
+    return state.userReviews.filter((review) => ids.has(Number(review.hostId)));
+  }
+
+  async function syncHostsFromApi() {
+    if (hostSyncStarted || typeof fetch === "undefined") return;
+    hostSyncStarted = true;
+    try {
+      const response = await fetch("/api/hosts", { headers: { Accept: "application/json" } });
+      if (!response.ok) return;
+      const serverHosts = await response.json();
+      if (!Array.isArray(serverHosts)) return;
+      state.customHosts = serverHosts;
+      saveCustomHosts();
+      render();
+    } catch (_error) {
+      // Static HTML mode falls back to localStorage.
+    }
+  }
+
   async function syncReviewsFromApi() {
     if (apiSyncStarted || typeof fetch === "undefined") return;
     apiSyncStarted = true;
@@ -959,6 +1222,30 @@
     saveReviews();
   }
 
+  async function persistHost(host) {
+    if (typeof fetch !== "undefined") {
+      try {
+        const response = await fetch("/api/hosts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(host),
+        });
+        if (response.ok) {
+          const savedHost = await response.json();
+          state.customHosts.unshift(savedHost);
+          saveCustomHosts();
+          return savedHost;
+        }
+      } catch (_error) {
+        // Static HTML mode falls back to localStorage.
+      }
+    }
+
+    state.customHosts.unshift(host);
+    saveCustomHosts();
+    return host;
+  }
+
   async function deleteReview(reviewId) {
     const id = String(reviewId);
     if (!id) return;
@@ -988,8 +1275,15 @@
   async function geocodeAddress(exactAddress) {
     const query = `${exactAddress}, Red Deer, Alberta, Canada`;
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
-    const response = await fetch(url, { headers: { Accept: "application/json" } });
-    if (!response.ok) return null;
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timeout = controller ? setTimeout(() => controller.abort(), 4500) : null;
+    let response;
+    try {
+      response = await fetch(url, { headers: { Accept: "application/json" }, signal: controller?.signal });
+    } finally {
+      if (timeout) clearTimeout(timeout);
+    }
+    if (!response || !response.ok) return null;
 
     const matches = await response.json();
     const first = Array.isArray(matches) ? matches[0] : null;
@@ -1000,11 +1294,25 @@
     return Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null;
   }
 
+  function approximateLocationFromAddress(exactAddress) {
+    const text = String(exactAddress || "");
+    const hash = [...text].reduce((total, char) => (total * 31 + char.charCodeAt(0)) % 10000, 7);
+    const latOffset = ((hash % 80) - 40) / 10000;
+    const lngOffset = (((Math.floor(hash / 80) % 80) - 40) / 10000);
+    return {
+      lat: RED_DEER_CENTER.lat + latOffset,
+      lng: RED_DEER_CENTER.lng + lngOffset,
+    };
+  }
+
   function deleteHost(hostId) {
     const host = allHosts().find((item) => item.id === Number(hostId) || (item.duplicateIds || []).includes(Number(hostId)));
     if (!host) return;
 
     const idsToDelete = new Set([host.id, ...(host.duplicateIds || [])].map(Number));
+    if (typeof fetch !== "undefined" && host.isCustom) {
+      fetch(`/api/hosts/${encodeURIComponent(host.id)}`, { method: "DELETE", headers: { Accept: "application/json" } }).catch(() => {});
+    }
     state.customHosts = state.customHosts.filter((item) => !idsToDelete.has(Number(item.id)));
     state.userReviews = state.userReviews.filter((review) => !idsToDelete.has(Number(review.hostId)));
     state.selectedId = null;
@@ -1061,8 +1369,35 @@
   }
 
   function structuredLabel(field, value) {
-    const key = structuredOptionLabels[value] || `${field}.${value}`;
+    const key = structuredOptionLabels[`${field}.${value}`] || structuredOptionLabels[value] || `${field}.${value}`;
     return t[key] || value;
+  }
+
+  function structuredFieldsFlat() {
+    return structuredReviewSections.flatMap((section) => section.fields);
+  }
+
+  function structuredReviewTags(review) {
+    if (!review || !review.structured) return [];
+    const structured = review.structured;
+    const tags = [];
+
+    structuredFieldsFlat().forEach((field) => {
+      const value = structured[field.key];
+      if (!value) return;
+      if (Array.isArray(value)) {
+        value.forEach((item) => tags.push(structuredLabel(field.key, item)));
+        return;
+      }
+      if (value !== "unknown") tags.push(structuredLabel(field.key, value));
+    });
+
+    legacyStructuredReviewFields.forEach(([field]) => {
+      const value = structured[field];
+      if (value && value !== "unknown") tags.push(structuredLabel(field, value));
+    });
+
+    return [...new Set(tags)].slice(0, 10);
   }
 
   function hostInsights(host) {
@@ -1103,6 +1438,7 @@
       city: "Red Deer, Alberta",
       area,
       exactAddress,
+      _privacyNote: "demo-only private placement data; never display exactAddress in public UI",
       lat: safeLat,
       lng: safeLng,
       rating: 0,
@@ -1112,6 +1448,7 @@
       fit: [],
       summary: t.customHostSummary,
       criteria: Object.fromEntries(criteriaGroups.flatMap((group) => group.itemKeys.map((key) => [key, 4]))),
+      isCustom: true,
     };
   }
 
@@ -1167,7 +1504,8 @@
 
   function schoolAnalytics() {
     const hosts = allHosts();
-    const reviews = state.userReviews;
+    const reviews = visibleReviews();
+    const structuredReviews = reviews.filter((review) => review.structured);
     const categoryScores = localizedCriteriaGroups()
       .map((group) => ({
         title: group.title,
@@ -1180,6 +1518,39 @@
       { label: t.riskCommute, count: hosts.filter((host) => groupScore(host, criteriaGroups.find((group) => group.key === "transportation")) < 4 || groupScore(host, criteriaGroups.find((group) => group.key === "rideSupport")) < 4).length },
       { label: t.riskSupport, count: hosts.filter((host) => groupScore(host, criteriaGroups.find((group) => group.key === "mentalSupport")) < 4).length },
     ];
+    const valuesFor = (field) =>
+      structuredReviews.flatMap((review) => {
+        const value = review.structured?.[field];
+        if (!value || value === "unknown") return [];
+        return Array.isArray(value) ? value : [value];
+      });
+    const topValues = (field, limit = 3) => {
+      const counts = valuesFor(field).reduce((items, value) => {
+        items[value] = (items[value] || 0) + 1;
+        return items;
+      }, {});
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit)
+        .map(([value, count]) => ({ title: structuredLabel(field, value), value: count }));
+    };
+    const atmosphereScores = { veryWelcoming: 5, friendly: 4, neutral: 3, distant: 2, uncomfortable: 1 };
+    const ruleScores = { veryFlexible: 1, mostlyFlexible: 2, balanced: 3, strict: 4, veryStrict: 5 };
+    const atmosphereAverage = average(valuesFor("socialAtmosphere").map((value) => atmosphereScores[value]).filter(Boolean));
+    const ruleStrictnessAverage = average(valuesFor("rulesFlexibility").map((value) => ruleScores[value]).filter(Boolean));
+    const commonStrengths = [
+      ...topValues("goodMatchFor", 4),
+      ...["noiseLevel", "privacyLevel", "englishEnvironment", "rulesFlexibility", "socialAtmosphere"]
+        .flatMap((field) => topValues(field, 1))
+        .filter((item) => item.value > 0),
+    ].slice(0, 5);
+    const concernDefinitions = [
+      { title: structuredLabel("noiseLevel", "oftenNoisy"), value: valuesFor("noiseLevel").filter((value) => ["oftenNoisy", "veryNoisy"].includes(value)).length },
+      { title: structuredLabel("privacyLevel", "limitedPrivacy"), value: valuesFor("privacyLevel").filter((value) => value === "limitedPrivacy").length },
+      { title: structuredLabel("rulesFlexibility", "strict"), value: valuesFor("rulesFlexibility").filter((value) => ["strict", "veryStrict"].includes(value)).length },
+      { title: structuredLabel("socialAtmosphere", "uncomfortable"), value: valuesFor("socialAtmosphere").filter((value) => ["distant", "uncomfortable"].includes(value)).length },
+    ];
+    const commonConcerns = concernDefinitions.filter((item) => item.value > 0).sort((a, b) => b.value - a.value);
 
     return {
       reviews: reviews.length,
@@ -1187,6 +1558,10 @@
       risks,
       strongest: categoryScores.slice(0, 3),
       attention: categoryScores.slice(-3).reverse(),
+      commonStrengths,
+      commonConcerns,
+      atmosphereAverage,
+      ruleStrictnessAverage,
     };
   }
 
@@ -1277,7 +1652,7 @@
   }
 
   function renderAddFamilyPanel() {
-    if (!isAdmin()) return "";
+    if (!canAddFamily()) return "";
 
     return `
       <details class="add-house-panel add-house-panel--top">
@@ -1367,6 +1742,7 @@
                 <span class="trust-badge">${t.exactAddressHidden}</span>
                 <span class="trust-badge">${t.approximatePins}</span>
                 <span class="trust-badge">${t.mapUse}</span>
+                <span class="trust-badge">${t.mapZoomLimited}</span>
               </div>
             </div>
             ${
@@ -1404,7 +1780,7 @@
                         <div class="map-list-sub">${escapeHtml(item.area)} / ${escapeHtml(item.city)}</div>
                       </button>
                       ${
-                        isAdmin()
+                        isAdmin() && item.isCustom
                           ? `<button type="button" class="button button--danger button--compact" data-delete-host="${escapeHtml(
                               item.id
                             )}" aria-label="${escapeHtml(t.deleteFamilyLabel)}">${t.deleteFamily}</button>`
@@ -1488,7 +1864,6 @@
     return `
       <article id="review" class="card review-card">
         <div class="card-body">
-          ${renderAddFamilyPanel()}
           <h2 class="section-title">${t.reviewForm}</h2>
           <p class="section-text">${t.reviewLead}</p>
           <div class="review-target">
@@ -1532,28 +1907,83 @@
                 .join("")}
             </div>
           </fieldset>
+          <aside class="review-guidelines">
+            <h3>${t.privacyGuidelinesTitle}</h3>
+            <ul>
+              ${[
+                t.privacyGuidelineAddress,
+                t.privacyGuidelineNames,
+                t.privacyGuidelineContact,
+                t.privacyGuidelineConditions,
+                t.privacyGuidelineAttacks,
+              ]
+                .map((item) => `<li>${escapeHtml(item)}</li>`)
+                .join("")}
+            </ul>
+          </aside>
           <fieldset class="fit-fieldset structured-fieldset">
             <legend>${t.structuredReview}</legend>
-            <div class="structured-grid">
-              ${structuredReviewFields
+            <div class="structured-sections">
+              ${structuredReviewSections
                 .map(
-                  ([field, options]) => `
-                    <label class="structured-select">
-                      <span>${t[field]}</span>
-                      <select data-structured-field="${field}">
-                        ${options
-                          .map(
-                            (option) =>
-                              `<option value="${option}" ${state.reviewStructured[field] === option ? "selected" : ""}>${structuredLabel(field, option)}</option>`
+                  (section) => `
+                    <section class="structured-section">
+                      <h3>${escapeHtml(t[section.title])}</h3>
+                      <div class="structured-grid">
+                        ${section.fields
+                          .map((field) =>
+                            field.type === "checkbox"
+                              ? `
+                                <div class="structured-checkbox-group">
+                                  <div>
+                                    <strong>${escapeHtml(t[field.key])}</strong>
+                                    <p>${escapeHtml(t[field.question])}</p>
+                                  </div>
+                                  <div class="fit-options structured-checkboxes">
+                                    ${field.options
+                                      .map(
+                                        (option) => `
+                                          <label class="fit-option">
+                                            <input type="checkbox" value="${escapeHtml(option)}" data-structured-match="${escapeHtml(option)}" ${
+                                          Array.isArray(state.reviewStructured[field.key]) &&
+                                          state.reviewStructured[field.key].includes(option)
+                                            ? "checked"
+                                            : ""
+                                        } />
+                                            <span>${escapeHtml(structuredLabel(field.key, option))}</span>
+                                          </label>
+                                        `
+                                      )
+                                      .join("")}
+                                  </div>
+                                </div>
+                              `
+                              : `
+                                <label class="structured-select">
+                                  <span>${escapeHtml(t[field.key])}</span>
+                                  <small>${escapeHtml(t[field.question])}</small>
+                                  <select data-structured-field="${escapeHtml(field.key)}">
+                                    ${field.options
+                                      .map(
+                                        (option) =>
+                                          `<option value="${escapeHtml(option)}" ${
+                                            state.reviewStructured[field.key] === option ? "selected" : ""
+                                          }>${escapeHtml(structuredLabel(field.key, option))}</option>`
+                                      )
+                                      .join("")}
+                                  </select>
+                                </label>
+                              `
                           )
                           .join("")}
-                      </select>
-                    </label>
+                      </div>
+                    </section>
                   `
                 )
                 .join("")}
             </div>
           </fieldset>
+          <h3 class="review-subtitle">${t.additionalNotes}</h3>
           <label class="review-text-label" for="review-textarea">${t.reviewText}</label>
           <textarea id="review-textarea" class="review-textarea" placeholder="${escapeHtml(
             t.reviewPlaceholder
@@ -1566,7 +1996,7 @@
   }
 
   function renderRecentReviews() {
-    const reviews = state.userReviews
+    const reviews = visibleReviews()
       .slice()
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 8);
@@ -1586,6 +2016,7 @@
                     .map(
                       (review) => {
                         const reviewText = displayReviewText(review.text);
+                        const structuredTags = structuredReviewTags(review);
                         return `
                   <article class="review-item">
                     <div class="review-header">
@@ -1609,13 +2040,9 @@
                         : ""
                     }
                     ${
-                      review.structured
-                        ? `<div class="structured-review-summary">${structuredReviewFields
-                            .map(([field]) =>
-                              review.structured[field]
-                                ? `<span><strong>${t[field]}:</strong> ${structuredLabel(field, review.structured[field])}</span>`
-                                : ""
-                            )
+                      structuredTags.length
+                        ? `<div class="structured-review-summary">${structuredTags
+                            .map((tag) => `<span>${escapeHtml(tag)}</span>`)
                             .join("")}</div>`
                         : ""
                     }
@@ -1669,6 +2096,10 @@
       items.length
         ? items.map((item) => `<div class="analytics-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(item.value.toFixed(1))}</strong></div>`).join("")
         : `<div class="empty-state">${t.noAnalytics}</div>`;
+    const countList = (items) =>
+      items.length
+        ? items.map((item) => `<div class="analytics-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(item.value)}</strong></div>`).join("")
+        : `<div class="empty-state">${t.noAnalytics}</div>`;
 
     return `
       <section id="school" class="section-school">
@@ -1697,6 +2128,28 @@
             <article class="analytics-card">
               <h3>${t.analyticsAttention}</h3>
               ${scoreList(analytics.attention)}
+            </article>
+            <article class="analytics-card">
+              <h3>${t.analyticsCommonStrengths}</h3>
+              ${countList(analytics.commonStrengths)}
+            </article>
+            <article class="analytics-card">
+              <h3>${t.analyticsCommonConcerns}</h3>
+              ${countList(analytics.commonConcerns)}
+            </article>
+            <article class="analytics-card">
+              <h3>${t.analyticsAtmosphere}</h3>
+              ${
+                Number.isFinite(analytics.atmosphereAverage)
+                  ? `<div class="analytics-row"><span>${t.analyticsAtmosphere}</span><strong>${analytics.atmosphereAverage.toFixed(1)}</strong></div>`
+                  : `<div class="empty-state">${t.noAnalytics}</div>`
+              }
+              <h3>${t.analyticsRuleStrictness}</h3>
+              ${
+                Number.isFinite(analytics.ruleStrictnessAverage)
+                  ? `<div class="analytics-row"><span>${t.analyticsRuleStrictness}</span><strong>${analytics.ruleStrictnessAverage.toFixed(1)}</strong></div>`
+                  : `<div class="empty-state">${t.noAnalytics}</div>`
+              }
             </article>
           </div>
         </div>
@@ -1866,21 +2319,25 @@
       }
 
       addHouseButton.disabled = true;
-      const location = await geocodeAddress(exactAddress);
+      let location = null;
+      let usedApproximateLocation = false;
+      try {
+        location = await geocodeAddress(exactAddress);
+      } catch (_error) {
+        location = null;
+      }
       addHouseButton.disabled = false;
 
       if (!location) {
-        addressInput.focus();
-        alert(t.geocodeFailed);
-        return;
+        location = approximateLocationFromAddress(exactAddress);
+        usedApproximateLocation = true;
       }
 
-      const host = createCustomHost({ name, area, exactAddress, lat: location.lat, lng: location.lng });
-      state.customHosts.push(host);
+      const host = await persistHost(createCustomHost({ name, area, exactAddress, lat: location.lat, lng: location.lng }));
       state.selectedId = host.id;
       state.submitted = false;
-      saveCustomHosts();
       render();
+      if (usedApproximateLocation) alert(t.geocodeFallback);
     });
 
     if (reviewTextarea) reviewTextarea.addEventListener("input", (event) => {
@@ -1918,11 +2375,15 @@
       state.reviewScores = { ...defaultScores };
       state.reviewFit = [];
       state.reviewStructured = {
-        curfew: "unknown",
-        meals: "unknown",
-        privacy: "unknown",
-        communication: "unknown",
-        recommend: "maybe",
+        noiseLevel: "balanced",
+        privacyLevel: "mostlyPrivate",
+        bathroomSituation: "sharedOneTwo",
+        rulesFlexibility: "balanced",
+        householdInteraction: "sometimes",
+        englishEnvironment: "mostlyEnglish",
+        socialAtmosphere: "friendly",
+        goodMatchFor: [],
+        recommendation: "maybe",
       };
       state.submitted = true;
       render();
@@ -1975,6 +2436,14 @@
         state.reviewStructured[select.dataset.structuredField] = select.value;
       });
     });
+
+    document.querySelectorAll("[data-structured-match]").forEach((input) => {
+      input.addEventListener("change", () => {
+        const value = input.dataset.structuredMatch;
+        const current = Array.isArray(state.reviewStructured.goodMatchFor) ? state.reviewStructured.goodMatchFor : [];
+        state.reviewStructured.goodMatchFor = input.checked ? [...new Set([...current, value])] : current.filter((item) => item !== value);
+      });
+    });
   }
 
   function initMap(host) {
@@ -1988,13 +2457,13 @@
 
     const centerLat = state.selectedId && host ? host.lat : RED_DEER_CENTER.lat;
     const centerLng = state.selectedId && host ? host.lng : RED_DEER_CENTER.lng;
-    leafletMap = L.map(mapElement, { zoomControl: true, scrollWheelZoom: false, attributionControl: false }).setView(
+    leafletMap = L.map(mapElement, { zoomControl: true, scrollWheelZoom: false, attributionControl: false, maxZoom: 13 }).setView(
       [centerLat, centerLng],
       state.selectedId && host ? 12 : 11
     );
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
+      maxZoom: 13,
     }).addTo(leafletMap);
 
     const houseIcon = L.divIcon({
@@ -2108,6 +2577,7 @@
                   <button type="button" class="button button--primary">${t.searchButton}</button>
                 </div>
                 ${renderQuickFilters()}
+                ${renderAddFamilyPanel()}
                 <div class="hero-actions">
                   <a class="button button--primary" href="#map">${t.compareAreas}</a>
                   <button id="hero-review-button" type="button" class="button button--secondary">${t.writeReviewCta}</button>
@@ -2117,7 +2587,7 @@
                     ? `<div class="stat-grid">
                   <article class="card card--soft">
                     <div class="card-body">
-                      <div class="stat-value">${state.userReviews.length}</div>
+                      <div class="stat-value">${visibleReviews().length}</div>
                       <div class="stat-label">${t.statPrivacy}</div>
                     </div>
                   </article>
@@ -2163,6 +2633,7 @@
     bindEvents();
     initMap(host);
     restoreFocusState(focusState);
+    syncHostsFromApi();
     syncReviewsFromApi();
   }
 
