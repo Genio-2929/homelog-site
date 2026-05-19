@@ -154,7 +154,8 @@ const server = http.createServer(async (request, response) => {
         .single();
 
       if (error) {
-        sendJson(response, 500, { error: "Failed to save review" });
+        console.error("[POST /api/reviews] Supabase error:", JSON.stringify(error));
+        sendJson(response, 500, { error: "Failed to save review", detail: error.message });
         return;
       }
 
