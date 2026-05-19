@@ -5,6 +5,8 @@ const { URL } = require("url");
 const { createClient } = require("@supabase/supabase-js");
 
 const root = __dirname;
+const dataDir = path.join(root, "data");
+const seedReviewsPath = path.join(dataDir, "seed-reviews.json");
 const port = Number(process.env.PORT || 8001);
 
 const supabase = createClient(
@@ -19,6 +21,16 @@ const mimeTypes = {
   ".json": "application/json; charset=utf-8",
   ".md": "text/markdown; charset=utf-8",
 };
+
+function readSeedReviews() {
+  try {
+    if (!fs.existsSync(seedReviewsPath)) return [];
+    const parsed = JSON.parse(fs.readFileSync(seedReviewsPath, "utf8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_error) {
+    return [];
+  }
+}
 
 function sendJson(response, statusCode, payload) {
   response.writeHead(statusCode, {
@@ -67,37 +79,7 @@ function normalizeReview(input) {
   };
 }
 
-function normalizeHost(input) {
-  const name = String(input.name || "").trim();
-  const area = String(input.area || "").trim();
-  const exactAddress = String(input.exactAddress || "").trim();
-  const lat = Number(input.lat);
-  const lng = Number(input.lng);
-
-  if (!name || !area || !exactAddress || !Number.isFinite(lat) || !Number.isFinite(lng)) {
-    return null;
-  }
-
-  return {
-    id: Number(input.id) || Date.now(),
-    name: name.slice(0, 120),
-    city: String(input.city || "Red Deer, Alberta").slice(0, 120),
-    area: area.slice(0, 120),
-    exact_address: exactAddress.slice(0, 240),
-    lat,
-    lng,
-    rating: Number.isFinite(Number(input.rating)) ? Number(input.rating) : 0,
-    reviews: 0,
-    verified: Boolean(input.verified),
-    tags: Array.isArray(input.tags) ? input.tags.map(String).slice(0, 12) : [area, "New entry"],
-    fit: Array.isArray(input.fit) ? input.fit.map(String).slice(0, 8) : [],
-    summary: String(input.summary || "A host family added by the user. Ratings update after reviews are posted.").slice(0, 500),
-    criteria: typeof input.criteria === "object" && input.criteria ? input.criteria : {},
-    is_custom: true,
-  };
-}
-
-function reviewToFrontend(row) {
+function toFrontend(row) {
   return {
     id: row.id,
     hostId: row.host_id,
@@ -109,27 +91,6 @@ function reviewToFrontend(row) {
     fit: row.fit || [],
     structured: row.structured || {},
     createdAt: row.created_at,
-  };
-}
-
-function hostToFrontend(row) {
-  return {
-    id: row.id,
-    name: row.name,
-    city: row.city,
-    area: row.area,
-    exactAddress: row.exact_address,
-    _privacyNote: "demo-only private placement data; never display exactAddress in public UI",
-    lat: row.lat,
-    lng: row.lng,
-    rating: row.rating,
-    reviews: row.reviews,
-    verified: row.verified,
-    tags: row.tags || [],
-    fit: row.fit || [],
-    summary: row.summary,
-    criteria: row.criteria || {},
-    isCustom: row.is_custom,
   };
 }
 
@@ -171,7 +132,9 @@ const server = http.createServer(async (request, response) => {
       return;
     }
 
-    sendJson(response, 200, (data || []).map(reviewToFrontend));
+    const userReviews = (data || []).map(toFrontend);
+    const seedReviews = readSeedReviews();
+    sendJson(response, 200, [...userReviews, ...seedReviews]);
     return;
   }
 
@@ -195,7 +158,7 @@ const server = http.createServer(async (request, response) => {
         return;
       }
 
-      sendJson(response, 201, reviewToFrontend(data));
+      sendJson(response, 201, toFrontend(data));
     } catch (_error) {
       sendJson(response, 400, { error: "Invalid request" });
     }
@@ -204,6 +167,11 @@ const server = http.createServer(async (request, response) => {
 
   if (pathname.startsWith("/api/reviews/") && request.method === "DELETE") {
     const reviewId = decodeURIComponent(pathname.slice("/api/reviews/".length));
+
+    if (reviewId.startsWith("seed-")) {
+      sendJson(response, 403, { error: "Seed reviews are managed via seed-reviews.json" });
+      return;
+    }
 
     const { error, count } = await supabase
       .from("reviews")
@@ -224,73 +192,9 @@ const server = http.createServer(async (request, response) => {
     return;
   }
 
-  if (pathname === "/api/hosts" && request.method === "GET") {
-    const { data, error } = await supabase
-      .from("hosts")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      sendJson(response, 500, { error: "Failed to load hosts" });
-      return;
-    }
-
-    sendJson(response, 200, (data || []).map(hostToFrontend));
-    return;
-  }
-
-  if (pathname === "/api/hosts" && request.method === "POST") {
-    try {
-      const body = await readBody(request);
-      const host = normalizeHost(JSON.parse(body || "{}"));
-      if (!host) {
-        sendJson(response, 400, { error: "Invalid host" });
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("hosts")
-        .insert(host)
-        .select()
-        .single();
-
-      if (error) {
-        sendJson(response, 500, { error: "Failed to save host" });
-        return;
-      }
-
-      sendJson(response, 201, hostToFrontend(data));
-    } catch (_error) {
-      sendJson(response, 400, { error: "Invalid request" });
-    }
-    return;
-  }
-
-  if (pathname.startsWith("/api/hosts/") && request.method === "DELETE") {
-    const hostId = decodeURIComponent(pathname.slice("/api/hosts/".length));
-
-    const { error, count } = await supabase
-      .from("hosts")
-      .delete({ count: "exact" })
-      .eq("id", hostId);
-
-    if (error) {
-      sendJson(response, 500, { error: "Failed to delete host" });
-      return;
-    }
-
-    if (count === 0) {
-      sendJson(response, 404, { error: "Host not found" });
-      return;
-    }
-
-    sendJson(response, 200, { ok: true });
-    return;
-  }
-
   serveStatic(request, response, decodeURIComponent(pathname));
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`ホームログ server running at http://0.0.0.0:${port}/`);
+  console.log(`Nestly server running at http://0.0.0.0:${port}/`);
 });
