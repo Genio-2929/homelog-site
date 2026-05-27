@@ -238,5 +238,53 @@
     "fit": ["introvert"],
     "structured": { "curfew": "normal", "meals": "enough", "privacy": "private", "communication": "easy", "recommend": "yes" },
     "createdAt": "2026-03-26T20:08:00.000Z"
+  },
+  {
+    "id": "seed-021",
+    "hostId": 1,
+    "host": "Miller Family",
+    "student": "匿名留学生 (高2 / 8ヶ月)",
+    "text": "勉強しやすい家庭環境でしたが、当時は受け入れ初期で家のWi-Fi環境が安定せず、オンライン課題で苦労した時期がありました。今は改善されていると聞いています。",
+    "score": 4,
+    "criteria": { "englishEnvironment": 3, "rules": 5, "study": 4, "cultureFit": 4, "mentalSupport": 5, "transportation": 4, "rideSupport": 4, "internetQuality": 2, "safetyEnvironment": 5 },
+    "fit": ["introvert"],
+    "structured": { "curfew": "normal", "meals": "enough", "privacy": "private", "communication": "easy", "recommend": "yes" },
+    "createdAt": "2024-08-12T10:30:00.000Z"
+  },
+  {
+    "id": "seed-022",
+    "hostId": 3,
+    "host": "Williams Family",
+    "student": "匿名留学生 (高3 / 11ヶ月)",
+    "text": "受け入れに慣れていない時期の家庭でした。ルール説明が口頭中心で初めは戸惑いましたが、家族はとても親切でした。最近はチェックリストを使うようになったそうです。",
+    "score": 3,
+    "criteria": { "englishEnvironment": 4, "rules": 3, "study": 3, "cultureFit": 4, "mentalSupport": 4, "transportation": 4, "rideSupport": 3, "internetQuality": 4, "safetyEnvironment": 4 },
+    "fit": ["sports"],
+    "structured": { "curfew": "normal", "meals": "enough", "privacy": "shared", "communication": "ok", "recommend": "maybe" },
+    "createdAt": "2024-11-03T15:45:00.000Z"
+  },
+  {
+    "id": "seed-023",
+    "hostId": 5,
+    "host": "Thompson Family",
+    "student": "匿名留学生 (高1 / 6ヶ月)",
+    "text": "2024年当時から送迎の手厚さは抜群でした。冬季の通学が安心できる家庭です。当時の英語環境はやや控えめでしたが、家族の声かけが温かく、慣れることができました。",
+    "score": 4,
+    "criteria": { "englishEnvironment": 3, "rules": 4, "study": 4, "cultureFit": 4, "mentalSupport": 4, "transportation": 4, "rideSupport": 5, "internetQuality": 4, "safetyEnvironment": 5 },
+    "fit": ["introvert"],
+    "structured": { "curfew": "normal", "meals": "enough", "privacy": "private", "communication": "easy", "recommend": "yes" },
+    "createdAt": "2024-04-18T08:20:00.000Z"
+  },
+  {
+    "id": "seed-024",
+    "hostId": 7,
+    "host": "Anderson Family",
+    "student": "匿名留学生 (大学 / 9ヶ月)",
+    "text": "受け入れ歴の浅かった時期で、食事のバリエーションが限られていました。今は留学生の好みを聞いてくれるようになり、改善されていると聞きます。",
+    "score": 3,
+    "criteria": { "englishEnvironment": 4, "rules": 4, "study": 3, "cultureFit": 3, "mentalSupport": 3, "transportation": 3, "rideSupport": 3, "internetQuality": 4, "safetyEnvironment": 4 },
+    "fit": ["pets"],
+    "structured": { "curfew": "normal", "meals": "limited", "privacy": "private", "communication": "ok", "recommend": "maybe" },
+    "createdAt": "2024-09-25T19:10:00.000Z"
   }
 ]

@@ -17,7 +17,7 @@
   // NOTE: "compare" view removed — implied competitive ranking, conflicting
   // with Nestly's personalized-match brand. Match% chip + saved hosts cover
   // the same need without the "winner/loser" framing.
-  const VIEWS = ["home", "search", "map", "review", "school", "favorites"];
+  const VIEWS = ["home", "search", "map", "review", "school", "favorites", "how-to", "privacy", "terms", "my-host", "pricing"];
 
   // Schools list — Red Deer, Alberta high schools (initial pilot area).
   const SCHOOLS = [
@@ -71,6 +71,108 @@
     roleAdmin: "管理者",
     moderatorBadge: "モデレーター",
     adminBadge: "管理者",
+    hostBadge: "ホスト家庭",
+    signupAsLabel: "登録の種類",
+    signupAsStudent: "留学生として登録",
+    signupAsHost: "ホスト家庭として登録",
+    signupHostFamilyLabel: "あなたのホスト家庭を選択",
+    signupHostFamilyPlaceholder: "家庭を選択してください",
+    signupHostRequired: "ホスト家庭を選択してください。",
+    signupHostHelp: "ホスト家庭として登録すると、自家庭の評価やレビューが見られるようになります。",
+    navMyHost: "自家庭",
+    hostProfileEyebrow: "Host dashboard",
+    hostProfileIntro: "自家庭に寄せられたレビューと評価をここで確認できます。受け入れ方を磨くためのフィードバックとしてご活用ください。",
+    hostProfileNoHost: "ホストアカウントに家庭が紐付いていません。サインアップ時に家庭を選択してください。",
+    hostProfileLoginRequired: "ホスト家庭ページを見るには、ホスト家庭としてログインしてください。",
+    hostProfileOverall: "総合評価",
+    hostProfileReviews: "レビュー数",
+    hostProfileReliability: "信頼度",
+    hostProfileStrengths: "強み Top 3",
+    hostProfileImprovements: "改善余地のあるカテゴリ",
+    hostProfileVerifiedTitle: "Verified Host認証への進捗",
+    hostProfileVerifiedDone: "✓ Verified Host認証を取得済みです。",
+    hostProfileVerifiedReviews: "レビュー数：{current} / 3 件",
+    hostProfileVerifiedRating: "平均評価：★{current} / ★4.0",
+    hostProfileVerifiedHint: "条件：レビュー3件以上 × 平均★4.0以上で認証バッジが付与されます。",
+    hostProfileReviewsTitle: "寄せられたレビュー",
+    hostProfileNoReviews: "まだレビューが寄せられていません。",
+    hostReplyLabel: "このレビューに返信",
+    hostReplyPlaceholder: "建設的な返信を心がけてください（最大800字）。投稿後の編集はできません。",
+    hostReplySubmit: "返信を投稿",
+    hostReplySubmitting: "投稿中...",
+    hostReplyHeading: "ホストからの返信",
+    hostReplyEmpty: "返信を入力してください。",
+    hostReplyFailed: "返信の投稿に失敗しました。時間をおいて再度お試しください。",
+    hostReplyAlreadyExists: "このレビューにはすでに返信済みです。",
+    analyticsFlagged: "要注意ホスト",
+    analyticsFlaggedHint: "総合評価★3.8未満、または重要カテゴリで★3.5未満のホストを自動でフラグ表示しています。",
+    analyticsFlaggedNone: "現在、要注意のホストはありません。",
+    analyticsFlaggedReviews: "レビュー{count}件",
+    analyticsExportCsv: "CSVをダウンロード",
+    analyticsExportHint: "学校・エージェント様向け：全ホストのカテゴリ別スコアをCSV形式でダウンロードできます。",
+    analyticsTrendTitle: "月次レビュー推移（直近12ヶ月）",
+    analyticsTrendHint: "棒グラフはレビュー件数、折れ線は平均評価です。",
+    analyticsTrendNoData: "まだデータがありません。",
+    analyticsFilterTitle: "絞り込み",
+    analyticsFilterArea: "エリア",
+    analyticsFilterSchool: "学校",
+    analyticsFilterAll: "すべて",
+    analyticsFilterCount: "対象：ホスト {hosts} 軒、レビュー {reviews} 件",
+    pricingNav: "料金プラン",
+    pricingEyebrow: "Business Model",
+    pricingTitle: "Nestlyの収益モデル",
+    pricingIntro: "Nestlyは4つの収益軸でステークホルダー全員に価値を届けます。コンテスト時点のプロトタイプ価格を掲載しています。",
+    pricingDisclaimer: "* 表示価格はビジネスコンテスト提案時点の試算です。本サービス開始時には市場状況に応じて調整されます。",
+    pricingPlan1Tag: "メイン収益",
+    pricingPlan1Title: "B2B 分析レポート",
+    pricingPlan1For: "学校・留学エージェント向け",
+    pricingPlan1Price: "$2,000〜$5,000/年",
+    pricingPlan1Features: "地域別の品質分析\n要注意ホストの自動フラグ\n月次推移トレンド\nCSV／PDFエクスポート\n専任サポート",
+    pricingPlan2Tag: "ホスト向け",
+    pricingPlan2Title: "Verified Host 認証プラン",
+    pricingPlan2For: "受け入れホスト家庭向け",
+    pricingPlan2Price: "$200/年",
+    pricingPlan2Features: "Verified Host 認証バッジ\n検索結果での優先表示\n自家庭ダッシュボード\nレビューへの返信機能\n改善フィードバックの可視化",
+    pricingPlan3Tag: "個人向け",
+    pricingPlan3Title: "プレミアムプラン（留学生向け）",
+    pricingPlan3For: "より詳しい情報を求める留学生",
+    pricingPlan3Price: "$5/月",
+    pricingPlan3Features: "詳細レビューの全文閲覧\n高度なマッチング機能\n複数ホストの比較メモ\n優先サポート\n広告非表示",
+    pricingPlan4Tag: "補完収益",
+    pricingPlan4Title: "広告掲載",
+    pricingPlan4For: "留学関連の広告主向け",
+    pricingPlan4Price: "応相談",
+    pricingPlan4Features: "ターゲット広告（留学生・ホスト・学校）\n航空券・保険・通信プランなど留学関連サービス\nブランディング枠\nコンテンツ連携",
+    aboutStoryHeading: "なぜNestlyを作るのか",
+    aboutStoryParagraph1: "私は現在カナダRed Deerで高校留学中の高校生です。ある友人はホストファミリーとの会話を通じて英語力を伸ばし大学進学を決めた一方、別の友人は孤独感から塞ぎ込み、3ヶ月で帰国を考えました。",
+    aboutStoryParagraph2: "違いを生んだのは本人の努力ではなく、住む家庭そのものでした。レストランやホテルには口コミがあるのに、人生の数ヶ月を過ごすホームステイにはありません。私はこの情報の空白を埋め、留学を「運任せ」から「納得の選択」へ変えるためにNestlyを開発しました。",
+    aboutHearingTitle: "20名の留学生から聞いた、本当のところ",
+    aboutHearingIntro: "2025年から現地留学生20名にヒアリングを実施。「事前にどんな情報があれば不安が減ったか」を一次データから抽出し、評価軸の設計に反映しました。",
+    aboutHearingStat1Count: "8",
+    aboutHearingStat1Label: "満足していた",
+    aboutHearingStat2Count: "6",
+    aboutHearingStat2Label: "深刻な不一致による不調を経験",
+    aboutHearingStat3Count: "3",
+    aboutHearingStat3Label: "帰国を本気で検討",
+    aboutHearingStat4Count: "3",
+    aboutHearingStat4Label: "その他",
+    aboutHearingPercent: "20名中",
+    aboutQuotesTitle: "ヒアリングで聞こえた声",
+    aboutQuote1: "家族と数週間ほとんど会話がなく、英語を話す機会がなかった。",
+    aboutQuote1Tag: "留学生 / 高校1年",
+    aboutQuote2: "食事が合わず体調を崩し、勉強に集中できなかった。",
+    aboutQuote2Tag: "留学生 / 高校2年",
+    aboutQuote3: "門限が厳しすぎて、勉強と部活の両立ができなかった。",
+    aboutQuote3Tag: "留学生 / 高校3年",
+    relaxFiltersIntro: "下記のフィルターを外すと候補が増えます：",
+    relaxFiltersUnit: "件",
+    relaxFiltersRemove: "外す",
+    relaxFiltersClearAll: "すべてのフィルターを解除",
+    reviewProgressLabel: "必須項目の進捗",
+    reviewProgressDone: "{current} / {total} 完了",
+    reviewProgressRecommendMissing: "「おすすめ度」が未入力",
+    reviewProgressTextMissing: "「本文」が未入力",
+    reviewProgressJumpRecommend: "おすすめ度へ移動",
     deleteReview: "削除",
     deleteReviewLabel: "この投稿を削除",
     deleteFailed: "投稿を削除できませんでした。",
@@ -105,6 +207,100 @@
     navMap: "マップ",
     navReview: "レビューを書く",
     navSchool: "学校向け",
+    navHowTo: "使い方",
+    reportButton: "通報",
+    reportButtonLabel: "このレビューを通報",
+    reportModalTitle: "レビューを通報",
+    reportModalIntro: "問題のあるレビューを見つけたら、理由を選んで送信してください。モデレーターが内容を確認します。",
+    reportReasonLabel: "通報理由",
+    reportReasonMisinformation: "事実と異なる情報",
+    reportReasonPersonalInfo: "個人を特定できる情報",
+    reportReasonHarassment: "誹謗中傷・差別的内容",
+    reportReasonSpam: "スパム・宣伝",
+    reportReasonOther: "その他",
+    reportNoteLabel: "補足説明（任意・最大500字）",
+    reportNotePlaceholder: "具体的に何が問題かを書いてください（任意）",
+    reportCancel: "キャンセル",
+    reportSubmit: "通報を送信",
+    reportSubmitting: "送信中...",
+    reportThanks: "通報を受け付けました。モデレーターが確認します。",
+    reportFailed: "通報の送信に失敗しました。時間をおいて再度お試しください。",
+    reportReasonRequired: "通報理由を選択してください。",
+    privacyNav: "プライバシー",
+    privacyEyebrow: "Legal",
+    privacyTitle: "プライバシーポリシー",
+    privacyLastUpdated: "最終更新日: 2026年5月24日",
+    privacyIntro: "Nestlyはユーザーの個人情報を慎重に扱います。このページでは収集する情報・使い方・保護方法をまとめています。",
+    privacyS1Title: "1. 収集する情報",
+    privacyS1Lines: "Nestlyは以下の情報を収集します。\n• アカウント情報：メール、ニックネーム、学校、学年、母国語\n• レビュー投稿：評価スコア、本文、構造化回答、選択したホスト家庭\n• 認証情報：学校が発行する認証コード（本人確認時のみ使用、永続保存しません）\n• 任意情報：マッチング用プリファレンス、お気に入りリスト",
+    privacyS2Title: "2. 情報の使い方",
+    privacyS2Lines: "収集した情報は以下の目的にのみ使用します。\n• レビューの可視化（投稿者名は匿名化／省略形で表示）\n• マッチスコアの算出\n• 学校・エージェント向け集計データの作成（個人特定不可な形式）\n• スパム・不正投稿の検出",
+    privacyS3Title: "3. 公開される情報・公開されない情報",
+    privacyS3Lines: "【公開】ニックネーム、学校コード、学年、レビュー内容、評価\n【非公開】メールアドレス、本名、認証コード、IPアドレス\n【特別保護】ホスト家庭の正確な住所は地図上に表示しません。半径250mの円で位置を曖昧化し、地図の最大ズームは14に制限しています。",
+    privacyS4Title: "4. 第三者への提供",
+    privacyS4Lines: "法令で義務付けられる場合を除き、個人情報を第三者に提供しません。\n• 学校・エージェントには集計データのみ提供（個人特定不可）\n• 住所のジオコーディングにはOpenStreetMap Nominatimを利用します（今後プロキシ化予定）",
+    privacyS5Title: "5. データの保管",
+    privacyS5Lines: "• 本番環境ではレビューデータをSupabase（PostgreSQL）に保管します\n• パスワードはSHA-256でハッシュ化して保管（平文では保存しません）\n• 通報内容はreports.jsonに保管し、モデレーターのみが確認できます",
+    privacyS6Title: "6. ユーザーの権利",
+    privacyS6Lines: "あなたは以下の権利を持ちます。\n• 自分のレビューを投稿後24時間以内に編集する権利\n• 自分のレビューの削除を依頼する権利\n• アカウントの削除を依頼する権利\n• 自分の情報の開示・訂正を求める権利\n上記は運営チームへの連絡で対応します。",
+    privacyS7Title: "7. 子どもの利用について",
+    privacyS7Lines: "Nestlyは高校生以上の留学生を主な対象としています。13歳未満の利用は想定していません。",
+    privacyS8Title: "8. お問い合わせ",
+    privacyS8Lines: "このポリシーや個人情報の扱いについて疑問があれば、Nestly運営チームまでご連絡ください。プロトタイプ段階のため、正式な連絡先は今後整備します。",
+    privacyS9Title: "9. 改訂について",
+    privacyS9Lines: "本ポリシーを改訂する場合は、最終更新日を更新します。重要な変更がある場合はサイト内で告知します。",
+    termsNav: "利用規約",
+    termsEyebrow: "Legal",
+    termsTitle: "利用規約",
+    termsLastUpdated: "最終更新日: 2026年5月24日",
+    termsIntro: "Nestlyをご利用いただくにあたっての約束事です。アカウント作成・レビュー投稿の前にご確認ください。",
+    termsS1Title: "1. サービスの目的",
+    termsS1Lines: "Nestlyは留学生が実際に滞在したホストファミリーの体験を共有し、次の留学生が安心してホストを選べる場を提供することを目的としています。仲介サービスではなく、情報インフラとして機能します。",
+    termsS2Title: "2. アカウント登録",
+    termsS2Lines: "• 登録には有効なメールアドレスと、可能であれば学校発行の認証コードが必要です\n• ひとり1アカウントを推奨します\n• 嘘の情報での登録は禁止します",
+    termsS3Title: "3. 投稿ルール",
+    termsS3Lines: "あなたが投稿するレビューは以下を守ってください。\n• 実際に滞在した経験に基づくこと\n• 個人を特定できる情報（住所、電話番号、フルネーム等）を含めないこと\n• 差別的・誹謗中傷的・暴力的な内容を含めないこと\n• 同じ家庭に複数アカウントから繰り返し投稿しないこと\n• 商業目的の宣伝・スパムを行わないこと",
+    termsS4Title: "4. 禁止事項",
+    termsS4Lines: "以下の行為を禁止します。\n• 他人になりすますこと\n• 虚偽のレビューを意図的に投稿すること\n• Nestlyのシステムへの不正アクセス\n• 他のユーザーへの嫌がらせ・脅迫\n• 法令違反となる行為すべて",
+    termsS5Title: "5. 投稿の編集・削除",
+    termsS5Lines: "• 自分の投稿は投稿後24時間以内に限り編集できます\n• 投稿はユーザーの依頼により削除できます\n• 規約違反の投稿はモデレーターが予告なく削除する場合があります",
+    termsS6Title: "6. Verified Host認証について",
+    termsS6Lines: "ホスト家庭がVerified Host認証を受けるには、レビュー3件以上 × 平均★4.0以上の条件を満たす必要があります。条件を満たさなくなった場合は認証が外れることがあります。",
+    termsS7Title: "7. 免責事項",
+    termsS7Lines: "• レビューはユーザー個人の感想であり、Nestlyが内容の正確性を保証するものではありません\n• Nestlyを通じた家庭選びの結果について、Nestlyは責任を負いかねます\n• サービス停止・データ消失等の損害について、故意・重過失の場合を除き責任を負いかねます",
+    termsS8Title: "8. 規約の変更",
+    termsS8Lines: "本規約は予告なく変更される場合があります。重要な変更がある場合はサイト内で告知します。継続してご利用いただくことで変更後の規約に同意したものとみなします。",
+    termsS9Title: "9. 準拠法",
+    termsS9Lines: "本規約はカナダ・アルバータ州の法律に準拠します（プロトタイプ段階のため将来変更の可能性あり）。",
+    howToHeroEyebrow: "How to use",
+    howToHeroTitle: "Nestlyの使い方",
+    howToHeroText: "Nestlyは3つの立場で使えます。あなたの目的に合うセクションをご覧ください。",
+    howToStudentSection: "1. 留学生のあなたへ",
+    howToStudentIntro: "渡航前のホスト選びから、滞在後のレビュー投稿まで4ステップ。",
+    howToStudent1Title: "STEP 1：探す",
+    howToStudent1Body: "検索バー・フィルター・マップから、エリアや評価でホストを絞り込み。マッチ%で自分との相性を一目で確認できます。",
+    howToStudent2Title: "STEP 2：詳しく見る",
+    howToStudent2Body: "12軸のレーダーチャートで強み・弱みを比較。信頼指標（レビュー数・多様性・最新性）で投稿の確からしさをチェック。レビュー全文・タグ・構造化回答も参照できます。",
+    howToStudent3Title: "STEP 3：保存・選ぶ",
+    howToStudent3Body: "気になるホストはハート（♥）でお気に入りに保存。エージェントや家族との相談材料にお使いください。",
+    howToStudent4Title: "STEP 4：滞在後にレビューを書く",
+    howToStudent4Body: "学校コードで本人確認すればVerified Studentバッジを取得。12軸＋構造化回答＋自由記述で投稿し、次の留学生を支える側になれます。",
+    howToHostSection: "2. ホストファミリーへ",
+    howToHostIntro: "自分の受け入れ方を磨き、信頼を可視化する仕組みです。",
+    howToHost1Title: "自分の家庭の評価を見る",
+    howToHost1Body: "ホスト用ログインから自家庭ページにアクセス。12軸の評価とレビュー全文を確認できます。",
+    howToHost2Title: "Verified Host認証を取得する",
+    howToHost2Body: "条件はレビュー3件以上 × 平均★4.0以上。取得すると検索結果で優先表示され、選ばれやすくなります。",
+    howToHost3Title: "フィードバックで改善する",
+    howToHost3Body: "低評価のカテゴリを確認し、受け入れ方を磨くヒントに。建設的なレビューで成長できる場所を目指します。",
+    howToB2BSection: "3. 学校・エージェントへ",
+    howToB2BIntro: "地域全体の品質を把握し、紹介先選定の意思決定を支えます。",
+    howToB2B1Title: "地域全体の品質をモニタリング",
+    howToB2B1Body: "カテゴリ別平均スコアを一覧表示。リスク指標で要注意ホストを自動でハイライトします。",
+    howToB2B2Title: "個別ホストの詳細を確認",
+    howToB2B2Body: "低評価ホストを自動フラグ。時系列トレンドで品質の推移を追跡できます。",
+    howToB2B3Title: "レポート化して意思決定に",
+    howToB2B3Body: "CSV/PDFでエクスポートし、紹介先選定の客観データとして活用いただけます。",
     login: "ログイン",
     logout: "ログアウト",
     loginTitle: "ログイン",
@@ -255,6 +451,8 @@
       rideSupport: ["送迎", "車で送ってくれる頻度 / 緊急時の送迎 / 冬の移動サポート"],
       internetQuality: ["インターネット", "インターネット品質"],
       safetyEnvironment: ["安全", "安全 / 夜の治安 / 家庭内トラブルの少なさ"],
+      privacy: ["プライバシー", "個室のプライバシー / 部屋の施錠 / 私物の扱い"],
+      chores: ["家事・手伝い", "家事の分担量 / 手伝いの要求度 / 負担バランス"],
       mealQuality: ["食事の質", "食事の量・栄養バランス / アレルギー・宗教対応"],
       cleanliness: ["清潔さ", "家全体の清潔さ / 共有スペース / 水回り"],
       hostExperience: ["受け入れ経験", "過去の留学生受入れ実績 / 異文化対応経験"],
@@ -285,6 +483,108 @@
     roleAdmin: "Admin",
     moderatorBadge: "Moderator",
     adminBadge: "Admin",
+    hostBadge: "Host family",
+    signupAsLabel: "Sign up as",
+    signupAsStudent: "Student",
+    signupAsHost: "Host family",
+    signupHostFamilyLabel: "Select your host family",
+    signupHostFamilyPlaceholder: "Choose a family",
+    signupHostRequired: "Please select your host family.",
+    signupHostHelp: "Sign up as a host family to access your own ratings and reviews.",
+    navMyHost: "My family",
+    hostProfileEyebrow: "Host dashboard",
+    hostProfileIntro: "See the reviews and ratings left for your family. Use this as feedback to refine the way you host.",
+    hostProfileNoHost: "Your host account isn't linked to a family. Pick one during signup.",
+    hostProfileLoginRequired: "Sign in as a host family to view this page.",
+    hostProfileOverall: "Overall rating",
+    hostProfileReviews: "Reviews",
+    hostProfileReliability: "Reliability",
+    hostProfileStrengths: "Top 3 strengths",
+    hostProfileImprovements: "Categories with room to grow",
+    hostProfileVerifiedTitle: "Progress to Verified Host",
+    hostProfileVerifiedDone: "✓ You hold Verified Host status.",
+    hostProfileVerifiedReviews: "Reviews: {current} / 3",
+    hostProfileVerifiedRating: "Average: ★{current} / ★4.0",
+    hostProfileVerifiedHint: "You earn Verified Host status with 3+ reviews and an average of ★4.0 or higher.",
+    hostProfileReviewsTitle: "Reviews about you",
+    hostProfileNoReviews: "No reviews have been submitted yet.",
+    hostReplyLabel: "Reply to this review",
+    hostReplyPlaceholder: "Aim for a constructive reply (max 800 chars). Replies cannot be edited after posting.",
+    hostReplySubmit: "Post reply",
+    hostReplySubmitting: "Posting...",
+    hostReplyHeading: "Reply from the host",
+    hostReplyEmpty: "Please write a reply.",
+    hostReplyFailed: "Failed to post reply. Please try again later.",
+    hostReplyAlreadyExists: "You have already replied to this review.",
+    analyticsFlagged: "Hosts needing attention",
+    analyticsFlaggedHint: "Hosts are flagged if overall weighted rating is below ★3.8, or any key category is below ★3.5.",
+    analyticsFlaggedNone: "No hosts currently need attention.",
+    analyticsFlaggedReviews: "{count} reviews",
+    analyticsExportCsv: "Download CSV",
+    analyticsExportHint: "For schools and agents: download all hosts' category scores as CSV.",
+    analyticsTrendTitle: "Monthly review trend (last 12 months)",
+    analyticsTrendHint: "Bars show review counts; line shows the average rating.",
+    analyticsTrendNoData: "No data yet.",
+    analyticsFilterTitle: "Filters",
+    analyticsFilterArea: "Area",
+    analyticsFilterSchool: "School",
+    analyticsFilterAll: "All",
+    analyticsFilterCount: "Scope: {hosts} hosts, {reviews} reviews",
+    pricingNav: "Pricing",
+    pricingEyebrow: "Business Model",
+    pricingTitle: "Revenue model",
+    pricingIntro: "Nestly delivers value across four revenue streams so every stakeholder benefits. Prices below reflect the prototype-stage proposal.",
+    pricingDisclaimer: "* Prices are illustrative for the contest submission. Actual prices will be adjusted at launch.",
+    pricingPlan1Tag: "Primary revenue",
+    pricingPlan1Title: "B2B Analytics",
+    pricingPlan1For: "For schools and study-abroad agents",
+    pricingPlan1Price: "$2,000–$5,000 / year",
+    pricingPlan1Features: "Regional quality analytics\nAutomatic risk-host flagging\nMonthly trend tracking\nCSV / PDF export\nDedicated support",
+    pricingPlan2Tag: "For hosts",
+    pricingPlan2Title: "Verified Host plan",
+    pricingPlan2For: "For host families",
+    pricingPlan2Price: "$200 / year",
+    pricingPlan2Features: "Verified Host badge\nPriority in search results\nYour family dashboard\nReply to reviews\nVisualised improvement feedback",
+    pricingPlan3Tag: "For individuals",
+    pricingPlan3Title: "Premium plan (students)",
+    pricingPlan3For: "For students who want deeper insight",
+    pricingPlan3Price: "$5 / month",
+    pricingPlan3Features: "Read full review texts\nAdvanced matching\nCompare hosts side-by-side\nPriority support\nNo ads",
+    pricingPlan4Tag: "Secondary revenue",
+    pricingPlan4Title: "Advertising",
+    pricingPlan4For: "For study-abroad-aligned advertisers",
+    pricingPlan4Price: "Custom",
+    pricingPlan4Features: "Targeted placements (students, hosts, schools)\nAirlines, insurance, telecom plans\nBranded spotlights\nContent partnerships",
+    aboutStoryHeading: "Why I'm building Nestly",
+    aboutStoryParagraph1: "I'm a high school student currently studying in Red Deer, Canada. One friend grew her English through dinner-table conversations and went on to university; another friend grew so isolated that within three months she was thinking of going home.",
+    aboutStoryParagraph2: "What separated them wasn't effort — it was the family they happened to be placed with. Restaurants and hotels have reviews, but homestays — where students spend months of their life — have almost none. Nestly fills that gap so the next student can choose, not gamble.",
+    aboutHearingTitle: "What 20 students told me",
+    aboutHearingIntro: "Since 2025 I've interviewed 20 international students about what would have eased their pre-arrival anxiety. Their answers shaped Nestly's evaluation axes.",
+    aboutHearingStat1Count: "8",
+    aboutHearingStat1Label: "were satisfied",
+    aboutHearingStat2Count: "6",
+    aboutHearingStat2Label: "had a serious mismatch",
+    aboutHearingStat3Count: "3",
+    aboutHearingStat3Label: "seriously considered going home",
+    aboutHearingStat4Count: "3",
+    aboutHearingStat4Label: "other",
+    aboutHearingPercent: "out of 20",
+    aboutQuotesTitle: "Voices from the interviews",
+    aboutQuote1: "For weeks I barely spoke with my host family — almost no chance to practice English.",
+    aboutQuote1Tag: "Student / Grade 10",
+    aboutQuote2: "The meals didn't suit me, I fell ill, and I couldn't focus on studying.",
+    aboutQuote2Tag: "Student / Grade 11",
+    aboutQuote3: "The curfew was too strict to balance schoolwork and extracurriculars.",
+    aboutQuote3Tag: "Student / Grade 12",
+    relaxFiltersIntro: "Try removing one of these filters to see more hosts:",
+    relaxFiltersUnit: "hosts",
+    relaxFiltersRemove: "Remove",
+    relaxFiltersClearAll: "Clear all filters",
+    reviewProgressLabel: "Required progress",
+    reviewProgressDone: "{current} / {total} done",
+    reviewProgressRecommendMissing: "\"Would recommend\" missing",
+    reviewProgressTextMissing: "Review body missing",
+    reviewProgressJumpRecommend: "Jump to recommendation",
     deleteReview: "Delete",
     deleteReviewLabel: "Delete this review",
     deleteFailed: "Could not delete the review.",
@@ -319,6 +619,100 @@
     navMap: "Map",
     navReview: "Write a review",
     navSchool: "For schools",
+    navHowTo: "How to use",
+    reportButton: "Report",
+    reportButtonLabel: "Report this review",
+    reportModalTitle: "Report this review",
+    reportModalIntro: "Found a problematic review? Pick a reason and submit — a moderator will review your report.",
+    reportReasonLabel: "Reason",
+    reportReasonMisinformation: "Factually incorrect",
+    reportReasonPersonalInfo: "Contains personally identifying info",
+    reportReasonHarassment: "Harassment or discrimination",
+    reportReasonSpam: "Spam or promotion",
+    reportReasonOther: "Other",
+    reportNoteLabel: "Additional details (optional, max 500 chars)",
+    reportNotePlaceholder: "Describe what's wrong (optional)",
+    reportCancel: "Cancel",
+    reportSubmit: "Submit report",
+    reportSubmitting: "Submitting...",
+    reportThanks: "Report received. A moderator will review it.",
+    reportFailed: "Failed to submit. Please try again later.",
+    reportReasonRequired: "Please select a reason.",
+    privacyNav: "Privacy",
+    privacyEyebrow: "Legal",
+    privacyTitle: "Privacy Policy",
+    privacyLastUpdated: "Last updated: May 24, 2026",
+    privacyIntro: "Nestly handles your personal information with care. This page explains what we collect, how we use it, and how we protect it.",
+    privacyS1Title: "1. Information we collect",
+    privacyS1Lines: "We collect the following information:\n• Account info: email, nickname, school, grade, native language\n• Review submissions: ratings, body text, structured answers, selected host family\n• Verification info: school-issued codes (used only for ID checks, not stored long-term)\n• Optional info: matching preferences and favorites list",
+    privacyS2Title: "2. How we use your information",
+    privacyS2Lines: "We use collected information only for:\n• Displaying reviews (with reviewer names anonymized or shortened)\n• Calculating match scores\n• Generating aggregated data for schools and agents (de-identified)\n• Detecting spam and abuse",
+    privacyS3Title: "3. What's public and what's private",
+    privacyS3Lines: "Public: nickname, school code, grade, review content, ratings.\nPrivate: email address, real name, verification code, IP address.\nSpecial protection: exact host addresses are never shown on the map. We obfuscate location with a 250m-radius circle and cap map zoom at level 14.",
+    privacyS4Title: "4. Sharing with third parties",
+    privacyS4Lines: "Except where required by law, we do not share personal information with third parties.\n• Schools and agents receive only aggregated, de-identified data\n• Address geocoding uses OpenStreetMap Nominatim (proxy planned)",
+    privacyS5Title: "5. Data storage",
+    privacyS5Lines: "• In production, review data is stored on Supabase (PostgreSQL)\n• Passwords are hashed with SHA-256 (never stored in plain text)\n• Reports are stored in reports.json and accessible only to moderators",
+    privacyS6Title: "6. Your rights",
+    privacyS6Lines: "You have the right to:\n• Edit your own reviews within 24 hours of posting\n• Request deletion of your reviews\n• Request deletion of your account\n• Request disclosure or correction of your information\nThese can be handled by contacting the Nestly team.",
+    privacyS7Title: "7. Children",
+    privacyS7Lines: "Nestly is designed for high-school-age international students and older. We do not intend the service for users under 13.",
+    privacyS8Title: "8. Contact",
+    privacyS8Lines: "For questions about this policy or your personal data, contact the Nestly team. As a prototype, formal contact channels are still being set up.",
+    privacyS9Title: "9. Updates",
+    privacyS9Lines: "When we revise this policy, we update the last-updated date above. Significant changes will be announced on the site.",
+    termsNav: "Terms",
+    termsEyebrow: "Legal",
+    termsTitle: "Terms of Service",
+    termsLastUpdated: "Last updated: May 24, 2026",
+    termsIntro: "These are the rules for using Nestly. Please read before creating an account or submitting reviews.",
+    termsS1Title: "1. Purpose of the service",
+    termsS1Lines: "Nestly exists so that international students can share host-family experiences and the next student can choose with confidence. We are an information infrastructure, not a placement agency.",
+    termsS2Title: "2. Account registration",
+    termsS2Lines: "• Registration requires a valid email and, when possible, a school-issued verification code\n• One account per person is recommended\n• Registering with false information is prohibited",
+    termsS3Title: "3. Posting rules",
+    termsS3Lines: "When submitting a review, you agree to:\n• Base it on a stay you actually experienced\n• Avoid personally identifying information (addresses, phone numbers, full names)\n• Avoid discriminatory, defamatory, or violent content\n• Not submit repeated reviews of the same host from multiple accounts\n• Not use the platform for commercial promotion or spam",
+    termsS4Title: "4. Prohibited conduct",
+    termsS4Lines: "The following are prohibited:\n• Impersonating others\n• Intentionally submitting false reviews\n• Unauthorized access to Nestly systems\n• Harassment or threats toward other users\n• Any conduct that violates applicable law",
+    termsS5Title: "5. Editing and deleting posts",
+    termsS5Lines: "• You can edit your own posts within 24 hours of submission\n• Posts can be removed at the user's request\n• Posts that violate these terms may be removed by moderators without notice",
+    termsS6Title: "6. About Verified Host status",
+    termsS6Lines: "Verified Host status is granted when a family has 3+ reviews and an average rating of ★4.0 or higher. Status may be revoked if the criteria are no longer met.",
+    termsS7Title: "7. Disclaimers",
+    termsS7Lines: "• Reviews reflect individual users' opinions; Nestly does not guarantee their accuracy\n• Nestly is not liable for outcomes of placement decisions made via the platform\n• Except in cases of intent or gross negligence, Nestly is not liable for service interruptions or data loss",
+    termsS8Title: "8. Changes to these terms",
+    termsS8Lines: "These terms may change without notice. Significant changes will be announced on the site. Continued use of the service constitutes acceptance of the updated terms.",
+    termsS9Title: "9. Governing law",
+    termsS9Lines: "These terms are governed by the laws of Alberta, Canada. (Subject to change as the prototype matures.)",
+    howToHeroEyebrow: "How to use",
+    howToHeroTitle: "How to use Nestly",
+    howToHeroText: "Nestly works for three kinds of users. Browse the section that matches your role.",
+    howToStudentSection: "1. For students",
+    howToStudentIntro: "From choosing a host before you go, to writing a review after — in four steps.",
+    howToStudent1Title: "STEP 1: Search",
+    howToStudent1Body: "Find hosts by area, ratings, or attributes using search, filters, or the map. The match% chip shows compatibility at a glance.",
+    howToStudent2Title: "STEP 2: Look deeper",
+    howToStudent2Body: "Compare strengths and weaknesses with the 12-axis radar chart. Check trust indicators (review count, diversity, recency) to gauge reliability. Read full reviews, tags, and structured answers.",
+    howToStudent3Title: "STEP 3: Save and choose",
+    howToStudent3Body: "Save promising hosts with the heart icon (♥). Use them as talking points with your agent or family.",
+    howToStudent4Title: "STEP 4: Write a review after your stay",
+    howToStudent4Body: "Verify your identity with a school code to earn the Verified Student badge, then submit a structured review across 12 axes — and support the next student.",
+    howToHostSection: "2. For host families",
+    howToHostIntro: "Refine your hosting and make your reliability visible.",
+    howToHost1Title: "See your own ratings",
+    howToHost1Body: "Sign in as a host to view your family's page — see scores across 12 axes and read the full reviews.",
+    howToHost2Title: "Earn Verified Host status",
+    howToHost2Body: "Verified Host is granted when you have 3+ reviews and an average of ★4.0 or higher. Verified hosts are surfaced first in search.",
+    howToHost3Title: "Improve through feedback",
+    howToHost3Body: "Look at your lowest-rated categories to find what to refine. Nestly is designed for constructive growth, not blame.",
+    howToB2BSection: "3. For schools and agents",
+    howToB2BIntro: "See regional quality at a glance and make confident placement decisions.",
+    howToB2B1Title: "Monitor regional quality",
+    howToB2B1Body: "View average scores by category. Risk indicators automatically highlight hosts that need attention.",
+    howToB2B2Title: "Drill into specific hosts",
+    howToB2B2Body: "Flag low-rated hosts automatically. Track quality trends over time with timeseries charts.",
+    howToB2B3Title: "Export and decide",
+    howToB2B3Body: "Export to CSV/PDF and use it as objective data for your placement decisions.",
     login: "Log in",
     logout: "Log out",
     loginTitle: "Log in",
@@ -468,6 +862,8 @@
       rideSupport: ["Ride support", "Ride frequency / Emergency rides / Winter travel support"],
       internetQuality: ["Internet", "Internet quality"],
       safetyEnvironment: ["Safety", "Safety / Night safety / Low household trouble"],
+      privacy: ["Privacy", "Room privacy / Door lock / Personal belongings handling"],
+      chores: ["Chores & Housework", "Chore workload / Frequency of requests / Fair balance"],
       mealQuality: ["Meal quality", "Meal portion & nutrition / Allergy & religious adaptation"],
       cleanliness: ["Cleanliness", "Whole-home cleanliness / Shared spaces / Bath & kitchen"],
       hostExperience: ["Host experience", "Past hosting record / Cross-cultural experience"],
@@ -792,6 +1188,18 @@
       title: "安全",
       description: "安全 / 夜の治安 / 家庭内トラブルの少なさ",
       itemKeys: ["safety", "nightSafety", "homeTrouble"],
+    },
+    {
+      key: "privacy",
+      title: "プライバシー",
+      description: "個室のプライバシー / 部屋の施錠 / 私物の扱い",
+      itemKeys: ["roomPrivacy", "roomLock", "belongings"],
+    },
+    {
+      key: "chores",
+      title: "家事・手伝い",
+      description: "家事の分担量 / 手伝いの要求度 / 負担バランス",
+      itemKeys: ["choreAmount", "choreBalance"],
     },
     {
       key: "mealQuality",
@@ -1261,7 +1669,7 @@
     reviewDetailOpen: false,
     // ----- new auth/profile state -----
     authMode: "login",  // "login" | "signup"
-    signupForm: { email: "", password: "", name: "", school: "", grade: "", language: "", nationality: "", schoolCode: "" },
+    signupForm: { signupAs: "user", email: "", password: "", name: "", school: "", grade: "", language: "", nationality: "", schoolCode: "", hostId: "" },
     loginForm: { email: "", password: "" },
     onboardingOpen: false,
     onboardingStep: 0,
@@ -1275,6 +1683,16 @@
     matchReasonHostId: null, // for showing match reason popover
     dateFilter: "all",       // "all" | "year"
     isLoading: false,        // for skeleton states
+    reportingReviewId: null, // for report modal — null = closed
+    reportReason: "",        // selected reason key
+    reportNote: "",          // optional free-text note
+    reportSubmitting: false, // true while POST in flight
+    hostReplies: {},         // { reviewId: { text, hostId, hostName, createdAt } }
+    hostReplyDraft: {},      // { reviewId: pendingText } — in-progress textarea content
+    hostReplySubmittingId: null, // reviewId currently being submitted
+    analyticsFilters: { area: "all", school: "all" }, // B2B dashboard scoping
+    pendingFilters: [],        // staged filter list inside mobile bottom sheet
+    pendingDateFilter: "all",  // staged date filter inside mobile bottom sheet
   };
 
   // ---- favorites ----
@@ -1566,7 +1984,7 @@
     if (typeof localStorage === "undefined") return null;
     try {
       const parsed = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
-      return parsed && ["user", "moderator", "admin"].includes(parsed.role) ? parsed : null;
+      return parsed && ["user", "moderator", "admin", "host"].includes(parsed.role) ? parsed : null;
     } catch (_error) {
       return null;
     }
@@ -1664,13 +2082,23 @@
 
   async function signup(form) {
     const errors = [];
+    const signupAs = form.signupAs === "host" ? "host" : "user";
     const email = String(form.email || "").trim().toLowerCase();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push(language !== "ja" ? "Invalid email" : "メールアドレスが無効です");
     if (!form.password || form.password.length < 6) errors.push(language !== "ja" ? "Password must be 6+ chars" : "パスワードは6文字以上");
     if (!form.name || !form.name.trim()) errors.push(language !== "ja" ? "Name required" : "名前は必須です");
-    if (!form.school) errors.push(language !== "ja" ? "School required (international student verification)" : "学校選択は必須です（留学生確認のため）");
-    if (!form.grade) errors.push(language !== "ja" ? "Grade required" : "学年は必須です");
-    if (!form.language) errors.push(language !== "ja" ? "Native language required" : "母国語は必須です");
+
+    if (signupAs === "user") {
+      if (!form.school) errors.push(language !== "ja" ? "School required (international student verification)" : "学校選択は必須です（留学生確認のため）");
+      if (!form.grade) errors.push(language !== "ja" ? "Grade required" : "学年は必須です");
+      if (!form.language) errors.push(language !== "ja" ? "Native language required" : "母国語は必須です");
+    } else {
+      // Host family signup — must pick which host family they belong to
+      const hostIdNum = Number(form.hostId);
+      if (!Number.isFinite(hostIdNum) || !allHosts().some((h) => h.id === hostIdNum)) {
+        errors.push(t.signupHostRequired);
+      }
+    }
     if (findUserByEmail(email)) errors.push(language !== "ja" ? "Email already registered" : "このメールはすでに登録済みです");
 
     if (errors.length) {
@@ -1679,21 +2107,22 @@
       return;
     }
 
-    const isVerified = !!form.schoolCode && isValidSchoolCode(form.schoolCode, form.school);
+    const isVerified = signupAs === "user" && !!form.schoolCode && isValidSchoolCode(form.schoolCode, form.school);
     const hashedPw = await hashPassword(form.password);
 
     const newUser = {
       email,
       password: hashedPw,
       name: form.name.trim(),
-      school: form.school,
-      grade: form.grade,
-      language: form.language,
+      school: signupAs === "user" ? form.school : "",
+      grade: signupAs === "user" ? form.grade : "",
+      language: signupAs === "user" ? form.language : "",
       nationality: form.nationality || "",
-      schoolCode: form.schoolCode || "",
-      role: "user",
+      schoolCode: signupAs === "user" ? (form.schoolCode || "") : "",
+      role: signupAs,
+      hostId: signupAs === "host" ? Number(form.hostId) : null,
       verified: isVerified,
-      preferences: null,  // set during onboarding
+      preferences: null,  // set during onboarding (students only)
       createdAt: new Date().toISOString(),
     };
 
@@ -1703,7 +2132,7 @@
 
     // Auto-login
     currentUser = { ...newUser, username: newUser.email };
-    role = "user";
+    role = newUser.role;
     loginOpen = false;
     loginError = false;
     saveSession();
@@ -1718,10 +2147,14 @@
       }
     }
 
-    // Start onboarding
-    state.onboardingOpen = true;
-    state.onboardingStep = 0;
-    state.pendingPreferences = { importance: { ...defaultImportance }, lifestyle: [], dietary: "none" };
+    // Start onboarding (students only — host accounts skip matching setup)
+    if (signupAs === "user") {
+      state.onboardingOpen = true;
+      state.onboardingStep = 0;
+      state.pendingPreferences = { importance: { ...defaultImportance }, lifestyle: [], dietary: "none" };
+    } else {
+      state.onboardingOpen = false;
+    }
     render();
   }
 
@@ -1761,6 +2194,18 @@
 
   function isModerator() {
     return role === "moderator";
+  }
+
+  function isHost() {
+    return role === "host";
+  }
+
+  function currentHostId() {
+    // Only meaningful when role === "host". Returns the hostId the
+    // logged-in host account is bound to, or null otherwise.
+    return isHost() && currentUser && Number.isFinite(Number(currentUser.hostId))
+      ? Number(currentUser.hostId)
+      : null;
   }
 
   function canModerateReviews() {
@@ -1913,7 +2358,9 @@
       if (response.ok) {
         const reviews = await response.json();
         if (Array.isArray(reviews)) {
-          state.userReviews = reviews;
+          const serverIds = new Set(reviews.map((r) => String(r.id)));
+          const pendingLocal = state.userReviews.filter((r) => !serverIds.has(String(r.id)));
+          state.userReviews = [...pendingLocal, ...reviews];
           saveReviews();
           render();
           return;
@@ -1941,6 +2388,60 @@
     }
   }
 
+  async function syncHostRepliesFromApi() {
+    if (typeof fetch === "undefined") return;
+    try {
+      const response = await fetch("/api/host-replies", { headers: { Accept: "application/json" } });
+      if (!response.ok) return;
+      const replies = await response.json();
+      if (replies && typeof replies === "object" && !Array.isArray(replies)) {
+        state.hostReplies = replies;
+        render();
+      }
+    } catch (_error) {
+      // Static mode — no replies available
+    }
+  }
+
+  async function submitHostReply(reviewId) {
+    if (!isHost()) return;
+    const hostId = currentHostId();
+    if (!hostId) return;
+    const text = String(state.hostReplyDraft[reviewId] || "").trim();
+    if (!text) {
+      alert(t.hostReplyEmpty);
+      return;
+    }
+    if (state.hostReplies[reviewId]) {
+      alert(t.hostReplyAlreadyExists);
+      return;
+    }
+    state.hostReplySubmittingId = reviewId;
+    render();
+    try {
+      const response = await fetch("/api/host-replies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          reviewId,
+          hostId,
+          hostName: currentUser ? currentUser.name : "Host family",
+          text,
+        }),
+      });
+      if (!response.ok) throw new Error("submit failed");
+      const reply = await response.json();
+      state.hostReplies = { ...state.hostReplies, [reviewId]: reply };
+      delete state.hostReplyDraft[reviewId];
+      state.hostReplySubmittingId = null;
+      render();
+    } catch (_error) {
+      state.hostReplySubmittingId = null;
+      render();
+      alert(t.hostReplyFailed);
+    }
+  }
+
   async function persistReview(review) {
     if (typeof fetch !== "undefined") {
       try {
@@ -1953,6 +2454,8 @@
           const savedReview = await response.json();
           state.userReviews.unshift(savedReview);
           saveReviews();
+          apiSyncStarted = false;
+          await syncReviewsFromApi();
           return;
         }
       } catch (_error) {
@@ -2222,8 +2725,20 @@
   }
 
   function schoolAnalytics() {
-    const hosts = allHosts();
-    const reviews = state.userReviews;
+    const allHostsList = allHosts();
+    const filters = state.analyticsFilters || { area: "all", school: "all" };
+    // Apply area filter
+    let hosts = filters.area === "all"
+      ? allHostsList
+      : allHostsList.filter((h) => h.area === filters.area);
+    // Apply school filter — only keep hosts that have at least one review from
+    // a student at the selected school. Also scope review list accordingly.
+    let reviews = state.userReviews;
+    if (filters.school !== "all") {
+      reviews = reviews.filter((r) => r.reviewer && r.reviewer.school === filters.school);
+      const hostIdsWithReviewFromSchool = new Set(reviews.map((r) => Number(r.hostId)));
+      hosts = hosts.filter((h) => hostIdsWithReviewFromSchool.has(Number(h.id)));
+    }
     const categoryScores = localizedCriteriaGroups()
       .map((group) => ({
         title: group.title,
@@ -2237,12 +2752,31 @@
       { label: t.riskSupport, count: hosts.filter((host) => groupScore(host, criteriaGroups.find((group) => group.key === "mentalSupport")) < 4).length },
     ];
 
+    // Flag individual hosts that need attention.
+    // Threshold: overall weighted rating < 3.8 OR any high-priority category < 3.0
+    const groups = localizedCriteriaGroups();
+    const flagged = hosts
+      .map((host) => {
+        const overall = overallWeightedRating(host);
+        const reviewCount = hostReviews(host).length;
+        const lowCategories = groups
+          .map((g) => ({ title: g.title, value: groupScore(host, g) }))
+          .filter((c) => Number.isFinite(c.value) && c.value > 0 && c.value < 3.5)
+          .sort((a, b) => a.value - b.value)
+          .slice(0, 2);
+        return { host, overall, reviewCount, lowCategories };
+      })
+      .filter((entry) => entry.overall < 3.8 || entry.lowCategories.length > 0)
+      .sort((a, b) => a.overall - b.overall);
+
     return {
       reviews: reviews.length,
+      hostCount: hosts.length,
       categoryScores,
       risks,
       strongest: categoryScores.slice(0, 3),
       attention: categoryScores.slice(-3).reverse(),
+      flagged,
     };
   }
 
@@ -2353,7 +2887,11 @@
       { key: "review", label: t.navReview || "Write" },
       { key: "favorites", label: `${favLabel}${favCount ? ` (${favCount})` : ""}` },
       { key: "school", label: t.navSchool || "Schools" },
+      { key: "how-to", label: t.navHowTo || "How to use" },
     ];
+    if (isHost()) {
+      tabs.push({ key: "my-host", label: `🏠 ${t.navMyHost || "My family"}` });
+    }
     return `
       <nav class="view-tabs" aria-label="View">
         <div class="container view-tabs-inner">
@@ -2496,6 +3034,38 @@
 
   function renderBottomSheet() {
     if (!state.bottomSheetOpen) return "";
+    // Compute how many hosts match if pending filters were applied
+    const matchCount = filterHosts(allHosts(), state.query || "", state.pendingFilters).length;
+
+    // Filter chips bound to pendingFilters (instead of activeFilters)
+    const pendingFilterPanel = `
+      <div class="filter-panel">
+        <div class="filter-head">
+          <span class="filter-head-title">${t.quickFilters || (language !== "ja" ? "Filters" : "フィルター")}</span>
+          ${state.pendingFilters.length ? `<button type="button" class="text-button" id="reset-pending-filters">${language !== "ja" ? "Reset" : "リセット"} (${state.pendingFilters.length})</button>` : ""}
+        </div>
+        ${filterCategories.map((cat) => `
+          <div class="filter-category">
+            <div class="filter-category-title">${escapeHtml(language !== "ja" ? cat.titleEn : cat.titleJa)}</div>
+            <div class="filter-chip-row">
+              ${cat.filters.map((f) => `
+                <button type="button"
+                  class="filter-chip ${state.pendingFilters.includes(f.key) ? "is-active" : ""}"
+                  data-pending-filter-key="${f.key}"
+                  aria-pressed="${state.pendingFilters.includes(f.key)}">
+                  ${escapeHtml(language !== "ja" ? f.labelEn : f.labelJa)}
+                </button>
+              `).join("")}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+
+    const applyLabel = language !== "ja"
+      ? `Apply (${matchCount} ${matchCount === 1 ? "host" : "hosts"})`
+      : `${matchCount}件を表示`;
+
     return `
       <div class="bottom-sheet-overlay" data-close-sheet></div>
       <div class="bottom-sheet" role="dialog" aria-label="Filters">
@@ -2505,17 +3075,18 @@
           <button type="button" class="card-action-btn" data-close-sheet aria-label="Close">×</button>
         </div>
         <div class="bottom-sheet-body">
-          ${renderQuickFilters()}
+          ${pendingFilterPanel}
           <div class="bottom-sheet-section">
             <h4 class="detail-subhead">${language !== "ja" ? "Review recency" : "レビューの新しさ"}</h4>
             <div class="filter-chip-row">
-              <button type="button" class="filter-chip ${state.dateFilter === "all" ? "is-active" : ""}" data-date-filter="all">${language !== "ja" ? "All time" : "すべての期間"}</button>
-              <button type="button" class="filter-chip ${state.dateFilter === "year" ? "is-active" : ""}" data-date-filter="year">${language !== "ja" ? "Past 1 year only" : "過去1年以内のみ"}</button>
+              <button type="button" class="filter-chip ${state.pendingDateFilter === "all" ? "is-active" : ""}" data-pending-date-filter="all">${language !== "ja" ? "All time" : "すべての期間"}</button>
+              <button type="button" class="filter-chip ${state.pendingDateFilter === "year" ? "is-active" : ""}" data-pending-date-filter="year">${language !== "ja" ? "Past 1 year only" : "過去1年以内のみ"}</button>
             </div>
           </div>
         </div>
         <div class="bottom-sheet-actions">
-          <button type="button" class="button button--ghost" data-close-sheet>${language !== "ja" ? "Done" : "完了"}</button>
+          <button type="button" class="button button--ghost" data-close-sheet>${language !== "ja" ? "Cancel" : "キャンセル"}</button>
+          <button type="button" class="button button--primary" id="apply-pending-filters">${escapeHtml(applyLabel)}</button>
         </div>
       </div>
     `;
@@ -2813,6 +3384,52 @@
     if (state.authMode === "signup") {
       const f = state.signupForm;
       const grades = language !== "ja" ? GRADES_EN : GRADES_JA;
+      const signupAs = f.signupAs === "host" ? "host" : "user";
+      const hostOptions = allHosts()
+        .slice()
+        .sort((a, b) => String(a.area || "").localeCompare(String(b.area || "")))
+        .map((h) => `<option value="${h.id}" ${Number(f.hostId) === h.id ? "selected" : ""}>${escapeHtml(h.name)}${h.area ? ` — ${escapeHtml(h.area)}` : ""}</option>`)
+        .join("");
+      const studentFields = `
+        <label class="signup-field"><span>${language !== "ja" ? "School" : "学校"} <em>*</em></span>
+          <select id="signup-school" class="text-input">
+            <option value="">${language !== "ja" ? "Select school" : "学校を選択"}</option>
+            ${SCHOOLS.map((s) => `<option value="${s.code}" ${f.school === s.code ? "selected" : ""}>${escapeHtml(s.name)}</option>`).join("")}
+          </select>
+        </label>
+        <label class="signup-field"><span>${language !== "ja" ? "Grade" : "学年"} <em>*</em></span>
+          <select id="signup-grade" class="text-input">
+            <option value="">${language !== "ja" ? "Select grade" : "学年を選択"}</option>
+            ${grades.map((g) => `<option value="${escapeHtml(g)}" ${f.grade === g ? "selected" : ""}>${escapeHtml(g)}</option>`).join("")}
+          </select>
+        </label>
+        <label class="signup-field"><span>${language !== "ja" ? "Native language" : "母国語"} <em>*</em></span>
+          <select id="signup-language" class="text-input">
+            <option value="">${language !== "ja" ? "Select language" : "母国語を選択"}</option>
+            ${NATIVE_LANGUAGES.map((l) => `<option value="${escapeHtml(l)}" ${f.language === l ? "selected" : ""}>${escapeHtml(l)}</option>`).join("")}
+          </select>
+        </label>
+        <label class="signup-field"><span>${language !== "ja" ? "Country / nationality (optional)" : "国籍（任意）"}</span>
+          <select id="signup-nationality" class="text-input">
+            <option value="">${language !== "ja" ? "Select country" : "国を選択"}</option>
+            ${COUNTRIES.map((c) => `<option value="${c.code}" ${f.nationality === c.code ? "selected" : ""}>${escapeHtml(language !== "ja" ? c.nameEn : c.nameJa)}</option>`).join("")}
+          </select>
+          <small class="signup-help">${language !== "ja" ? "Used only for matching and to suggest your preferred UI language. Never shown to hosts." : "マッチングと表示言語の自動設定のみに使用。ホストには非開示。"}</small>
+        </label>
+        <label class="signup-field"><span>${language !== "ja" ? "School verification code (optional)" : "学校発行の確認コード（任意）"}</span>
+          <input id="signup-school-code" class="text-input" type="text" value="${escapeHtml(f.schoolCode)}" placeholder="${language !== "ja" ? "e.g. RDP-2026-XYZ" : "例: RDP-2026-XYZ"}" />
+          <small class="signup-help">${language !== "ja" ? "Get a Verified Student badge if your school provides this." : "学校から発行された場合、Verified Student バッジが付きます。"}</small>
+        </label>
+      `;
+      const hostFields = `
+        <label class="signup-field signup-field--full"><span>${escapeHtml(t.signupHostFamilyLabel)} <em>*</em></span>
+          <select id="signup-host-id" class="text-input">
+            <option value="">${escapeHtml(t.signupHostFamilyPlaceholder)}</option>
+            ${hostOptions}
+          </select>
+          <small class="signup-help">${escapeHtml(t.signupHostHelp)}</small>
+        </label>
+      `;
       return `
         <section class="login-panel">
           <div class="container">
@@ -2820,8 +3437,19 @@
               ${tabs}
               <h2 class="section-title">${language !== "ja" ? "Create your account" : "アカウント作成"}</h2>
               <p class="section-text">${language !== "ja"
-                ? "We need your school to verify you are an international student. Your address is never shared and reviews stay anonymous."
-                : "留学生であることを確認するため学校選択を必須としています。住所は開示せず、レビューは匿名で投稿されます。"}</p>
+                ? "Choose your role below. For students we verify your school; for host families we link your account to your family on Nestly."
+                : "登録の種類を選んでください。留学生は学校で本人確認、ホスト家庭はあなたの家庭とアカウントを紐付けます。"}</p>
+              <fieldset class="signup-role-toggle">
+                <legend>${escapeHtml(t.signupAsLabel)}</legend>
+                <label class="signup-role-option ${signupAs === "user" ? "is-active" : ""}">
+                  <input type="radio" name="signup-as" value="user" ${signupAs === "user" ? "checked" : ""} />
+                  <span>🎓 ${escapeHtml(t.signupAsStudent)}</span>
+                </label>
+                <label class="signup-role-option ${signupAs === "host" ? "is-active" : ""}">
+                  <input type="radio" name="signup-as" value="host" ${signupAs === "host" ? "checked" : ""} />
+                  <span>🏠 ${escapeHtml(t.signupAsHost)}</span>
+                </label>
+              </fieldset>
               <div class="signup-grid">
                 <label class="signup-field"><span>${language !== "ja" ? "Email" : "メールアドレス"} <em>*</em></span>
                   <input id="signup-email" class="text-input" type="email" value="${escapeHtml(f.email)}" autocomplete="email" />
@@ -2832,35 +3460,7 @@
                 <label class="signup-field"><span>${language !== "ja" ? "Display name" : "表示名"} <em>*</em></span>
                   <input id="signup-name" class="text-input" type="text" value="${escapeHtml(f.name)}" />
                 </label>
-                <label class="signup-field"><span>${language !== "ja" ? "School" : "学校"} <em>*</em></span>
-                  <select id="signup-school" class="text-input">
-                    <option value="">${language !== "ja" ? "Select school" : "学校を選択"}</option>
-                    ${SCHOOLS.map((s) => `<option value="${s.code}" ${f.school === s.code ? "selected" : ""}>${escapeHtml(s.name)}</option>`).join("")}
-                  </select>
-                </label>
-                <label class="signup-field"><span>${language !== "ja" ? "Grade" : "学年"} <em>*</em></span>
-                  <select id="signup-grade" class="text-input">
-                    <option value="">${language !== "ja" ? "Select grade" : "学年を選択"}</option>
-                    ${grades.map((g) => `<option value="${escapeHtml(g)}" ${f.grade === g ? "selected" : ""}>${escapeHtml(g)}</option>`).join("")}
-                  </select>
-                </label>
-                <label class="signup-field"><span>${language !== "ja" ? "Native language" : "母国語"} <em>*</em></span>
-                  <select id="signup-language" class="text-input">
-                    <option value="">${language !== "ja" ? "Select language" : "母国語を選択"}</option>
-                    ${NATIVE_LANGUAGES.map((l) => `<option value="${escapeHtml(l)}" ${f.language === l ? "selected" : ""}>${escapeHtml(l)}</option>`).join("")}
-                  </select>
-                </label>
-                <label class="signup-field"><span>${language !== "ja" ? "Country / nationality (optional)" : "国籍（任意）"}</span>
-                  <select id="signup-nationality" class="text-input">
-                    <option value="">${language !== "ja" ? "Select country" : "国を選択"}</option>
-                    ${COUNTRIES.map((c) => `<option value="${c.code}" ${f.nationality === c.code ? "selected" : ""}>${escapeHtml(language !== "ja" ? c.nameEn : c.nameJa)}</option>`).join("")}
-                  </select>
-                  <small class="signup-help">${language !== "ja" ? "Used only for matching and to suggest your preferred UI language. Never shown to hosts." : "マッチングと表示言語の自動設定のみに使用。ホストには非開示。"}</small>
-                </label>
-                <label class="signup-field"><span>${language !== "ja" ? "School verification code (optional)" : "学校発行の確認コード（任意）"}</span>
-                  <input id="signup-school-code" class="text-input" type="text" value="${escapeHtml(f.schoolCode)}" placeholder="${language !== "ja" ? "e.g. RDP-2026-XYZ" : "例: RDP-2026-XYZ"}" />
-                  <small class="signup-help">${language !== "ja" ? "Get a Verified Student badge if your school provides this." : "学校から発行された場合、Verified Student バッジが付きます。"}</small>
-                </label>
+                ${signupAs === "host" ? hostFields : studentFields}
               </div>
               ${errorBlock}
               <button id="signup-submit" type="button" class="button button--primary">${language !== "ja" ? "Create account" : "アカウントを作成"}</button>
@@ -3071,7 +3671,50 @@
 
   function renderSearchResults(filteredHosts, host) {
     if (filteredHosts.length === 0) {
-      return `<div class="card card--soft empty-state">${t.noResults}<br />${!currentUser || role === "user" ? t.refineSearch : ""}</div>`;
+      // Build "remove one filter" suggestions: which active filter, if dropped,
+      // would yield results? Sort by yield (most → least).
+      const suggestions = [];
+      if (state.activeFilters && state.activeFilters.length) {
+        const allHostsList = allHosts();
+        state.activeFilters.forEach((key) => {
+          const remaining = state.activeFilters.filter((k) => k !== key);
+          const count = filterHosts(allHostsList, state.query || "", remaining).length;
+          if (count > 0) {
+            const filter = quickFilters.find((f) => f.key === key);
+            const label = filter
+              ? (language !== "ja" ? filter.labelEn : filter.labelJa)
+              : key;
+            suggestions.push({ key, label, count });
+          }
+        });
+        suggestions.sort((a, b) => b.count - a.count);
+      }
+      const relaxBlock = suggestions.length
+        ? `
+          <div class="relax-filters">
+            <p class="relax-filters-intro">${escapeHtml(t.relaxFiltersIntro)}</p>
+            <ul class="relax-filters-list">
+              ${suggestions
+                .slice(0, 4)
+                .map(
+                  (s) => `
+                  <li class="relax-filter-row">
+                    <span class="relax-filter-label">${escapeHtml(s.label)}</span>
+                    <span class="relax-filter-count">+${s.count} ${escapeHtml(t.relaxFiltersUnit)}</span>
+                    <button type="button" class="button button--ghost button--compact" data-relax-filter="${escapeHtml(s.key)}">${escapeHtml(t.relaxFiltersRemove)} ×</button>
+                  </li>
+                `
+                )
+                .join("")}
+            </ul>
+            <button type="button" class="text-button" id="clear-all-filters-relax">${escapeHtml(t.relaxFiltersClearAll)}</button>
+          </div>
+        `
+        : "";
+      return `<div class="card card--soft empty-state">
+        ${t.noResults}<br />${!currentUser || role === "user" ? t.refineSearch : ""}
+        ${relaxBlock}
+      </div>`;
     }
 
     // Sort: if user has preferences, sort by match score descending
@@ -3212,12 +3855,48 @@
     const optionalHint = language !== "ja"
       ? "You can skip these. They help future students compare more precisely."
       : "省略できます。記入すると他の留学生がより精密に比較できます。";
+    // Compute progress over required fields for the sticky progress bar.
+    const requiredAxes = [
+      ...radarAxesLocalized().map((a) => a.sourceKeys[0]), // 6 primary
+      "rules", "internetQuality", "mealQuality", "cleanliness",
+    ];
+    const filledAxes = requiredAxes.filter((key) => {
+      const v = state.reviewScores && state.reviewScores[key];
+      return Number.isFinite(Number(v)) && Number(v) > 0;
+    }).length;
+    const recommendFilled = !!state.reviewStructured.recommend;
+    const textFilled = state.reviewText && state.reviewText.trim().length > 0;
+    const totalRequired = requiredAxes.length + 2; // +recommend +text
+    const currentRequired = filledAxes + (recommendFilled ? 1 : 0) + (textFilled ? 1 : 0);
+    const progressPct = Math.round((currentRequired / totalRequired) * 100);
+
+    const progressBar = `
+      <div class="review-progress" data-preserve="review-progress">
+        <div class="review-progress-head">
+          <strong>${escapeHtml(t.reviewProgressLabel)}</strong>
+          <span>${escapeHtml(t.reviewProgressDone.replace("{current}", currentRequired).replace("{total}", totalRequired))}</span>
+        </div>
+        <div class="review-progress-bar"><div class="review-progress-fill" style="width:${progressPct}%"></div></div>
+        ${!recommendFilled || !textFilled
+          ? `<div class="review-progress-warnings">
+              ${!recommendFilled
+                ? `<button type="button" class="review-progress-chip review-progress-chip--warn" id="jump-recommend">⚠ ${escapeHtml(t.reviewProgressRecommendMissing)} → ${escapeHtml(t.reviewProgressJumpRecommend)}</button>`
+                : ""}
+              ${!textFilled
+                ? `<span class="review-progress-chip review-progress-chip--warn">⚠ ${escapeHtml(t.reviewProgressTextMissing)}</span>`
+                : ""}
+            </div>`
+          : ""}
+      </div>
+    `;
+
     return `
       <article id="review" class="card review-card">
         <div class="card-body">
           ${renderAddFamilyPanel()}
           <h2 class="section-title">${t.reviewForm}</h2>
           <p class="section-text">${t.reviewLead}</p>
+          ${progressBar}
           <div class="review-target">
             <label for="review-host-select">${t.reviewTarget} <span class="required-mark">*</span></label>
             <select id="review-host-select" class="host-select">
@@ -3443,7 +4122,11 @@
                         👍 ${language !== "ja" ? "Helpful" : "役に立った"}
                         ${helpfulCount(review.id) ? `<span class="helpful-count">${helpfulCount(review.id)}</span>` : ""}
                       </button>
+                      <button type="button" class="report-btn" data-report-review="${escapeHtml(review.id)}" aria-label="${escapeHtml(t.reportButtonLabel)}" title="${escapeHtml(t.reportButtonLabel)}">
+                        ⚠ ${escapeHtml(t.reportButton)}
+                      </button>
                     </div>
+                    ${renderHostReplyBlock(review)}
                   </article>
                 `;
                       }
@@ -3457,6 +4140,15 @@
   }
 
   function renderAbout() {
+    // Hearing breakdown: 8 satisfied / 6 mismatch / 3 considered return / 3 other (total 20)
+    const hearingSegments = [
+      { count: Number(t.aboutHearingStat1Count) || 8, label: t.aboutHearingStat1Label, color: "var(--success)" },
+      { count: Number(t.aboutHearingStat2Count) || 6, label: t.aboutHearingStat2Label, color: "var(--warning)" },
+      { count: Number(t.aboutHearingStat3Count) || 3, label: t.aboutHearingStat3Label, color: "var(--danger)" },
+      { count: Number(t.aboutHearingStat4Count) || 3, label: t.aboutHearingStat4Label, color: "var(--muted)" },
+    ];
+    const total = hearingSegments.reduce((a, s) => a + s.count, 0) || 20;
+
     return `
       <section id="about" class="section-about">
         <div class="container">
@@ -3483,9 +4175,480 @@
               </div>
             </div>
           </article>
+
+          <article class="about-card about-story">
+            <h3 class="about-section-title">${escapeHtml(t.aboutStoryHeading)}</h3>
+            <p class="about-text">${escapeHtml(t.aboutStoryParagraph1)}</p>
+            <p class="about-text">${escapeHtml(t.aboutStoryParagraph2)}</p>
+          </article>
+
+          <article class="about-card about-hearing">
+            <h3 class="about-section-title">${escapeHtml(t.aboutHearingTitle)}</h3>
+            <p class="about-text">${escapeHtml(t.aboutHearingIntro)}</p>
+            <div class="hearing-bar" role="img" aria-label="${escapeHtml(t.aboutHearingTitle)}">
+              ${hearingSegments
+                .map(
+                  (s) => `<span class="hearing-bar-segment" style="flex: ${s.count}; background: ${s.color};" title="${escapeHtml(s.label)} (${s.count})"></span>`
+                )
+                .join("")}
+            </div>
+            <div class="hearing-legend">
+              ${hearingSegments
+                .map(
+                  (s) => `
+                  <div class="hearing-legend-item">
+                    <span class="hearing-dot" style="background: ${s.color};"></span>
+                    <div class="hearing-legend-text">
+                      <strong>${escapeHtml(String(s.count))}</strong>
+                      <span class="hearing-legend-total"> / ${total}</span>
+                      <span class="hearing-legend-label">${escapeHtml(s.label)}</span>
+                    </div>
+                  </div>
+                `
+                )
+                .join("")}
+            </div>
+          </article>
+
+          <article class="about-card about-quotes">
+            <h3 class="about-section-title">${escapeHtml(t.aboutQuotesTitle)}</h3>
+            <div class="about-quote-grid">
+              ${[1, 2, 3]
+                .map(
+                  (i) => `
+                  <blockquote class="about-quote">
+                    <p>"${escapeHtml(t[`aboutQuote${i}`])}"</p>
+                    <cite>— ${escapeHtml(t[`aboutQuote${i}Tag`])}</cite>
+                  </blockquote>
+                `
+                )
+                .join("")}
+            </div>
+          </article>
         </div>
       </section>
     `;
+  }
+
+  function renderHowTo() {
+    const sections = [
+      {
+        key: "student",
+        icon: "🎓",
+        title: t.howToStudentSection,
+        intro: t.howToStudentIntro,
+        steps: [
+          { title: t.howToStudent1Title, body: t.howToStudent1Body },
+          { title: t.howToStudent2Title, body: t.howToStudent2Body },
+          { title: t.howToStudent3Title, body: t.howToStudent3Body },
+          { title: t.howToStudent4Title, body: t.howToStudent4Body },
+        ],
+      },
+      {
+        key: "host",
+        icon: "🏠",
+        title: t.howToHostSection,
+        intro: t.howToHostIntro,
+        steps: [
+          { title: t.howToHost1Title, body: t.howToHost1Body },
+          { title: t.howToHost2Title, body: t.howToHost2Body },
+          { title: t.howToHost3Title, body: t.howToHost3Body },
+        ],
+      },
+      {
+        key: "b2b",
+        icon: "🏫",
+        title: t.howToB2BSection,
+        intro: t.howToB2BIntro,
+        steps: [
+          { title: t.howToB2B1Title, body: t.howToB2B1Body },
+          { title: t.howToB2B2Title, body: t.howToB2B2Body },
+          { title: t.howToB2B3Title, body: t.howToB2B3Body },
+        ],
+      },
+    ];
+
+    return `
+      <section id="how-to" class="section-how-to">
+        <div class="container">
+          <div class="section-head section-head--center">
+            <span class="how-to-eyebrow">${escapeHtml(t.howToHeroEyebrow)}</span>
+            <h2 class="section-title">${escapeHtml(t.howToHeroTitle)}</h2>
+            <p class="section-text">${escapeHtml(t.howToHeroText)}</p>
+          </div>
+          ${sections
+            .map(
+              (section) => `
+              <article class="how-to-section how-to-section--${section.key}">
+                <header class="how-to-section-head">
+                  <span class="how-to-section-icon" aria-hidden="true">${section.icon}</span>
+                  <div>
+                    <h3 class="how-to-section-title">${escapeHtml(section.title)}</h3>
+                    <p class="how-to-section-intro">${escapeHtml(section.intro)}</p>
+                  </div>
+                </header>
+                <ol class="how-to-steps">
+                  ${section.steps
+                    .map(
+                      (step, idx) => `
+                      <li class="how-to-step">
+                        <span class="how-to-step-num">${idx + 1}</span>
+                        <div class="how-to-step-body">
+                          <h4 class="how-to-step-title">${escapeHtml(step.title)}</h4>
+                          <p class="how-to-step-text">${escapeHtml(step.body)}</p>
+                        </div>
+                      </li>
+                    `
+                    )
+                    .join("")}
+                </ol>
+              </article>
+            `
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function policyBody(linesText) {
+    const lines = String(linesText || "").split("\n").map((l) => l.trim()).filter(Boolean);
+    let html = "";
+    let listOpen = false;
+    for (const line of lines) {
+      if (line.startsWith("•")) {
+        if (!listOpen) { html += '<ul class="policy-list">'; listOpen = true; }
+        html += `<li>${escapeHtml(line.slice(1).trim())}</li>`;
+      } else {
+        if (listOpen) { html += "</ul>"; listOpen = false; }
+        html += `<p>${escapeHtml(line)}</p>`;
+      }
+    }
+    if (listOpen) html += "</ul>";
+    return html;
+  }
+
+  function renderPolicy(viewId, prefix) {
+    const sections = [];
+    for (let i = 1; i <= 9; i++) {
+      const title = t[`${prefix}S${i}Title`];
+      const lines = t[`${prefix}S${i}Lines`];
+      if (!title || !lines) continue;
+      sections.push({ title, lines });
+    }
+    return `
+      <section id="${viewId}" class="section-policy">
+        <div class="container container--narrow">
+          <div class="policy-head">
+            <span class="policy-eyebrow">${escapeHtml(t[`${prefix}Eyebrow`] || "Legal")}</span>
+            <h1 class="policy-title">${escapeHtml(t[`${prefix}Title`])}</h1>
+            <p class="policy-updated">${escapeHtml(t[`${prefix}LastUpdated`])}</p>
+            <p class="policy-intro">${escapeHtml(t[`${prefix}Intro`])}</p>
+          </div>
+          ${sections
+            .map(
+              (section) => `
+              <article class="policy-section">
+                <h2 class="policy-section-title">${escapeHtml(section.title)}</h2>
+                <div class="policy-body">${policyBody(section.lines)}</div>
+              </article>
+            `
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderPrivacy() { return renderPolicy("privacy", "privacy"); }
+  function renderTerms()   { return renderPolicy("terms", "terms"); }
+
+  function renderPricing() {
+    const plans = [1, 2, 3, 4].map((i) => ({
+      tag:   t[`pricingPlan${i}Tag`],
+      title: t[`pricingPlan${i}Title`],
+      forWho: t[`pricingPlan${i}For`],
+      price: t[`pricingPlan${i}Price`],
+      features: String(t[`pricingPlan${i}Features`] || "").split("\n").filter(Boolean),
+      key: i,
+    }));
+    return `
+      <section id="pricing" class="section-pricing">
+        <div class="container">
+          <div class="section-head section-head--center">
+            <span class="how-to-eyebrow">${escapeHtml(t.pricingEyebrow)}</span>
+            <h2 class="section-title">${escapeHtml(t.pricingTitle)}</h2>
+            <p class="section-text">${escapeHtml(t.pricingIntro)}</p>
+          </div>
+          <div class="pricing-grid">
+            ${plans
+              .map(
+                (plan) => `
+                <article class="pricing-card pricing-card--${plan.key}">
+                  <span class="pricing-tag">${escapeHtml(plan.tag)}</span>
+                  <h3 class="pricing-title">${escapeHtml(plan.title)}</h3>
+                  <p class="pricing-for">${escapeHtml(plan.forWho)}</p>
+                  <div class="pricing-price">${escapeHtml(plan.price)}</div>
+                  <ul class="pricing-features">
+                    ${plan.features.map((f) => `<li>✓ ${escapeHtml(f)}</li>`).join("")}
+                  </ul>
+                </article>
+              `
+              )
+              .join("")}
+          </div>
+          <p class="pricing-disclaimer">${escapeHtml(t.pricingDisclaimer)}</p>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderHostReplyBlock(review) {
+    if (!review || !review.id) return "";
+    const reply = state.hostReplies && state.hostReplies[review.id];
+    // If a reply already exists — render the public reply block (visible to everyone)
+    if (reply) {
+      const replyDate = reply.createdAt ? new Date(reply.createdAt).toLocaleDateString(language === "ja" ? "ja-JP" : "en-US") : "";
+      return `
+        <div class="host-reply">
+          <header class="host-reply-head">
+            <span class="host-reply-icon" aria-hidden="true">🏠</span>
+            <strong>${escapeHtml(t.hostReplyHeading)}</strong>
+            ${replyDate ? `<span class="host-reply-date">${escapeHtml(replyDate)}</span>` : ""}
+          </header>
+          <p class="host-reply-text">${escapeHtml(reply.text)}</p>
+        </div>
+      `;
+    }
+    // No reply yet — only show the input form to the host bound to this review's host
+    if (!isHost()) return "";
+    if (Number(currentHostId()) !== Number(review.hostId)) return "";
+    const draft = (state.hostReplyDraft && state.hostReplyDraft[review.id]) || "";
+    const submitting = state.hostReplySubmittingId === review.id;
+    return `
+      <div class="host-reply-form">
+        <label class="host-reply-form-label">
+          <span>${escapeHtml(t.hostReplyLabel)}</span>
+          <textarea
+            class="host-reply-textarea"
+            data-host-reply-input="${escapeHtml(review.id)}"
+            data-preserve="host-reply-${escapeHtml(review.id)}"
+            maxlength="800"
+            placeholder="${escapeHtml(t.hostReplyPlaceholder)}"
+          >${escapeHtml(draft)}</textarea>
+        </label>
+        <button type="button" class="button button--primary button--compact" data-host-reply-submit="${escapeHtml(review.id)}" ${submitting ? "disabled" : ""}>
+          ${submitting ? escapeHtml(t.hostReplySubmitting) : escapeHtml(t.hostReplySubmit)}
+        </button>
+      </div>
+    `;
+  }
+
+  function renderHostProfile() {
+    // Guards: must be a host with a valid hostId
+    if (!isHost()) {
+      return `
+        <section class="section-host-profile">
+          <div class="container container--narrow">
+            <div class="empty-state empty-state--card">${escapeHtml(t.hostProfileLoginRequired)}</div>
+          </div>
+        </section>
+      `;
+    }
+    const hostId = currentHostId();
+    const host = hostId ? allHosts().find((h) => h.id === hostId) : null;
+    if (!host) {
+      return `
+        <section class="section-host-profile">
+          <div class="container container--narrow">
+            <div class="empty-state empty-state--card">${escapeHtml(t.hostProfileNoHost)}</div>
+          </div>
+        </section>
+      `;
+    }
+
+    const stats = getHostStats(host);
+    const reviews = hostReviews(host);
+    const verified = isVerifiedHost(host);
+    const reviewsNeeded = Math.max(0, 3 - reviews.length);
+    const ratingPct = Math.min(100, Math.round((stats.rating / 4.0) * 100));
+    const reviewsPct = Math.min(100, Math.round((reviews.length / 3) * 100));
+
+    // Category strengths and weaknesses
+    const groupScores = localizedCriteriaGroups()
+      .map((group) => ({ title: group.title, value: groupScore(host, group) }))
+      .filter((g) => Number.isFinite(g.value) && g.value > 0)
+      .sort((a, b) => b.value - a.value);
+    const strengths = groupScores.slice(0, 3);
+    const improvements = groupScores.slice(-3).reverse();
+
+    const scoreList = (items) =>
+      items.length
+        ? items
+            .map(
+              (item) => `<div class="analytics-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(item.value.toFixed(1))}</strong></div>`
+            )
+            .join("")
+        : `<div class="empty-state">—</div>`;
+
+    return `
+      <section id="my-host" class="section-host-profile">
+        <div class="container">
+          <div class="host-profile-head">
+            <span class="policy-eyebrow">${escapeHtml(t.hostProfileEyebrow)}</span>
+            <h1 class="policy-title">${escapeHtml(host.name)}${host.area ? ` <small class="host-profile-area">— ${escapeHtml(host.area)}</small>` : ""}</h1>
+            <p class="policy-intro">${escapeHtml(t.hostProfileIntro)}</p>
+          </div>
+
+          <div class="host-profile-stats">
+            <article class="analytics-card analytics-card--stat">
+              <span>${escapeHtml(t.hostProfileOverall)}</span>
+              <strong>★ ${escapeHtml(stats.rating.toFixed(2))}</strong>
+            </article>
+            <article class="analytics-card analytics-card--stat">
+              <span>${escapeHtml(t.hostProfileReviews)}</span>
+              <strong>${reviews.length}</strong>
+            </article>
+            <article class="analytics-card analytics-card--stat">
+              <span>${escapeHtml(t.hostProfileReliability)}</span>
+              <strong>${escapeHtml(stats.reliability && stats.reliability.label ? stats.reliability.label : "—")}</strong>
+            </article>
+          </div>
+
+          <article class="host-profile-card">
+            <h2 class="policy-section-title">${escapeHtml(t.hostProfileVerifiedTitle)}</h2>
+            ${verified
+              ? `<p class="host-profile-verified-done">${escapeHtml(t.hostProfileVerifiedDone)}</p>`
+              : `
+                <div class="host-profile-progress">
+                  <div class="host-progress-row">
+                    <span>${escapeHtml(t.hostProfileVerifiedReviews.replace("{current}", reviews.length))}</span>
+                    <div class="host-progress-bar"><div class="host-progress-fill" style="width:${reviewsPct}%"></div></div>
+                  </div>
+                  <div class="host-progress-row">
+                    <span>${escapeHtml(t.hostProfileVerifiedRating.replace("{current}", stats.rating.toFixed(2)))}</span>
+                    <div class="host-progress-bar"><div class="host-progress-fill" style="width:${ratingPct}%"></div></div>
+                  </div>
+                </div>
+                <p class="host-profile-hint">${escapeHtml(t.hostProfileVerifiedHint)}</p>
+              `}
+          </article>
+
+          <div class="host-profile-grid">
+            <article class="host-profile-card">
+              <h3 class="policy-section-title">${escapeHtml(t.hostProfileStrengths)}</h3>
+              ${scoreList(strengths)}
+            </article>
+            <article class="host-profile-card">
+              <h3 class="policy-section-title">${escapeHtml(t.hostProfileImprovements)}</h3>
+              ${scoreList(improvements)}
+            </article>
+          </div>
+
+          <article class="host-profile-card">
+            <h2 class="policy-section-title">${escapeHtml(t.hostProfileReviewsTitle)}</h2>
+            ${reviews.length === 0
+              ? `<div class="empty-state">${escapeHtml(t.hostProfileNoReviews)}</div>`
+              : reviews
+                  .map((review) => {
+                    const reviewText = displayReviewText(review.text);
+                    return `
+                      <div class="review-item host-profile-review">
+                        <div class="review-header">
+                          ${renderStars(review.score)}
+                          <span class="review-date-muted">${escapeHtml(displayStudentName(review.student))}</span>
+                        </div>
+                        ${reviewText ? `<p class="review-quote">${language === "ja" ? "「" : "\""}${escapeHtml(reviewText)}${language === "ja" ? "」" : "\""}</p>` : ""}
+                        ${review.fit && review.fit.length
+                          ? `<div class="result-tags">${review.fit.map((tag) => `<span class="result-tag">${escapeHtml(localizedFitLabel(tag))}</span>`).join("")}</div>`
+                          : ""}
+                        ${renderHostReplyBlock(review)}
+                      </div>
+                    `;
+                  })
+                  .join("")}
+          </article>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderReportModal() {
+    if (!state.reportingReviewId) return "";
+    const reasons = [
+      { key: "misinformation", label: t.reportReasonMisinformation },
+      { key: "personal_info",  label: t.reportReasonPersonalInfo },
+      { key: "harassment",     label: t.reportReasonHarassment },
+      { key: "spam",           label: t.reportReasonSpam },
+      { key: "other",          label: t.reportReasonOther },
+    ];
+    return `
+      <div class="report-modal-overlay" data-close-report></div>
+      <div class="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+        <header class="report-modal-head">
+          <h3 id="report-modal-title">${escapeHtml(t.reportModalTitle)}</h3>
+          <button type="button" class="report-modal-close" data-close-report aria-label="${escapeHtml(t.reportCancel)}">×</button>
+        </header>
+        <p class="report-modal-intro">${escapeHtml(t.reportModalIntro)}</p>
+        <fieldset class="report-reasons">
+          <legend>${escapeHtml(t.reportReasonLabel)}</legend>
+          ${reasons
+            .map(
+              (r) => `
+              <label class="report-reason-option">
+                <input type="radio" name="report-reason" value="${r.key}" ${state.reportReason === r.key ? "checked" : ""} />
+                <span>${escapeHtml(r.label)}</span>
+              </label>
+            `
+            )
+            .join("")}
+        </fieldset>
+        <label class="report-note-label">
+          <span>${escapeHtml(t.reportNoteLabel)}</span>
+          <textarea id="report-note" class="report-note" maxlength="500" data-preserve="report-note" placeholder="${escapeHtml(t.reportNotePlaceholder)}">${escapeHtml(state.reportNote || "")}</textarea>
+        </label>
+        <div class="report-modal-actions">
+          <button type="button" class="button button--ghost" data-close-report>${escapeHtml(t.reportCancel)}</button>
+          <button type="button" id="report-submit" class="button button--primary" ${state.reportSubmitting ? "disabled" : ""}>
+            ${state.reportSubmitting ? escapeHtml(t.reportSubmitting) : escapeHtml(t.reportSubmit)}
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  async function submitReport() {
+    if (!state.reportingReviewId) return;
+    if (!state.reportReason) {
+      alert(t.reportReasonRequired);
+      return;
+    }
+    state.reportSubmitting = true;
+    render();
+    try {
+      const payload = {
+        reviewId: state.reportingReviewId,
+        reason: state.reportReason,
+        note: state.reportNote || "",
+        reporter: currentUser ? currentUser.name : "anonymous",
+      };
+      const response = await fetch("/api/reports", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("submit failed");
+      state.reportingReviewId = null;
+      state.reportReason = "";
+      state.reportNote = "";
+      state.reportSubmitting = false;
+      render();
+      alert(t.reportThanks);
+    } catch (_error) {
+      state.reportSubmitting = false;
+      render();
+      alert(t.reportFailed);
+    }
   }
 
   function renderFooter() {
@@ -3503,6 +4666,13 @@
             <p class="footer-tagline">${escapeHtml(BRAND_TAGLINE_EN)}</p>
           </div>
           <div class="footer-meta">
+            <div class="footer-links">
+              <button type="button" class="footer-link" data-view="privacy">${escapeHtml(t.privacyNav)}</button>
+              <span class="footer-link-divider" aria-hidden="true">·</span>
+              <button type="button" class="footer-link" data-view="terms">${escapeHtml(t.termsNav)}</button>
+              <span class="footer-link-divider" aria-hidden="true">·</span>
+              <button type="button" class="footer-link" data-view="pricing">${escapeHtml(t.pricingNav)}</button>
+            </div>
             <div>${escapeHtml(t.footerNote)}</div>
             <div>${escapeHtml(t.footerCopy)}</div>
           </div>
@@ -3535,6 +4705,147 @@
     `;
   }
 
+  function monthlyTrendBuckets() {
+    // Build 12 monthly buckets (oldest → newest)
+    const now = new Date();
+    const buckets = [];
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      buckets.push({ key, label: key, year: d.getFullYear(), month: d.getMonth() + 1, count: 0, sum: 0 });
+    }
+    const bucketIndex = new Map(buckets.map((b, i) => [b.key, i]));
+    state.userReviews.forEach((r) => {
+      if (!r.createdAt) return;
+      const d = new Date(r.createdAt);
+      if (Number.isNaN(d.getTime())) return;
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      const idx = bucketIndex.get(key);
+      if (idx == null) return;
+      const score = Number(r.score);
+      if (Number.isFinite(score) && score > 0) {
+        buckets[idx].count += 1;
+        buckets[idx].sum += score;
+      }
+    });
+    return buckets.map((b) => ({ ...b, avg: b.count ? b.sum / b.count : 0 }));
+  }
+
+  function renderTrendChart() {
+    const buckets = monthlyTrendBuckets();
+    const totalReviews = buckets.reduce((acc, b) => acc + b.count, 0);
+    if (totalReviews === 0) {
+      return `<div class="empty-state">${escapeHtml(t.analyticsTrendNoData)}</div>`;
+    }
+    const maxCount = Math.max(1, ...buckets.map((b) => b.count));
+    const width = 720;
+    const height = 200;
+    const padding = { top: 16, right: 28, bottom: 28, left: 32 };
+    const chartW = width - padding.left - padding.right;
+    const chartH = height - padding.top - padding.bottom;
+    const barW = chartW / buckets.length * 0.7;
+    const slot = chartW / buckets.length;
+
+    const bars = buckets
+      .map((b, i) => {
+        const h = (b.count / maxCount) * chartH;
+        const x = padding.left + slot * i + (slot - barW) / 2;
+        const y = padding.top + (chartH - h);
+        return `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="3" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1"></rect>`;
+      })
+      .join("");
+
+    // Line for average rating (scale 0-5 → chartH)
+    const points = buckets
+      .map((b, i) => {
+        const x = padding.left + slot * i + slot / 2;
+        const yVal = b.count ? b.avg : null;
+        if (yVal == null) return null;
+        const y = padding.top + (chartH - (yVal / 5) * chartH);
+        return `${x},${y}`;
+      })
+      .filter(Boolean)
+      .join(" ");
+
+    const linePath = points ? `<polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline>` : "";
+    const dots = buckets
+      .map((b, i) => {
+        if (!b.count) return "";
+        const x = padding.left + slot * i + slot / 2;
+        const y = padding.top + (chartH - (b.avg / 5) * chartH);
+        return `<circle cx="${x}" cy="${y}" r="3" fill="var(--accent)"></circle>`;
+      })
+      .join("");
+
+    const labels = buckets
+      .map((b, i) => {
+        const x = padding.left + slot * i + slot / 2;
+        const label = String(b.month);
+        return `<text x="${x}" y="${height - 8}" font-size="10" text-anchor="middle" fill="var(--muted)">${label}</text>`;
+      })
+      .join("");
+
+    return `
+      <div class="trend-chart-wrap">
+        <svg class="trend-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(t.analyticsTrendTitle)}">
+          <line x1="${padding.left}" y1="${padding.top + chartH}" x2="${width - padding.right}" y2="${padding.top + chartH}" stroke="var(--line)" stroke-width="1"></line>
+          ${bars}
+          ${linePath}
+          ${dots}
+          ${labels}
+        </svg>
+        <p class="trend-chart-hint">${escapeHtml(t.analyticsTrendHint)}</p>
+      </div>
+    `;
+  }
+
+  function csvEscape(value) {
+    const str = String(value == null ? "" : value);
+    if (/[",\n\r]/.test(str)) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  }
+
+  function buildAnalyticsCsv() {
+    const hosts = allHosts();
+    const groups = localizedCriteriaGroups();
+    const headers = ["host_id", "name", "area", "overall_rating", "review_count", ...groups.map((g) => g.title)];
+    const rows = [headers.map(csvEscape).join(",")];
+    hosts.forEach((host) => {
+      const overall = overallWeightedRating(host);
+      const reviewCount = hostReviews(host).length;
+      const row = [
+        host.id,
+        host.name,
+        host.area || "",
+        overall.toFixed(2),
+        reviewCount,
+        ...groups.map((g) => {
+          const v = groupScore(host, g);
+          return Number.isFinite(v) && v > 0 ? v.toFixed(2) : "";
+        }),
+      ];
+      rows.push(row.map(csvEscape).join(","));
+    });
+    // Prepend BOM so Excel reads UTF-8 correctly
+    return "﻿" + rows.join("\n");
+  }
+
+  function downloadAnalyticsCsv() {
+    const csv = buildAnalyticsCsv();
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const date = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `nestly-analytics-${date}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  }
+
   function renderSchoolAnalytics() {
     const analytics = schoolAnalytics();
     const scoreList = (items) =>
@@ -3542,12 +4853,75 @@
         ? items.map((item) => `<div class="analytics-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(item.value.toFixed(1))}</strong></div>`).join("")
         : `<div class="empty-state">${t.noAnalytics}</div>`;
 
+    const flaggedSection = `
+      <article class="analytics-card analytics-card--wide analytics-card--flagged">
+        <header class="analytics-card-head">
+          <h3>⚠ ${escapeHtml(t.analyticsFlagged)}</h3>
+          <p class="analytics-card-hint">${escapeHtml(t.analyticsFlaggedHint)}</p>
+        </header>
+        ${analytics.flagged.length === 0
+          ? `<div class="empty-state">${escapeHtml(t.analyticsFlaggedNone)}</div>`
+          : `<div class="flagged-list">
+              ${analytics.flagged
+                .map(
+                  (entry) => `
+                  <article class="flagged-row" data-flagged-host="${entry.host.id}">
+                    <div class="flagged-row-main">
+                      <strong>${escapeHtml(entry.host.name)}</strong>
+                      ${entry.host.area ? `<span class="flagged-row-area">${escapeHtml(entry.host.area)}</span>` : ""}
+                      <span class="flagged-row-reviews">${escapeHtml(t.analyticsFlaggedReviews.replace("{count}", entry.reviewCount))}</span>
+                    </div>
+                    <div class="flagged-row-rating">
+                      <span class="flagged-row-overall">★ ${entry.overall.toFixed(2)}</span>
+                      ${entry.lowCategories
+                        .map(
+                          (c) =>
+                            `<span class="flagged-chip">${escapeHtml(c.title)} <strong>${c.value.toFixed(1)}</strong></span>`
+                        )
+                        .join("")}
+                    </div>
+                  </article>
+                `
+                )
+                .join("")}
+            </div>`}
+      </article>
+    `;
+
+    const filters = state.analyticsFilters || { area: "all", school: "all" };
+    const allAreas = Array.from(new Set(allHosts().map((h) => h.area).filter(Boolean))).sort();
+    const areaOptions = ['<option value="all">' + escapeHtml(t.analyticsFilterAll) + "</option>"]
+      .concat(allAreas.map((a) => `<option value="${escapeHtml(a)}" ${filters.area === a ? "selected" : ""}>${escapeHtml(a)}</option>`))
+      .join("");
+    const schoolOptions = ['<option value="all">' + escapeHtml(t.analyticsFilterAll) + "</option>"]
+      .concat(SCHOOLS.map((s) => `<option value="${s.code}" ${filters.school === s.code ? "selected" : ""}>${escapeHtml(s.name)}</option>`))
+      .join("");
+
     return `
       <section id="school" class="section-school">
         <div class="container">
-          <div class="section-head">
-            <h2 class="section-title">${t.schoolTitle}</h2>
-            <p class="section-text">${t.schoolText}</p>
+          <div class="section-head analytics-section-head">
+            <div>
+              <h2 class="section-title">${t.schoolTitle}</h2>
+              <p class="section-text">${t.schoolText}</p>
+            </div>
+            <div class="analytics-export">
+              <button type="button" id="analytics-export-csv" class="button button--ghost button--compact" title="${escapeHtml(t.analyticsExportHint)}">
+                ⬇ ${escapeHtml(t.analyticsExportCsv)}
+              </button>
+            </div>
+          </div>
+          <div class="analytics-filters">
+            <strong class="analytics-filters-title">${escapeHtml(t.analyticsFilterTitle)}</strong>
+            <label class="analytics-filter">
+              <span>${escapeHtml(t.analyticsFilterArea)}</span>
+              <select id="analytics-filter-area" class="text-input text-input--compact">${areaOptions}</select>
+            </label>
+            <label class="analytics-filter">
+              <span>${escapeHtml(t.analyticsFilterSchool)}</span>
+              <select id="analytics-filter-school" class="text-input text-input--compact">${schoolOptions}</select>
+            </label>
+            <span class="analytics-filter-scope">${escapeHtml(t.analyticsFilterCount.replace("{hosts}", analytics.hostCount).replace("{reviews}", analytics.reviews))}</span>
           </div>
           <div class="analytics-grid">
             <article class="analytics-card analytics-card--stat">
@@ -3571,6 +4945,13 @@
               ${scoreList(analytics.attention)}
             </article>
           </div>
+          ${flaggedSection}
+          <article class="analytics-card analytics-card--wide analytics-card--trend">
+            <header class="analytics-card-head">
+              <h3>📈 ${escapeHtml(t.analyticsTrendTitle)}</h3>
+            </header>
+            ${renderTrendChart()}
+          </article>
         </div>
       </section>
     `;
@@ -3681,17 +5062,34 @@
       });
     });
 
+    // Sign up role radio (Student / Host family)
+    document.querySelectorAll('input[name="signup-as"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        state.signupForm = { ...state.signupForm, signupAs: e.target.value };
+        render();
+      });
+    });
+
     const signupSubmit = document.getElementById("signup-submit");
     if (signupSubmit) signupSubmit.addEventListener("click", async () => {
+      const signupAsEl = document.querySelector('input[name="signup-as"]:checked');
+      const signupAs = signupAsEl ? signupAsEl.value : "user";
+      const hostIdEl = document.getElementById("signup-host-id");
+      const schoolEl = document.getElementById("signup-school");
+      const gradeEl = document.getElementById("signup-grade");
+      const languageEl = document.getElementById("signup-language");
+      const schoolCodeEl = document.getElementById("signup-school-code");
       const form = {
+        signupAs,
         email: document.getElementById("signup-email").value.trim(),
         password: document.getElementById("signup-password").value,
         name: document.getElementById("signup-name").value.trim(),
-        school: document.getElementById("signup-school").value,
-        grade: document.getElementById("signup-grade").value,
-        language: document.getElementById("signup-language").value,
-        nationality: document.getElementById("signup-nationality").value.trim(),
-        schoolCode: document.getElementById("signup-school-code").value.trim(),
+        school: schoolEl ? schoolEl.value : "",
+        grade: gradeEl ? gradeEl.value : "",
+        language: languageEl ? languageEl.value : "",
+        nationality: document.getElementById("signup-nationality") ? document.getElementById("signup-nationality").value.trim() : "",
+        schoolCode: schoolCodeEl ? schoolCodeEl.value.trim() : "",
+        hostId: hostIdEl ? hostIdEl.value : "",
       };
       state.signupForm = form;
       await signup(form);
@@ -3801,6 +5199,157 @@
       });
     });
 
+    // Report review — open modal
+    document.querySelectorAll("[data-report-review]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        state.reportingReviewId = btn.dataset.reportReview;
+        state.reportReason = "";
+        state.reportNote = "";
+        render();
+      });
+    });
+
+    // Report modal — close handlers
+    document.querySelectorAll("[data-close-report]").forEach((el) => {
+      el.addEventListener("click", () => {
+        state.reportingReviewId = null;
+        state.reportReason = "";
+        state.reportNote = "";
+        state.reportSubmitting = false;
+        render();
+      });
+    });
+
+    // Report modal — radio change
+    document.querySelectorAll('input[name="report-reason"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        state.reportReason = e.target.value;
+      });
+    });
+
+    // Report modal — note textarea (live state, no re-render)
+    const reportNoteEl = document.getElementById("report-note");
+    if (reportNoteEl) {
+      reportNoteEl.addEventListener("input", (e) => {
+        state.reportNote = e.target.value;
+      });
+    }
+
+    // Report modal — submit
+    const reportSubmitBtn = document.getElementById("report-submit");
+    if (reportSubmitBtn) {
+      reportSubmitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        submitReport();
+      });
+    }
+
+    // Host reply — textarea live state (no re-render while typing)
+    document.querySelectorAll("[data-host-reply-input]").forEach((el) => {
+      el.addEventListener("input", (e) => {
+        const reviewId = el.dataset.hostReplyInput;
+        state.hostReplyDraft = { ...state.hostReplyDraft, [reviewId]: e.target.value };
+      });
+    });
+
+    // Host reply — submit
+    document.querySelectorAll("[data-host-reply-submit]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        submitHostReply(btn.dataset.hostReplySubmit);
+      });
+    });
+
+    // Analytics — CSV export
+    const exportCsvBtn = document.getElementById("analytics-export-csv");
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener("click", () => {
+        try {
+          downloadAnalyticsCsv();
+        } catch (_error) {
+          alert("CSV export failed");
+        }
+      });
+    }
+
+    // Review progress: jump to recommend chips
+    const jumpRecommendBtn = document.getElementById("jump-recommend");
+    if (jumpRecommendBtn) {
+      jumpRecommendBtn.addEventListener("click", () => {
+        const recommendRow = document.querySelector(".recommend-chip-row");
+        if (recommendRow) {
+          recommendRow.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Briefly highlight
+          recommendRow.classList.add("flash-highlight");
+          setTimeout(() => recommendRow.classList.remove("flash-highlight"), 1600);
+        }
+      });
+    }
+
+    // Relax-filter suggestion: remove one named filter
+    document.querySelectorAll("[data-relax-filter]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.relaxFilter;
+        state.activeFilters = state.activeFilters.filter((k) => k !== key);
+        render();
+      });
+    });
+
+    // Relax-filter: clear all filters in 0-result state
+    const clearAllRelaxBtn = document.getElementById("clear-all-filters-relax");
+    if (clearAllRelaxBtn) clearAllRelaxBtn.addEventListener("click", () => {
+      state.activeFilters = [];
+      render();
+    });
+
+    // Pending filter chip toggles (mobile bottom sheet)
+    document.querySelectorAll("[data-pending-filter-key]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.pendingFilterKey;
+        state.pendingFilters = state.pendingFilters.includes(key)
+          ? state.pendingFilters.filter((item) => item !== key)
+          : [...state.pendingFilters, key];
+        render();
+      });
+    });
+
+    // Pending date filter chips (mobile bottom sheet)
+    document.querySelectorAll("[data-pending-date-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.pendingDateFilter = button.dataset.pendingDateFilter;
+        render();
+      });
+    });
+
+    // Apply pending filters → active filters, close sheet
+    const applyBtn = document.getElementById("apply-pending-filters");
+    if (applyBtn) applyBtn.addEventListener("click", () => {
+      state.activeFilters = [...state.pendingFilters];
+      state.dateFilter = state.pendingDateFilter;
+      state.bottomSheetOpen = false;
+      render();
+    });
+
+    // Reset (clear) pending filters
+    const resetPendingBtn = document.getElementById("reset-pending-filters");
+    if (resetPendingBtn) resetPendingBtn.addEventListener("click", () => {
+      state.pendingFilters = [];
+      render();
+    });
+
+    // Analytics — filters
+    const filterArea = document.getElementById("analytics-filter-area");
+    if (filterArea) filterArea.addEventListener("change", (e) => {
+      state.analyticsFilters = { ...state.analyticsFilters, area: e.target.value };
+      render();
+    });
+    const filterSchool = document.getElementById("analytics-filter-school");
+    if (filterSchool) filterSchool.addEventListener("change", (e) => {
+      state.analyticsFilters = { ...state.analyticsFilters, school: e.target.value };
+      render();
+    });
+
     // Match reason popover
     document.querySelectorAll("[data-match-reason-host]").forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -3816,6 +5365,10 @@
     // Bottom sheet open/close
     const openSheetBtn = document.getElementById("open-sheet-btn");
     if (openSheetBtn) openSheetBtn.addEventListener("click", () => {
+      // Snapshot current filters into pending state so the sheet can stage
+      // changes; "Apply" commits them, "Cancel" discards.
+      state.pendingFilters = [...state.activeFilters];
+      state.pendingDateFilter = state.dateFilter;
       state.bottomSheetOpen = true;
       render();
     });
@@ -4517,6 +6070,11 @@
 
     const schoolView = view === "school" ? renderSchoolAnalytics() : "";
     const favoritesView = view === "favorites" ? renderFavoritesView() : "";
+    const howToView = view === "how-to" ? renderHowTo() : "";
+    const privacyView = view === "privacy" ? renderPrivacy() : "";
+    const termsView = view === "terms" ? renderTerms() : "";
+    const myHostView = view === "my-host" ? renderHostProfile() : "";
+    const pricingView = view === "pricing" ? renderPricing() : "";
 
     const banner = state.bannerDismissed ? "" : `
       <div class="demo-banner demo-banner--soft" role="status" aria-live="polite">
@@ -4553,6 +6111,8 @@
                   ? `<span class="status-pill status-pill--admin">${t.adminBadge}</span>`
                   : isModerator()
                   ? `<span class="status-pill status-pill--admin">${t.moderatorBadge}</span>`
+                  : isHost()
+                  ? `<span class="status-pill status-pill--host">${t.hostBadge}</span>`
                   : ""
               }
               ${currentUser ? `<span class="status-pill ${currentUser.verified ? "status-pill--verified" : ""}" title="${escapeHtml(currentUser.school || "")}">${currentUser.verified ? "✓ " : ""}${t.loggedInAs}: ${escapeHtml(currentUser.name)}</span>` : ""}
@@ -4575,6 +6135,11 @@
           ${reviewView}
           ${favoritesView}
           ${schoolView}
+          ${howToView}
+          ${privacyView}
+          ${termsView}
+          ${myHostView}
+          ${pricingView}
           ${view === "home" ? renderReviewPolicy() : ""}
         </main>
         ${renderFooter()}
@@ -4584,6 +6149,7 @@
           const h = allHosts().find((x) => x.id === state.matchReasonHostId);
           return h ? `<div class="match-reason-overlay" data-close-match-reason></div>${renderMatchReasonPopover(h)}` : "";
         })() : ""}
+        ${renderReportModal()}
         <div class="footer-spacer"></div>
       </div>
     `;
@@ -4597,6 +6163,7 @@
     }
     restoreFocusState(focusState);
     syncReviewsFromApi();
+    syncHostRepliesFromApi();
   }
 
   if (typeof document !== "undefined") {

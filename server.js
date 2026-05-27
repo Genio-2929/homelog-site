@@ -14,6 +14,8 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
+const REPORT_REASONS = ["misinformation", "personal_info", "harassment", "spam", "other"];
+
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -90,6 +92,56 @@ function toFrontend(row) {
     criteria: row.criteria || {},
     fit: row.fit || [],
     structured: row.structured || {},
+    createdAt: row.created_at,
+  };
+}
+
+function normalizeReport(input) {
+  const reviewId = String(input.reviewId || "").trim();
+  const reason = String(input.reason || "").trim();
+  if (!reviewId || !REPORT_REASONS.includes(reason)) return null;
+  return {
+    id: `report-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+    review_id: reviewId,
+    reason,
+    note: String(input.note || "").slice(0, 500),
+    reporter: String(input.reporter || "anonymous").slice(0, 80),
+    status: "open",
+    created_at: new Date().toISOString(),
+  };
+}
+
+function reportToFrontend(row) {
+  return {
+    id: row.id,
+    reviewId: row.review_id,
+    reason: row.reason,
+    note: row.note,
+    reporter: row.reporter,
+    status: row.status,
+    createdAt: row.created_at,
+  };
+}
+
+function normalizeHostReply(input) {
+  const reviewId = String(input.reviewId || "").trim();
+  const text = String(input.text || "").trim();
+  const hostId = Number(input.hostId);
+  if (!reviewId || !text || !Number.isFinite(hostId)) return null;
+  return {
+    review_id: reviewId,
+    host_id: hostId,
+    host_name: String(input.hostName || "Host family").slice(0, 80),
+    text: text.slice(0, 800),
+    created_at: new Date().toISOString(),
+  };
+}
+
+function replyRowToFrontend(row) {
+  return {
+    text: row.text,
+    hostId: row.host_id,
+    hostName: row.host_name,
     createdAt: row.created_at,
   };
 }
@@ -190,6 +242,131 @@ const server = http.createServer(async (request, response) => {
     }
 
     sendJson(response, 200, { ok: true });
+    return;
+  }
+
+  // ------------------------------------------------------------------
+  // Reports — moderator-visible report queue (task #2)
+  // ------------------------------------------------------------------
+  if (pathname === "/api/reports" && request.method === "GET") {
+    const { data, error } = await supabase
+      .from("reports")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("[GET /api/reports] Supabase error:", JSON.stringify(error));
+      sendJson(response, 500, { error: "Failed to load reports" });
+      return;
+    }
+
+    sendJson(response, 200, (data || []).map(reportToFrontend));
+    return;
+  }
+
+  if (pathname === "/api/reports" && request.method === "POST") {
+    try {
+      const body = await readBody(request);
+      const report = normalizeReport(JSON.parse(body || "{}"));
+      if (!report) {
+        sendJson(response, 400, { error: "Invalid report" });
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("reports")
+        .insert(report)
+        .select()
+        .single();
+
+      if (error) {
+        console.error("[POST /api/reports] Supabase error:", JSON.stringify(error));
+        sendJson(response, 500, { error: "Failed to save report", detail: error.message });
+        return;
+      }
+
+      sendJson(response, 201, reportToFrontend(data));
+    } catch (_error) {
+      sendJson(response, 400, { error: "Invalid request" });
+    }
+    return;
+  }
+
+  // ------------------------------------------------------------------
+  // Host replies — one reply per review, only the host bound to that
+  // host_id may post (task #7)
+  // ------------------------------------------------------------------
+  if (pathname === "/api/host-replies" && request.method === "GET") {
+    const { data, error } = await supabase
+      .from("host_replies")
+      .select("*");
+
+    if (error) {
+      console.error("[GET /api/host-replies] Supabase error:", JSON.stringify(error));
+      sendJson(response, 500, { error: "Failed to load replies" });
+      return;
+    }
+
+    // Frontend expects an object keyed by reviewId for fast lookup
+    const map = {};
+    (data || []).forEach((row) => {
+      map[row.review_id] = replyRowToFrontend(row);
+    });
+    sendJson(response, 200, map);
+    return;
+  }
+
+  if (pathname === "/api/host-replies" && request.method === "POST") {
+    try {
+      const body = await readBody(request);
+      const parsed = JSON.parse(body || "{}");
+      const reply = normalizeHostReply(parsed);
+      if (!reply) {
+        sendJson(response, 400, { error: "Invalid reply" });
+        return;
+      }
+
+      // Confirm the target review exists and its host_id matches the reply's host_id
+      let targetReview = null;
+      if (!String(parsed.reviewId).startsWith("seed-")) {
+        const { data: reviewRow } = await supabase
+          .from("reviews")
+          .select("host_id")
+          .eq("id", parsed.reviewId)
+          .maybeSingle();
+        targetReview = reviewRow;
+      } else {
+        // Seed reviews: look up host_id from the seed JSON
+        const seedRow = readSeedReviews().find((r) => String(r.id) === String(parsed.reviewId));
+        if (seedRow) targetReview = { host_id: Number(seedRow.hostId) };
+      }
+
+      if (!targetReview) {
+        sendJson(response, 404, { error: "Review not found" });
+        return;
+      }
+      if (Number(targetReview.host_id) !== reply.host_id) {
+        sendJson(response, 403, { error: "Not authorized to reply to this review" });
+        return;
+      }
+
+      // Upsert (one reply per review)
+      const { data, error } = await supabase
+        .from("host_replies")
+        .upsert(reply, { onConflict: "review_id" })
+        .select()
+        .single();
+
+      if (error) {
+        console.error("[POST /api/host-replies] Supabase error:", JSON.stringify(error));
+        sendJson(response, 500, { error: "Failed to save reply", detail: error.message });
+        return;
+      }
+
+      sendJson(response, 201, replyRowToFrontend(data));
+    } catch (_error) {
+      sendJson(response, 400, { error: "Invalid request" });
+    }
     return;
   }
 
