@@ -22,7 +22,7 @@
   // NOTE: "compare" view removed — implied competitive ranking, conflicting
   // with Nestly's personalized-match brand. Match% chip + saved hosts cover
   // the same need without the "winner/loser" framing.
-  const VIEWS = ["home", "search", "map", "review", "school", "favorites", "how-to", "privacy", "terms", "my-host", "pricing"];
+  const VIEWS = ["home", "search", "map", "review", "school", "favorites", "how-to", "privacy", "terms", "my-host", "pricing", "admin-restore"];
 
   // Schools list — Red Deer, Alberta high schools (initial pilot area).
   const SCHOOLS = [
@@ -181,14 +181,27 @@
     deleteReview: "削除",
     deleteReviewLabel: "この投稿を削除",
     deleteFailed: "投稿を削除できませんでした。",
+    confirmDeleteReview: "このレビューを削除しますか？この操作は取り消せません。",
+    confirmDeleteHost: "このホスト家族を削除しますか？この操作は取り消せません。",
+    adminRestoreTitle: "非表示にしたデータの管理",
+    adminRestoreHostsSection: "非表示のホスト家族",
+    adminRestoreReviewsSection: "非表示のレビュー",
+    adminRestoreEmpty: "非表示にしたデータはありません。",
+    adminRestoreButton: "復元",
+    adminRestoreAllHosts: "すべて復元",
+    adminRestoreAllReviews: "すべて復元",
+    adminRestoreLink: "🗂 非表示データ管理",
     deleteFamily: "家族を削除",
     deleteFamilyLabel: "この家族を削除",
     geocodeFailed: "住所から位置を取得できませんでした。住所を確認してください。",
     familyNameSameAsArea: "家族名とエリア名は分けて入力してください。",
     adminRatingOnly: "管理者による評価のみ",
     refineSearch: "検索条件を変えてもう一度探してください。",
+    noResultsHint: "別のキーワードやフィルターで試してみましょう。",
+    clearFiltersButton: "フィルターをリセット",
     selectFamilyFirst: "レビューを書くには、まずマップまたは検索結果から家族を選択してください。",
     subtitle: "留学生の声で選ぶホストファミリー評価プラットフォーム",
+    metaDescription: "Nestlyは、Red Deerの留学生がホストファミリーを口コミ・評価で選べるプラットフォームです。運ではなく、データで選ぼう。",
     tagline: "留学を、運ではなく選択に。",
     taglineEn: "Find your nest. Not by luck, but by choice.",
     demoBannerLabel: "デモデータ",
@@ -593,14 +606,27 @@
     deleteReview: "Delete",
     deleteReviewLabel: "Delete this review",
     deleteFailed: "Could not delete the review.",
+    confirmDeleteReview: "Delete this review? This action cannot be undone.",
+    confirmDeleteHost: "Delete this host family? This action cannot be undone.",
+    adminRestoreTitle: "Manage Hidden Data",
+    adminRestoreHostsSection: "Hidden Host Families",
+    adminRestoreReviewsSection: "Hidden Reviews",
+    adminRestoreEmpty: "No hidden data.",
+    adminRestoreButton: "Restore",
+    adminRestoreAllHosts: "Restore All",
+    adminRestoreAllReviews: "Restore All",
+    adminRestoreLink: "🗂 Hidden Data",
     deleteFamily: "Delete family",
     deleteFamilyLabel: "Delete this family",
     geocodeFailed: "Could not place the pin from that address. Check the address and try again.",
     familyNameSameAsArea: "Enter a family name that is different from the area name.",
     adminRatingOnly: "Admin rating only",
     refineSearch: "Change the search terms and try again.",
+    noResultsHint: "Try a different keyword or adjust the filters.",
+    clearFiltersButton: "Reset filters",
     selectFamilyFirst: "Choose a family from the map or search results before writing a review.",
     subtitle: "A review platform for choosing host families with confidence",
+    metaDescription: "Nestly helps international students in Red Deer choose host families through structured ratings and real reviews — not luck.",
     tagline: "Find your nest. Not by luck, but by choice.",
     taglineEn: "Find your nest. Not by luck, but by choice.",
     demoBannerLabel: "Demo data",
@@ -1131,6 +1157,10 @@
   }
 
   let language = loadLanguage();
+  // 初回ロード時に <html lang> を保存済み言語に同期（スクリーンリーダー対応）
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = language;
+  }
   let t = translationCache[language] || translations.en;
   let ui = t;
   let currentUser = loadSession();
@@ -2011,6 +2041,10 @@
     if (!SUPPORTED_LANGUAGES.includes(nextLanguage)) nextLanguage = "ja";
     language = nextLanguage;
     saveLanguage();
+    // <html lang> をスクリーンリーダーのために選択言語に同期
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = language;
+    }
     // Show immediate feedback even if translation file is still loading
     if (translationCache[language]) {
       t = translationCache[language];
@@ -3792,10 +3826,15 @@
           </div>
         `
         : "";
-      return `<div class="card card--soft empty-state">
-        ${t.noResults}<br />${!currentUser || role === "user" ? t.refineSearch : ""}
-        ${relaxBlock}
-      </div>`;
+      const hasActiveFilters = state.activeFilters.length > 0 || state.dateFilter !== "all" || state.query;
+      return `
+        <div class="card card--soft empty-state empty-state--search">
+          <div class="empty-state-icon" aria-hidden="true">🔍</div>
+          <p class="empty-state-title">${escapeHtml(t.noResults)}</p>
+          <p class="empty-state-hint">${escapeHtml(t.noResultsHint)}</p>
+          ${hasActiveFilters ? `<button type="button" class="button button--ghost button--compact" id="clear-all-filters-empty">${escapeHtml(t.clearFiltersButton)}</button>` : ""}
+          ${relaxBlock}
+        </div>`;
     }
 
     // Sort: if user has preferences, sort by match score descending
@@ -4225,15 +4264,6 @@
   }
 
   function renderAbout() {
-    // Hearing breakdown: 8 satisfied / 6 mismatch / 3 considered return / 3 other (total 20)
-    const hearingSegments = [
-      { count: Number(t.aboutHearingStat1Count) || 8, label: t.aboutHearingStat1Label, color: "var(--success)" },
-      { count: Number(t.aboutHearingStat2Count) || 6, label: t.aboutHearingStat2Label, color: "var(--warning)" },
-      { count: Number(t.aboutHearingStat3Count) || 3, label: t.aboutHearingStat3Label, color: "var(--danger)" },
-      { count: Number(t.aboutHearingStat4Count) || 3, label: t.aboutHearingStat4Label, color: "var(--muted)" },
-    ];
-    const total = hearingSegments.reduce((a, s) => a + s.count, 0) || 20;
-
     return `
       <section id="about" class="section-about">
         <div class="container">
@@ -4265,50 +4295,6 @@
             <h3 class="about-section-title">${escapeHtml(t.aboutStoryHeading)}</h3>
             <p class="about-text">${escapeHtml(t.aboutStoryParagraph1)}</p>
             <p class="about-text">${escapeHtml(t.aboutStoryParagraph2)}</p>
-          </article>
-
-          <article class="about-card about-hearing">
-            <h3 class="about-section-title">${escapeHtml(t.aboutHearingTitle)}</h3>
-            <p class="about-text">${escapeHtml(t.aboutHearingIntro)}</p>
-            <div class="hearing-bar" role="img" aria-label="${escapeHtml(t.aboutHearingTitle)}">
-              ${hearingSegments
-                .map(
-                  (s) => `<span class="hearing-bar-segment" style="flex: ${s.count}; background: ${s.color};" title="${escapeHtml(s.label)} (${s.count})"></span>`
-                )
-                .join("")}
-            </div>
-            <div class="hearing-legend">
-              ${hearingSegments
-                .map(
-                  (s) => `
-                  <div class="hearing-legend-item">
-                    <span class="hearing-dot" style="background: ${s.color};"></span>
-                    <div class="hearing-legend-text">
-                      <strong>${escapeHtml(String(s.count))}</strong>
-                      <span class="hearing-legend-total"> / ${total}</span>
-                      <span class="hearing-legend-label">${escapeHtml(s.label)}</span>
-                    </div>
-                  </div>
-                `
-                )
-                .join("")}
-            </div>
-          </article>
-
-          <article class="about-card about-quotes">
-            <h3 class="about-section-title">${escapeHtml(t.aboutQuotesTitle)}</h3>
-            <div class="about-quote-grid">
-              ${[1, 2, 3]
-                .map(
-                  (i) => `
-                  <blockquote class="about-quote">
-                    <p>"${escapeHtml(t[`aboutQuote${i}`])}"</p>
-                    <cite>— ${escapeHtml(t[`aboutQuote${i}Tag`])}</cite>
-                  </blockquote>
-                `
-                )
-                .join("")}
-            </div>
           </article>
         </div>
       </section>
@@ -4486,6 +4472,86 @@
         </div>
       </section>
     `;
+  }
+
+  function renderAdminRestore() {
+    if (!isAdmin()) return "";
+    // すべてのホスト（論理削除フィルタを通さない）
+    const allHostsRaw = [...hosts, ...state.customHosts];
+    const hiddenHostIds = new Set((state.hiddenHostIds || []).map(Number));
+    const hiddenHosts = allHostsRaw.filter((h) => hiddenHostIds.has(Number(h.id)));
+
+    // すべてのレビュー（論理削除フィルタを通さない）
+    const hiddenReviewIds = new Set((state.hiddenReviewIds || []).map(String));
+    const hiddenReviews = state.userReviews.filter((r) => hiddenReviewIds.has(String(r.id)));
+
+    const totalHidden = hiddenHosts.length + hiddenReviews.length;
+
+    const hostsSection = `
+      <div class="admin-restore-section">
+        <div class="admin-restore-section-head">
+          <h3 class="admin-restore-section-title">${escapeHtml(t.adminRestoreHostsSection)}</h3>
+          ${hiddenHosts.length > 0 ? `<button type="button" class="button button--ghost button--compact" data-restore-all-hosts>
+            ${escapeHtml(t.adminRestoreAllHosts)} (${hiddenHosts.length})
+          </button>` : ""}
+        </div>
+        ${hiddenHosts.length === 0
+          ? `<p class="admin-restore-empty">${escapeHtml(t.adminRestoreEmpty)}</p>`
+          : hiddenHosts.map((h) => `
+            <div class="admin-restore-row">
+              <div class="admin-restore-info">
+                <strong>${escapeHtml(h.name || "—")}</strong>
+                ${h.area ? `<span class="admin-restore-meta"> · ${escapeHtml(h.area)}</span>` : ""}
+              </div>
+              <button type="button" class="button button--primary button--compact" data-restore-host="${h.id}">
+                ${escapeHtml(t.adminRestoreButton)}
+              </button>
+            </div>`).join("")
+        }
+      </div>`;
+
+    const reviewsSection = `
+      <div class="admin-restore-section">
+        <div class="admin-restore-section-head">
+          <h3 class="admin-restore-section-title">${escapeHtml(t.adminRestoreReviewsSection)}</h3>
+          ${hiddenReviews.length > 0 ? `<button type="button" class="button button--ghost button--compact" data-restore-all-reviews>
+            ${escapeHtml(t.adminRestoreAllReviews)} (${hiddenReviews.length})
+          </button>` : ""}
+        </div>
+        ${hiddenReviews.length === 0
+          ? `<p class="admin-restore-empty">${escapeHtml(t.adminRestoreEmpty)}</p>`
+          : hiddenReviews.map((r) => {
+              const hostName = allHostsRaw.find((h) => Number(h.id) === Number(r.hostId))?.name || ("ID " + r.hostId);
+              const excerpt = (r.text || "").slice(0, 60) + ((r.text || "").length > 60 ? "…" : "");
+              const dateStr = r.createdAt ? new Date(r.createdAt).toLocaleDateString(language === "ja" ? "ja-JP" : "en-US") : "";
+              return `
+                <div class="admin-restore-row">
+                  <div class="admin-restore-info">
+                    <strong>${escapeHtml(hostName)}</strong>
+                    <span class="admin-restore-meta">${dateStr ? ` · ${escapeHtml(dateStr)}` : ""}</span>
+                    <p class="admin-restore-excerpt">${escapeHtml(excerpt)}</p>
+                  </div>
+                  <button type="button" class="button button--primary button--compact" data-restore-review="${escapeHtml(r.id)}">
+                    ${escapeHtml(t.adminRestoreButton)}
+                  </button>
+                </div>`;
+            }).join("")
+        }
+      </div>`;
+
+    return `
+      <section id="admin-restore" class="section-admin-restore">
+        <div class="container container--narrow">
+          <div class="section-head">
+            <h2 class="section-title">${escapeHtml(t.adminRestoreTitle)}</h2>
+            <p class="section-text">${language === "ja"
+              ? `このページはあなたのブラウザ上のみで有効です。全 ${totalHidden} 件の非表示データがあります。`
+              : `Visible only in this browser. ${totalHidden} hidden item(s) total.`}</p>
+          </div>
+          ${hostsSection}
+          ${reviewsSection}
+        </div>
+      </section>`;
   }
 
   function renderHostReplyBlock(review) {
@@ -5388,6 +5454,15 @@
       render();
     });
 
+    // 0件レイアウトの「フィルターをリセット」ボタン
+    const clearAllEmptyBtn = document.getElementById("clear-all-filters-empty");
+    if (clearAllEmptyBtn) clearAllEmptyBtn.addEventListener("click", () => {
+      state.activeFilters = [];
+      state.dateFilter = "all";
+      state.query = "";
+      render();
+    });
+
     // Pending filter chip toggles (mobile bottom sheet)
     document.querySelectorAll("[data-pending-filter-key]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -5774,6 +5849,7 @@
 
     document.querySelectorAll("[data-delete-review]").forEach((button) => {
       button.addEventListener("click", async () => {
+        if (!window.confirm(t.confirmDeleteReview)) return;
         button.disabled = true;
         await deleteReview(button.dataset.deleteReview);
       });
@@ -5781,9 +5857,50 @@
 
     document.querySelectorAll("[data-delete-host]").forEach((button) => {
       button.addEventListener("click", () => {
+        if (!window.confirm(t.confirmDeleteHost)) return;
         deleteHost(button.dataset.deleteHost);
       });
     });
+
+    // 復元ボタン：個別ホスト
+    document.querySelectorAll("[data-restore-host]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = Number(button.dataset.restoreHost);
+        state.hiddenHostIds = (state.hiddenHostIds || []).filter((hid) => Number(hid) !== id);
+        saveHiddenHostIds();
+        render();
+      });
+    });
+
+    // 復元ボタン：すべてのホスト
+    const restoreAllHostsBtn = document.querySelector("[data-restore-all-hosts]");
+    if (restoreAllHostsBtn) {
+      restoreAllHostsBtn.addEventListener("click", () => {
+        state.hiddenHostIds = [];
+        saveHiddenHostIds();
+        render();
+      });
+    }
+
+    // 復元ボタン：個別レビュー
+    document.querySelectorAll("[data-restore-review]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = String(button.dataset.restoreReview);
+        state.hiddenReviewIds = (state.hiddenReviewIds || []).filter((rid) => String(rid) !== id);
+        saveHiddenReviewIds();
+        render();
+      });
+    });
+
+    // 復元ボタン：すべてのレビュー
+    const restoreAllReviewsBtn = document.querySelector("[data-restore-all-reviews]");
+    if (restoreAllReviewsBtn) {
+      restoreAllReviewsBtn.addEventListener("click", () => {
+        state.hiddenReviewIds = [];
+        saveHiddenReviewIds();
+        render();
+      });
+    }
 
     document.querySelectorAll("[data-score-key]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -5972,6 +6089,9 @@
 
     document.title = `${BRAND_NAME} | ${t.subtitle}`;
     document.documentElement.lang = t.htmlLang;
+    // meta description を選択言語に同期（SEO・シェアカード用）
+    const metaDesc = document.querySelector("meta[name='description']");
+    if (metaDesc && t.metaDescription) metaDesc.setAttribute("content", t.metaDescription);
 
     const placeholderSearch = language !== "ja"
       ? "Search by area or keyword (e.g. Downtown, near school)"
@@ -5989,11 +6109,6 @@
             <h1 class="hero-title">${t.heroTitleA}<br />${t.heroTitleB}</h1>
             <span class="hero-tagline">${BRAND_TAGLINE_EN}</span>
             <p class="hero-text">${t.heroText}</p>
-            <div class="hero-value-row">
-              <span class="trust-badge trust-badge--primary">${t.heroValue}</span>
-              <span class="trust-badge">${t.heroPrivacy}</span>
-              <span class="trust-badge">${t.heroModeration}</span>
-            </div>
             <div class="verified-explainer">
               <span class="verified-dot" aria-hidden="true"></span>
               <span>${t.verifiedExplainer}</span>
@@ -6106,10 +6221,17 @@
       ${renderAbout()}
     ` : "";
 
+    // ログイン済みでプリファレンス設定済み → マッチ度ソート通知
+    // ログイン済みだがプリファレンス未設定 → 設定を促す通知（サインアップ訴求は出さない）
+    // 未ログイン → サインアップ訴求
     const matchSortNotice = currentUser && currentUser.preferences
       ? `<div class="match-sort-notice">${language !== "ja"
           ? "Results sorted by your personal match score."
           : "あなたとのマッチ度順で並べています。"}</div>`
+      : currentUser
+      ? `<div class="match-sort-notice match-sort-notice--cta">${language !== "ja"
+          ? "Set your match preferences to see personalized scores."
+          : "マッチング設定をすると、各ホストへの「マッチ度」が表示されます。"}</div>`
       : `<div class="match-sort-notice match-sort-notice--cta">${language !== "ja"
           ? "Sign up to see personalized match scores for each host."
           : "新規登録すると、各ホストへの「マッチ度」が表示されます。"}</div>`;
@@ -6160,6 +6282,7 @@
     const termsView = view === "terms" ? renderTerms() : "";
     const myHostView = view === "my-host" ? renderHostProfile() : "";
     const pricingView = view === "pricing" ? renderPricing() : "";
+    const adminRestoreView = view === "admin-restore" ? renderAdminRestore() : "";
 
     const banner = state.bannerDismissed ? "" : `
       <div class="demo-banner demo-banner--soft" role="status" aria-live="polite">
@@ -6193,7 +6316,8 @@
               </label>
               ${
                 isAdmin()
-                  ? `<span class="status-pill status-pill--admin">${t.adminBadge}</span>`
+                  ? `<span class="status-pill status-pill--admin">${t.adminBadge}</span>
+                     <button type="button" class="button button--ghost button--header button--compact" data-view="admin-restore" title="${escapeHtml(t.adminRestoreLink)}">${escapeHtml(t.adminRestoreLink)}</button>`
                   : isModerator()
                   ? `<span class="status-pill status-pill--admin">${t.moderatorBadge}</span>`
                   : isHost()
@@ -6225,6 +6349,7 @@
           ${termsView}
           ${myHostView}
           ${pricingView}
+          ${adminRestoreView}
           ${view === "home" ? renderReviewPolicy() : ""}
         </main>
         ${renderFooter()}

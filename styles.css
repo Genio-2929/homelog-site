@@ -314,7 +314,7 @@ button {
 
 .hero-title {
   margin: 22px 0 14px;
-  font-size: 4.4rem;
+  font-size: clamp(2rem, 6vw + 1rem, 4.4rem);
   letter-spacing: -0.03em;
 }
 
@@ -1529,7 +1529,7 @@ button {
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(1.75rem, 7vw, 2.8rem);
   }
 
   .range-row {
@@ -4915,4 +4915,104 @@ body {
 @keyframes flash-highlight {
   0%, 100% { background: transparent; }
   20%, 60% { background: rgba(255, 87, 87, 0.12); }
+}
+
+/* ===== Admin Restore Page ===== */
+.section-admin-restore {
+  padding: 2rem 0 4rem;
+}
+.admin-restore-section {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.admin-restore-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.admin-restore-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.admin-restore-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-light, #f3f4f6);
+}
+.admin-restore-info {
+  flex: 1;
+  min-width: 0;
+}
+.admin-restore-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted, #6b7280);
+  margin-left: 0.25rem;
+}
+.admin-restore-excerpt {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-restore-empty {
+  font-size: 0.875rem;
+  color: var(--text-muted, #6b7280);
+  margin: 0;
+}
+
+/* ===== Demo banner: mobile fix (#34) ===== */
+@media (max-width: 480px) {
+  .demo-banner-inner {
+    gap: 6px;
+    font-size: 0.82rem;
+  }
+  .demo-banner-text {
+    min-width: 0;
+    flex: 1 1 100%;
+    font-size: 0.78rem;
+  }
+  .demo-banner strong {
+    font-size: 0.85rem;
+  }
+  .demo-banner-dot {
+    display: none;
+  }
+  .demo-banner-close {
+    align-self: flex-start;
+    margin-left: auto;
+    padding: 2px 6px;
+  }
+}
+
+/* ===== 0件レイアウト改善 (#35) ===== */
+.empty-state--search {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+.empty-state-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+.empty-state-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: var(--text-main, #111827);
+}
+.empty-state-hint {
+  font-size: 0.875rem;
+  color: var(--text-muted, #6b7280);
+  margin: 0 0 1rem;
 }
