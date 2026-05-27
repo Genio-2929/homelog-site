@@ -1907,6 +1907,7 @@
 
   let leafletMap = null;
   let apiSyncStarted = false;
+  let repliesSyncStarted = false;
 
   function loadLanguage() {
     if (typeof localStorage === "undefined") return "ja";
@@ -2389,7 +2390,10 @@
   }
 
   async function syncHostRepliesFromApi() {
-    if (typeof fetch === "undefined") return;
+    // Guard against infinite loop: render() calls this fn, and this fn
+    // calls render() on success. Without the flag we'd keep re-rendering.
+    if (repliesSyncStarted || typeof fetch === "undefined") return;
+    repliesSyncStarted = true;
     try {
       const response = await fetch("/api/host-replies", { headers: { Accept: "application/json" } });
       if (!response.ok) return;
