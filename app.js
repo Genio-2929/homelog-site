@@ -3,6 +3,11 @@
 
   const STORAGE_KEY = "nestly.userReviews.v3";
   const CUSTOM_HOSTS_KEY = "nestly.customHosts.v2";
+  // Admin の論理削除リスト（ベイクド/seed の家族・レビューを画面から隠すため）。
+  // 物理削除は不可（コードに組み込み・seed-reviews.json は管理対象）なので、
+  // localStorage に「隠すIDの集合」を保持してレンダリング時にフィルタする。
+  const HIDDEN_HOSTS_KEY = "nestly.hiddenHosts.v1";
+  const HIDDEN_REVIEWS_KEY = "nestly.hiddenReviews.v1";
   const LANGUAGE_KEY = "nestly.language";
   const ROLE_KEY = "nestly.role";
   const SESSION_KEY = "nestly.session.v2";
@@ -1662,6 +1667,8 @@
     reviewFormOpen: false,
     userReviews: loadReviews(),
     customHosts: loadCustomHosts(),
+    hiddenHostIds: loadHiddenHostIds(),
+    hiddenReviewIds: loadHiddenReviewIds(),
     view: loadView(),
     bannerDismissed: loadBannerDismissed(),
     recentSort: loadRecentSort(),
@@ -2303,6 +2310,41 @@
     }
   }
 
+  // hiddenHostIds / hiddenReviewIds は admin による論理削除リスト。
+  // localStorage（このブラウザ）に保存されるので、別の端末や匿名ユーザーから
+  // は引き続き対象が見える。あくまでこのブラウザ上の表示制御。
+  function loadHiddenHostIds() {
+    if (typeof localStorage === "undefined") return [];
+    try {
+      const parsed = JSON.parse(localStorage.getItem(HIDDEN_HOSTS_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed.map(Number).filter(Number.isFinite) : [];
+    } catch (_error) {
+      return [];
+    }
+  }
+
+  function saveHiddenHostIds() {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(HIDDEN_HOSTS_KEY, JSON.stringify(state.hiddenHostIds));
+    }
+  }
+
+  function loadHiddenReviewIds() {
+    if (typeof localStorage === "undefined") return [];
+    try {
+      const parsed = JSON.parse(localStorage.getItem(HIDDEN_REVIEWS_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed.map(String) : [];
+    } catch (_error) {
+      return [];
+    }
+  }
+
+  function saveHiddenReviewIds() {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(HIDDEN_REVIEWS_KEY, JSON.stringify(state.hiddenReviewIds));
+    }
+  }
+
   function hostDisplayKey(host) {
     // Composite key (area + name). Previously this only used `area`, which
     // caused new families to be silently merged into existing ones whenever
@@ -2326,8 +2368,11 @@
 
   function allHosts() {
     const grouped = new Map();
+    // admin が論理削除した host id（duplicateIds を含む）はここで除外する。
+    const hidden = new Set((state.hiddenHostIds || []).map(Number));
 
     [...hosts, ...state.customHosts].forEach((host) => {
+      if (hidden.has(Number(host.id))) return;
       const key = hostDisplayKey(host);
       if (!key) return;
 
@@ -2474,25 +2519,29 @@
     const id = String(reviewId);
     if (!id) return;
 
-    if (typeof fetch !== "undefined") {
+    // サーバー側でも消せるレビュー（id が seed- でない）はまず API を呼ぶ。
+    // seed レビューはサーバー側で 403 を返す仕様なので、最初から論理削除で扱う。
+    const isSeed = id.startsWith("seed-");
+    if (!isSeed && typeof fetch !== "undefined") {
       try {
-        const response = await fetch(`/api/reviews/${encodeURIComponent(id)}`, {
+        await fetch(`/api/reviews/${encodeURIComponent(id)}`, {
           method: "DELETE",
           headers: { Accept: "application/json" },
         });
-        if (response.ok) {
-          state.userReviews = state.userReviews.filter((review) => String(review.id) !== id);
-          saveReviews();
-          render();
-          return;
-        }
+        // 物理削除に成功/失敗どちらでも、ローカルからは外して同じ id を
+        // hiddenReviewIds に積む。次回の syncReviewsFromApi で同じ id が
+        // 戻ってきた場合でも、フィルタリング段階で除外されるため安全。
       } catch (_error) {
-        // Static HTML mode falls back to localStorage.
+        // ネットワーク失敗時もローカル論理削除で続行する。
       }
     }
 
     state.userReviews = state.userReviews.filter((review) => String(review.id) !== id);
+    const hiddenReviews = new Set((state.hiddenReviewIds || []).map(String));
+    hiddenReviews.add(id);
+    state.hiddenReviewIds = [...hiddenReviews];
     saveReviews();
+    saveHiddenReviewIds();
     render();
   }
 
@@ -2524,11 +2573,31 @@
     if (!host) return;
 
     const idsToDelete = new Set([host.id, ...(host.duplicateIds || [])].map(Number));
+
+    // 1) ユーザー追加ホストは物理削除（customHosts から外す）。
     state.customHosts = state.customHosts.filter((item) => !idsToDelete.has(Number(item.id)));
+
+    // 2) ベイクド・イン ホスト（hosts 配列に最初から入っているもの）は物理削除できない
+    //    ので、hiddenHostIds に積んで allHosts() でフィルタアウトする論理削除を行う。
+    const hidden = new Set((state.hiddenHostIds || []).map(Number));
+    idsToDelete.forEach((id) => hidden.add(id));
+    state.hiddenHostIds = [...hidden];
+
+    // 3) このホストに紐づくレビューも合わせて非表示扱いにする。
+    //    seed レビューは /api/reviews で再取得されるため物理削除しても復活する。
+    //    そのため対象レビューの id を hiddenReviewIds に積んで論理削除する
+    //    （hostReviews / recent list で除外）。user reviews は念のため両方やる。
+    const reviewsForHost = state.userReviews.filter((r) => idsToDelete.has(Number(r.hostId)));
+    const hiddenReviews = new Set((state.hiddenReviewIds || []).map(String));
+    reviewsForHost.forEach((r) => hiddenReviews.add(String(r.id)));
+    state.hiddenReviewIds = [...hiddenReviews];
     state.userReviews = state.userReviews.filter((review) => !idsToDelete.has(Number(review.hostId)));
+
     state.selectedId = null;
     saveCustomHosts();
     saveReviews();
+    saveHiddenHostIds();
+    saveHiddenReviewIds();
     render();
   }
 
@@ -2545,7 +2614,13 @@
   function hostReviews(host) {
     if (!host) return [];
     const hostIds = new Set([host.id, ...(host.duplicateIds || [])].map(Number));
-    let reviews = state.userReviews.filter((review) => hostIds.has(Number(review.hostId)));
+    // admin が論理削除したレビュー id は除外（seed レビューが /api/reviews で
+    // 復活しても hiddenReviewIds で弾く）。
+    const hiddenReviews = new Set((state.hiddenReviewIds || []).map(String));
+    let reviews = state.userReviews.filter(
+      (review) =>
+        hostIds.has(Number(review.hostId)) && !hiddenReviews.has(String(review.id))
+    );
     // Apply date filter if active
     if (state.dateFilter === "year") {
       const cutoff = Date.now() - 365 * 24 * 60 * 60 * 1000;
@@ -2737,7 +2812,9 @@
       : allHostsList.filter((h) => h.area === filters.area);
     // Apply school filter — only keep hosts that have at least one review from
     // a student at the selected school. Also scope review list accordingly.
-    let reviews = state.userReviews;
+    // 論理削除されたレビューは集計からも除外（admin 操作を analytics にも反映）。
+    const hiddenForAnalytics = new Set((state.hiddenReviewIds || []).map(String));
+    let reviews = state.userReviews.filter((r) => !hiddenForAnalytics.has(String(r.id)));
     if (filters.school !== "all") {
       reviews = reviews.filter((r) => r.reviewer && r.reviewer.school === filters.school);
       const hostIdsWithReviewFromSchool = new Set(reviews.map((r) => Number(r.hostId)));
@@ -4035,7 +4112,11 @@
     const sortLabels = language !== "ja"
       ? { latest: "Latest", rating: "Highest rated", helpful: "Most helpful", selected: "Selected host" }
       : { latest: "最新順", rating: "評価が高い順", helpful: "役に立った順", selected: "選択中ホストのみ" };
-    let reviews = state.userReviews.slice();
+    // admin が論理削除したレビューは home の一覧からも除外。
+    const hiddenReviewsForRecent = new Set((state.hiddenReviewIds || []).map(String));
+    let reviews = state.userReviews
+      .slice()
+      .filter((r) => !hiddenReviewsForRecent.has(String(r.id)));
     if (state.recentSort === "selected" && state.selectedId) {
       const host = selectedHost();
       if (host) {
