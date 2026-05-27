@@ -5016,3 +5016,116 @@ body {
   color: var(--text-muted, #6b7280);
   margin: 0 0 1rem;
 }
+
+/* ===== Hero visual card preview (#33) ===== */
+.hero-visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 1rem;
+}
+.hero-card-preview {
+  background: #fff;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  width: 100%;
+  max-width: 320px;
+  animation: hcp-float 4s ease-in-out infinite;
+}
+@keyframes hcp-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+.hcp-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.hcp-avatar {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.hcp-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink, #111827);
+}
+.hcp-area {
+  font-size: 0.78rem;
+  color: var(--text-muted, #6b7280);
+}
+.hcp-match {
+  margin-left: auto;
+  background: var(--primary, #4f46e5);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.hcp-stars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0.9rem;
+}
+.hcp-star-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+}
+.hcp-star-label {
+  color: var(--text-muted, #6b7280);
+}
+.hcp-star-val {
+  color: #f59e0b;
+  letter-spacing: -1px;
+  font-size: 0.72rem;
+}
+.hcp-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light, #f3f4f6);
+  font-size: 0.75rem;
+}
+.hcp-badge {
+  color: var(--primary, #4f46e5);
+  font-weight: 600;
+}
+.hcp-reviews {
+  color: var(--text-muted, #6b7280);
+}
+@media (max-width: 980px) {
+  .hero-visual {
+    display: none;
+  }
+}
+
+/* ===== Review mini-map (#25) ===== */
+.review-mini-map-wrap {
+  margin: 0.75rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border, #e5e7eb);
+}
+.review-mini-map {
+  width: 100%;
+  height: 200px;
+  background: #f3f4f6;
+}
+.review-mini-map-hint {
+  font-size: 0.76rem;
+  color: var(--text-muted, #6b7280);
+  background: #f9fafb;
+  margin: 0;
+  padding: 4px 10px;
+  text-align: center;
+  border-top: 1px solid var(--border-light, #f3f4f6);
+}

@@ -200,7 +200,7 @@
     noResultsHint: "別のキーワードやフィルターで試してみましょう。",
     clearFiltersButton: "フィルターをリセット",
     selectFamilyFirst: "レビューを書くには、まずマップまたは検索結果から家族を選択してください。",
-    subtitle: "留学生の声で選ぶホストファミリー評価プラットフォーム",
+    subtitle: "留学生の声で選ぶホームステイ情報プラットフォーム",
     metaDescription: "Nestlyは、Red Deerの留学生がホストファミリーを口コミ・評価で選べるプラットフォームです。運ではなく、データで選ぼう。",
     tagline: "留学を、運ではなく選択に。",
     taglineEn: "Find your nest. Not by luck, but by choice.",
@@ -329,6 +329,9 @@
     loggedInAs: "ログイン中",
     demoAccounts: "デモ: student / moderator / admin、パスワードは demo",
     badge: "本人確認済みレビューでホームステイの不安を減らす",
+    heroTagline: "運ではなく、情報で選ぶ。",
+    findHostCta: "ホストを探す",
+    matchLabel: "マッチ度",
     heroTitleA: "ホームステイを、",
     heroTitleB: "運ではなく情報で選ぶ。",
     heroText:
@@ -754,6 +757,9 @@
     loggedInAs: "Signed in",
     demoAccounts: "Demo: student / moderator / admin, password: demo",
     badge: "Reduce homestay uncertainty with verified student reviews",
+    heroTagline: "Find your nest. Not by luck, but by choice.",
+    findHostCta: "Find a host",
+    matchLabel: "Match",
     heroTitleA: "Find a safer,",
     heroTitleB: "better-fit homestay before you move in.",
     heroText:
@@ -1348,40 +1354,43 @@
     no: "noOption",
   };
 
-  // Categorized filters (Airbnb-style). Each item has key, label key for i18n,
-  // optional label fallback text in both languages, and a match function.
+  // Categorized filters（Airbnb スタイル、3カテゴリ × 3〜4択）
+  // 設計方針：
+  //   ① 各フィルターは「あると嬉しい条件」のみ（ネガティブ条件は除外）
+  //   ② 同時に複数選択可能（AND 条件）
+  //   ③ デフォルトは全解除（state.activeFilters = []）
+  //   ④ 件数表示はフィルタリング結果をリアルタイムカウント
   const filterCategories = [
     {
-      id: "personality",
-      titleJa: "性格・タイプ",
-      titleEn: "Personality fit",
+      id: "commute",
+      titleJa: "🚌 通学・環境",
+      titleEn: "🚌 Commute & study",
       filters: [
-        { key: "introvertFriendly", labelJa: "内向的に優しい",     labelEn: "Introvert friendly", match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("introvert") || f.includes("内向")) },
-        { key: "socialFamily",      labelJa: "社交的な家族",       labelEn: "Social family",      match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("social") || f.includes("社交")) || groupScore(h, criteriaGroups.find((g) => g.key === "englishEnvironment")) >= 4.5 },
-        { key: "independentEnv",    labelJa: "自立した環境",       labelEn: "Independent environment", match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "rules")) >= 4.3 },
+        { key: "nearSchool",      labelJa: "学校に近い",         labelEn: "Near school",              match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "transportation")) >= 4.4 },
+        { key: "transitFriendly", labelJa: "公共交通が便利",     labelEn: "Transit-friendly",         match: (h) => h.tags.some((tg) => /バス|transit|bus/i.test(String(tg))) || Number(h.criteria && h.criteria.bus) >= 4.3 },
+        { key: "studyStrong",     labelJa: "学習環境が整っている", labelEn: "Study-friendly",          match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "study")) >= 4.5 },
       ],
     },
     {
       id: "lifestyle",
-      titleJa: "ライフスタイル",
-      titleEn: "Lifestyle",
+      titleJa: "🏡 家庭スタイル",
+      titleEn: "🏡 Home style",
       filters: [
-        { key: "quiet",         labelJa: "静か",               labelEn: "Quiet",           match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "study")) >= 4.4 },
-        { key: "sharedMeals",   labelJa: "家族で食事",         labelEn: "Shared meals",    match: (h) => h.tags.some((t) => /夕食|meal|dinner/i.test(String(t))) || groupScore(h, criteriaGroups.find((g) => g.key === "mealQuality")) >= 4.3 },
-        { key: "strictCurfew",  labelJa: "門限が厳しい",       labelEn: "Strict curfew",   match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "rules")) <= 4.0 },
-        { key: "englishOnly",   labelJa: "英語漬け",           labelEn: "English-only",    match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "englishEnvironment")) >= 4.5 },
-        { key: "petFriendly",   labelJa: "ペットOK",           labelEn: "Pet-friendly",    match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("pet") || f.includes("ペット")) },
+        { key: "sharedMeals",   labelJa: "家族で食事あり",     labelEn: "Family meals",             match: (h) => h.tags.some((tg) => /夕食|meal|dinner/i.test(String(tg))) || groupScore(h, criteriaGroups.find((g) => g.key === "mealQuality")) >= 4.3 },
+        { key: "quiet",         labelJa: "静かな環境",         labelEn: "Quiet home",               match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "study")) >= 4.4 },
+        { key: "englishOnly",   labelJa: "英語漬け環境",       labelEn: "English-immersive",        match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "englishEnvironment")) >= 4.5 },
+        { key: "petFriendly",   labelJa: "ペット可",           labelEn: "Pet-friendly",             match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("pet") || f.includes("ペット")) },
       ],
     },
     {
-      id: "studentNeeds",
-      titleJa: "学業・通学ニーズ",
-      titleEn: "Student needs",
+      id: "personality",
+      titleJa: "😊 タイプ・相性",
+      titleEn: "😊 Personality fit",
       filters: [
-        { key: "nearSchool",      labelJa: "学校に近い",         labelEn: "Near school",       match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "transportation")) >= 4.4 },
-        { key: "transitFriendly", labelJa: "公共交通が便利",     labelEn: "Transit friendly",  match: (h) => h.tags.some((t) => /バス|transit|bus/i.test(String(t))) || Number(h.criteria && h.criteria.bus) >= 4.3 },
-        { key: "studyStrong",     labelJa: "学習環境が強い",     labelEn: "Strong study environment", match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "study")) >= 4.5 },
-        { key: "sportsFriendly",  labelJa: "スポーツ好きに優しい", labelEn: "Sports-friendly", match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("sport") || f.includes("スポーツ")) },
+        { key: "introvertFriendly", labelJa: "内向きな人に優しい",  labelEn: "Introvert-friendly",     match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("introvert") || f.includes("内向")) },
+        { key: "socialFamily",      labelJa: "社交的・にぎやか",   labelEn: "Social & outgoing",      match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("social") || f.includes("社交")) || groupScore(h, criteriaGroups.find((g) => g.key === "englishEnvironment")) >= 4.5 },
+        { key: "independentEnv",    labelJa: "自立型（自由が多い）", labelEn: "Independent lifestyle",  match: (h) => groupScore(h, criteriaGroups.find((g) => g.key === "rules")) >= 4.3 },
+        { key: "sportsFriendly",    labelJa: "スポーツ・アクティブ", labelEn: "Sports & active",       match: (h) => getHostFit(h).some((f) => f.toLowerCase().includes("sport") || f.includes("スポーツ")) },
       ],
     },
   ];
@@ -1943,6 +1952,7 @@
   }
 
   let leafletMap = null;
+  let leafletMiniMap = null; // レビュー選択確認用ミニマップ
   let apiSyncStarted = false;
   let repliesSyncStarted = false;
 
@@ -3059,7 +3069,7 @@
     const cls = score >= 85 ? "match-chip--high" : score >= 70 ? "match-chip--good" : score >= 55 ? "match-chip--mid" : "match-chip--low";
     return `<button type="button" class="match-chip ${cls}" data-match-reason-host="${host.id}" title="${escapeHtml(language !== "ja" ? "Click for match breakdown" : "クリックで理由表示")}">
       <span class="match-chip-pct">${score}%</span>
-      <span class="match-chip-label">${escapeHtml(language !== "ja" ? "Match" : "マッチ度")}</span>
+      <span class="match-chip-label">${escapeHtml(t.matchLabel)}</span>
     </button>`;
   }
 
@@ -3965,6 +3975,10 @@
                   `<option value="${item.id}">${escapeHtml(hostDisplayName(item))} (${escapeHtml(item.area)})</option>`
                 ).join("")}
               </select>
+            </div>
+            <div id="review-mini-map-wrap" class="review-mini-map-wrap" aria-label="${escapeHtml(language !== "ja" ? "Host locations preview" : "ホストの位置プレビュー")}">
+              <div id="review-mini-map" class="review-mini-map"></div>
+              <p class="review-mini-map-hint">${escapeHtml(language !== "ja" ? "Tap a pin to select that family." : "ピンをタップして家族を選択")}</p>
             </div>
             <div class="empty-state">${t.selectFamilyFirst}</div>
           </div>
@@ -6079,6 +6093,54 @@
     setTimeout(() => leafletMap.invalidateSize(), 50);
   }
 
+  // レビュー選択確認用ミニマップ（ホスト全件ピン表示、クリックで家族選択）
+  function initMiniMap() {
+    const mapEl = document.getElementById("review-mini-map");
+    if (!mapEl || !window.L) return;
+
+    // 既存インスタンスをクリーンアップ
+    if (leafletMiniMap) {
+      try { leafletMiniMap.remove(); } catch (_e) {}
+      leafletMiniMap = null;
+    }
+
+    leafletMiniMap = window.L.map(mapEl, {
+      center: [RED_DEER_CENTER.lat, RED_DEER_CENTER.lng],
+      zoom: 12,
+      maxZoom: 14, // 住所特定防止（メインマップと同じ制約）
+      zoomControl: true,
+      scrollWheelZoom: false,
+    });
+
+    window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+      maxZoom: 14,
+    }).addTo(leafletMiniMap);
+
+    allHosts().forEach((h) => {
+      if (!h.lat || !h.lng) return;
+      const selected = state.selectedId && (h.id === state.selectedId || (h.duplicateIds || []).includes(state.selectedId));
+      const marker = window.L.circleMarker([h.lat, h.lng], {
+        radius: selected ? 10 : 7,
+        color: selected ? "#4f46e5" : "#ef4444",
+        fillColor: selected ? "#4f46e5" : "#ef4444",
+        fillOpacity: selected ? 0.9 : 0.6,
+        weight: selected ? 2 : 1,
+      }).addTo(leafletMiniMap);
+
+      marker.bindTooltip(hostDisplayName(h), { permanent: false, direction: "top" });
+      marker.on("click", () => {
+        state.selectedId = h.id;
+        state.reviewScores = {};
+        state.reviewText = "";
+        state.reviewStructured = { recommend: "" };
+        render();
+      });
+    });
+
+    setTimeout(() => { if (leafletMiniMap) leafletMiniMap.invalidateSize(); }, 50);
+  }
+
   function render() {
     const root = document.getElementById("app");
     if (!root) return;
@@ -6104,18 +6166,42 @@
 
     const heroSection = `
       <section class="section-hero">
-        <div class="container hero-grid hero-grid--single">
+        <div class="container hero-grid">
           <div class="hero-copy">
             <h1 class="hero-title">${t.heroTitleA}<br />${t.heroTitleB}</h1>
-            <span class="hero-tagline">${BRAND_TAGLINE_EN}</span>
+            <span class="hero-tagline">${t.heroTagline}</span>
             <p class="hero-text">${t.heroText}</p>
             <div class="verified-explainer">
               <span class="verified-dot" aria-hidden="true"></span>
               <span>${t.verifiedExplainer}</span>
             </div>
             <div class="hero-actions">
-              <button type="button" class="button button--primary" data-view="search">${language !== "ja" ? "Find a host" : "ホストを探す"}</button>
+              <button type="button" class="button button--primary" data-view="search">${t.findHostCta}</button>
               <button id="hero-review-button" type="button" class="button button--ghost">${t.writeReviewCta}</button>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-card-preview">
+              <div class="hcp-head">
+                <span class="hcp-avatar">🏠</span>
+                <div>
+                  <div class="hcp-name">${language !== "ja" ? "Thompson Family" : "Thompson ファミリー"}</div>
+                  <div class="hcp-area">Downtown · Red Deer</div>
+                </div>
+                <span class="hcp-match">92%</span>
+              </div>
+              <div class="hcp-stars">
+                ${["★★★★★","★★★★★","★★★★☆","★★★★★","★★★★☆","★★★★★"].map((s, i) => {
+                  const labels = language !== "ja"
+                    ? ["Safety","English","Meals","Study","Freedom","Cleanliness"]
+                    : ["安全性","英語","食事","学習","自由度","清潔さ"];
+                  return `<div class="hcp-star-row"><span class="hcp-star-label">${labels[i]}</span><span class="hcp-star-val">${s}</span></div>`;
+                }).join("")}
+              </div>
+              <div class="hcp-footer">
+                <span class="hcp-badge">✓ Verified Host</span>
+                <span class="hcp-reviews">${language !== "ja" ? "12 reviews" : "12件のレビュー"}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -6370,6 +6456,13 @@
     } else if (leafletMap) {
       try { leafletMap.remove(); } catch (_e) {}
       leafletMap = null;
+    }
+    // レビュー画面のミニマップ初期化（ホスト未選択時のみ全件表示）
+    if (state.view === "review" && !state.selectedId) {
+      initMiniMap();
+    } else if (leafletMiniMap && state.view !== "review") {
+      try { leafletMiniMap.remove(); } catch (_e) {}
+      leafletMiniMap = null;
     }
     restoreFocusState(focusState);
     syncReviewsFromApi();
