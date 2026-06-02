@@ -2518,7 +2518,7 @@
     }
   }
 
-  function deleteHost(hostId) {
+  async function deleteHost(hostId) {
     const host = allHosts().find((item) => item.id === Number(hostId) || (item.duplicateIds || []).includes(Number(hostId)));
     if (!host) return;
 
@@ -2533,12 +2533,30 @@
     idsToDelete.forEach((id) => hidden.add(id));
     state.hiddenHostIds = [...hidden];
 
-    // 3) このホストに紐づくレビューも合わせて非表示扱いにする。
-    //    seed レビューは /api/reviews で再取得されるため物理削除しても復活する。
-    //    そのため対象レビューの id を hiddenReviewIds に積んで論理削除する
-    //    （hostReviews / recent list で除外）。user reviews は念のため両方やる。
+    // 3) このホストに紐づくレビューも削除する。
+    //    重要：レビューは Supabase（本番DB）に保存されているため、ローカルから
+    //    外すだけでは別端末・本番サイトで再取得され、hostSnapshot からホストが
+    //    復元されてしまう（＝「消したのに復活する」バグ）。そこで seed 以外の
+    //    レビューはサーバー側でも物理削除する。seed はサーバーが 403 を返すので
+    //    hiddenReviewIds による論理削除で扱う。
     const reviewsForHost = state.userReviews.filter((r) => idsToDelete.has(Number(r.hostId)));
     const hiddenReviews = new Set((state.hiddenReviewIds || []).map(String));
+    if (typeof fetch !== "undefined") {
+      await Promise.all(
+        reviewsForHost
+          .filter((r) => !String(r.id).startsWith("seed-"))
+          .map((r) =>
+            fetch(`/api/reviews/${encodeURIComponent(String(r.id))}`, {
+              method: "DELETE",
+              headers: { Accept: "application/json" },
+            }).catch(() => {
+              // ネットワーク失敗時もローカル論理削除で続行する。
+            })
+          )
+      );
+    }
+    // サーバー削除の成否にかかわらず、対象レビューの id を hiddenReviewIds に
+    // 積んでおく（再取得されてもフィルタ段階で確実に弾く安全網）。
     reviewsForHost.forEach((r) => hiddenReviews.add(String(r.id)));
     state.hiddenReviewIds = [...hiddenReviews];
     state.userReviews = state.userReviews.filter((review) => !idsToDelete.has(Number(review.hostId)));
@@ -5871,9 +5889,10 @@
     });
 
     document.querySelectorAll("[data-delete-host]").forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
         if (!window.confirm(t.confirmDeleteHost)) return;
-        deleteHost(button.dataset.deleteHost);
+        button.disabled = true;
+        await deleteHost(button.dataset.deleteHost);
       });
     });
 
