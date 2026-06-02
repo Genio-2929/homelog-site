@@ -57,6 +57,22 @@ function readBody(request) {
   });
 }
 
+// ホストの最小スナップショット（名前・エリア・近似座標）。これを保存することで、
+// 追加ホストが localStorage にしか無くても、レビューから全端末でホストを復元できる。
+// 正確な住所(exactAddress)は保存しない（プライバシー設計：地図は近似のみ）。
+function sanitizeHostSnapshot(input) {
+  const snap = input && typeof input === "object" ? input : null;
+  if (!snap) return null;
+  const out = {};
+  if (snap.id !== undefined) out.id = Number(snap.id);
+  if (snap.name) out.name = String(snap.name).slice(0, 120);
+  if (snap.area) out.area = String(snap.area).slice(0, 120);
+  if (snap.city) out.city = String(snap.city).slice(0, 120);
+  if (Number.isFinite(Number(snap.lat))) out.lat = Number(snap.lat);
+  if (Number.isFinite(Number(snap.lng))) out.lng = Number(snap.lng);
+  return Object.keys(out).length ? out : null;
+}
+
 function normalizeReview(input) {
   const text = String(input.text || "").trim();
   const host = String(input.host || "").trim();
@@ -77,6 +93,7 @@ function normalizeReview(input) {
     criteria: typeof input.criteria === "object" && input.criteria ? input.criteria : {},
     fit: Array.isArray(input.fit) ? input.fit.map(String).slice(0, 8) : [],
     structured: typeof input.structured === "object" && input.structured ? input.structured : {},
+    host_snapshot: sanitizeHostSnapshot(input.hostSnapshot),
     created_at: new Date().toISOString(),
   };
 }
@@ -92,6 +109,7 @@ function toFrontend(row) {
     criteria: row.criteria || {},
     fit: row.fit || [],
     structured: row.structured || {},
+    hostSnapshot: row.host_snapshot || null,
     createdAt: row.created_at,
   };
 }
@@ -199,11 +217,22 @@ const server = http.createServer(async (request, response) => {
         return;
       }
 
-      const { data, error } = await supabase
+      let { data, error } = await supabase
         .from("reviews")
         .insert(review)
         .select()
         .single();
+
+      // 後方互換：reviews テーブルに host_snapshot 列がまだ無い環境でも壊れないよう、
+      // 「列が見つからない」エラーのときだけ host_snapshot を外して再挿入する。
+      if (error && /host_snapshot/.test(`${error.message || ""} ${error.details || ""}`)) {
+        const { host_snapshot, ...withoutSnapshot } = review;
+        ({ data, error } = await supabase
+          .from("reviews")
+          .insert(withoutSnapshot)
+          .select()
+          .single());
+      }
 
       if (error) {
         console.error("[POST /api/reviews] Supabase error:", JSON.stringify(error));
