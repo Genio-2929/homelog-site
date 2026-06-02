@@ -554,6 +554,153 @@ button {
   font-weight: 700;
 }
 
+/* ===== ホーム：評価の見方ガイド ===== */
+.section-rating-guide {
+  padding: 40px 0 8px;
+}
+
+/* 「評価の見方」と「ホスト画面の見本」を1つの流れに見せるための継ぎ目調整 */
+.section-host-sample-intro {
+  padding: 8px 0 0;
+  text-align: center;
+}
+.section-host-sample-intro .steps-subtitle {
+  max-width: 680px;
+  margin: 6px auto 0;
+}
+/* ホーム埋め込み時のダッシュボードは上余白を詰めて見本へ自然につなげる */
+.section-host-sample-intro + .section-host-profile {
+  padding-top: 16px;
+}
+.rating-guide-subhead {
+  margin: 24px 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.rating-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.rating-guide-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.rating-guide-card--primary {
+  background: var(--primary-soft, #eef2ff);
+  border-color: var(--primary, #6366f1);
+}
+.rating-guide-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.rating-guide-icon {
+  font-size: 1.2rem;
+}
+.rating-guide-axis {
+  flex: 1;
+  font-size: 0.98rem;
+}
+.rating-guide-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.rating-guide-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+/* 重み付けポリシーの説明ボックス（最適化済みユーザーのみ加重平均） */
+.rating-guide-policy {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 16px 0 4px;
+  padding: 14px 16px;
+  background: var(--surface-muted, #f5f7fa);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.rating-guide-policy-icon {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  flex: 0 0 auto;
+}
+.rating-guide-policy-text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text, #1f2933);
+}
+
+/* 0件画面のアクション横並び */
+.empty-state-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+/* 検索結果0件時に検索バー直下へ出す家族追加導線 */
+.search-add-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+  padding: 12px 14px;
+  background: var(--surface-muted, #f5f7fa);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+}
+.search-add-inline-text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted, #4b5563);
+}
+
+/* 向いている人タグ必須化：エラー時の枠 */
+.fit-fieldset--required {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  margin: 0 0 8px;
+}
+.fit-fieldset--error {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* レビュー待ち（未評価ホスト）のプレースホルダ表示 */
+.rating-pending {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface-soft, #f3f4f6);
+  border: 1px dashed var(--line, #e5e7eb);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+.rating-number .rating-pending {
+  font-size: 0.95rem;
+}
+
 .stars {
   display: inline-flex;
   gap: 2px;
@@ -1921,6 +2068,69 @@ button {
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+}
+
+/* 個別レビュー内のレーダーチャート（ホスト全体より小さめに収める） */
+.review-radar {
+  margin: 14px auto 6px;
+  padding: 10px 4px 4px;
+  border-top: 1px dashed var(--line);
+}
+.review-radar .radar-wrap {
+  max-width: 280px;
+}
+
+/* 個別レビューの補助評価軸の内訳 */
+.review-aux {
+  margin: 6px 0 4px;
+  padding: 10px 0 2px;
+  border-top: 1px dashed var(--line);
+}
+.review-aux-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.review-aux-grid {
+  display: grid;
+  gap: 8px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.review-aux-row {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) 1fr 2.4em;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+.review-aux-label {
+  color: var(--text, #1f2933);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.review-aux-bar {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.review-aux-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #38bdf8);
+}
+.review-aux-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .radar-svg {
@@ -4214,6 +4424,33 @@ body {
   background: var(--bg);
 }
 
+.host-profile-demo-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(56, 189, 248, 0.08));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.host-profile-demo-icon {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  flex: 0 0 auto;
+}
+.host-profile-demo-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.host-profile-demo-text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
 .host-profile-head {
   margin-bottom: 32px;
 }
@@ -5128,4 +5365,96 @@ body {
   padding: 4px 10px;
   text-align: center;
   border-top: 1px solid var(--border-light, #f3f4f6);
+}
+
+/* ===== 統合「探す」ページ（検索バー → フィルター → マップ → 結果 → ホスト追加） ===== */
+.search-map-block {
+  margin: 18px 0 8px;
+}
+
+/* 埋め込みマップは固定高さにする（.map-canvas の min-height:460px をこの画面では上書き）。 */
+.search-map-canvas {
+  height: 360px;
+  min-height: 0;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+}
+
+.search-map-trust {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.search-map-hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* 結果カード下部の「レビューを書く」ボタン */
+.result-card-foot {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px 16px;
+}
+
+/* 末尾のホスト追加カード */
+.add-host-end {
+  margin: 22px 0 8px;
+}
+
+/* 結果ヘッダーに「+ ホストを追加」ボタンを並べる */
+.results-head--full {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* マップ折りたたみトグル */
+.map-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+.map-toggle:hover {
+  background: var(--surface-soft);
+}
+.map-toggle-icon {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.search-map-block.is-collapsed {
+  margin-bottom: 12px;
+}
+
+/* マップ⇄リスト連動：ピンクリック時のカード一時ハイライト */
+.result-card--flash {
+  animation: result-card-flash 1.6s ease-out;
+}
+@keyframes result-card-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55); }
+  30%  { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+@media (max-width: 720px) {
+  .search-map-canvas {
+    height: 260px;
+  }
+  .result-card-foot {
+    padding: 0 12px 12px;
+  }
 }

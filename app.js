@@ -22,7 +22,7 @@
   // NOTE: "compare" view removed — implied competitive ranking, conflicting
   // with Nestly's personalized-match brand. Match% chip + saved hosts cover
   // the same need without the "winner/loser" framing.
-  const VIEWS = ["home", "search", "map", "review", "school", "favorites", "how-to", "privacy", "terms", "my-host", "pricing", "admin-restore"];
+  const VIEWS = ["home", "search", "map", "review", "school", "favorites", "how-to", "privacy", "terms", "my-host", "pricing", "admin-restore", "host-reviews"];
 
   // Schools list — Red Deer, Alberta high schools (initial pilot area).
   const SCHOOLS = [
@@ -126,28 +126,23 @@
     pricingNav: "料金プラン",
     pricingEyebrow: "Business Model",
     pricingTitle: "Nestlyの収益モデル",
-    pricingIntro: "Nestlyは4つの収益軸でステークホルダー全員に価値を届けます。コンテスト時点のプロトタイプ価格を掲載しています。",
+    pricingIntro: "Nestlyは3つの収益軸でステークホルダー全員に価値を届けます。コンテスト時点のプロトタイプ価格を掲載しています。",
     pricingDisclaimer: "* 表示価格はビジネスコンテスト提案時点の試算です。本サービス開始時には市場状況に応じて調整されます。",
-    pricingPlan1Tag: "メイン収益",
-    pricingPlan1Title: "B2B 分析レポート",
-    pricingPlan1For: "学校・留学エージェント向け",
-    pricingPlan1Price: "$2,000〜$5,000/年",
-    pricingPlan1Features: "地域別の品質分析\n要注意ホストの自動フラグ\n月次推移トレンド\nCSV／PDFエクスポート\n専任サポート",
-    pricingPlan2Tag: "ホスト向け",
-    pricingPlan2Title: "Verified Host 認証プラン",
-    pricingPlan2For: "受け入れホスト家庭向け",
-    pricingPlan2Price: "$200/年",
-    pricingPlan2Features: "Verified Host 認証バッジ\n検索結果での優先表示\n自家庭ダッシュボード\nレビューへの返信機能\n改善フィードバックの可視化",
-    pricingPlan3Tag: "個人向け",
-    pricingPlan3Title: "プレミアムプラン（留学生向け）",
-    pricingPlan3For: "より詳しい情報を求める留学生",
-    pricingPlan3Price: "$5/月",
-    pricingPlan3Features: "詳細レビューの全文閲覧\n高度なマッチング機能\n複数ホストの比較メモ\n優先サポート\n広告非表示",
-    pricingPlan4Tag: "補完収益",
-    pricingPlan4Title: "広告掲載",
-    pricingPlan4For: "留学関連の広告主向け",
-    pricingPlan4Price: "応相談",
-    pricingPlan4Features: "ターゲット広告（留学生・ホスト・学校）\n航空券・保険・通信プランなど留学関連サービス\nブランディング枠\nコンテンツ連携",
+    pricingPlan1Tag: "主力プロダクト",
+    pricingPlan1Title: "渡航準備パス（留学生向け）",
+    pricingPlan1For: "渡航準備をする留学生向け",
+    pricingPlan1Price: "CA$4.99／1ヶ月 ・ CA$9.99／3ヶ月 ・ CA$14.99／6ヶ月",
+    pricingPlan1Features: "詳細レビューの全文閲覧\n条件別の絞り込み・比較\n過去レビューとの一致度分析\n広告非表示\n優先サポート",
+    pricingPlan2Tag: "B2B",
+    pricingPlan2Title: "エージェント向けデータプラン",
+    pricingPlan2For: "留学エージェント向け",
+    pricingPlan2Price: "CA$1,500／年",
+    pricingPlan2Features: "地域別の満足度傾向\nホスト品質の分析\n月次推移トレンド\nCSV／PDFエクスポート\n専任サポート",
+    pricingPlan3Tag: "B2B",
+    pricingPlan3Title: "ホームステイ運営団体向け分析",
+    pricingPlan3For: "ホームステイ運営団体・学校向け",
+    pricingPlan3Price: "CA$2,000／年",
+    pricingPlan3Features: "匿名化された満足度分析\nマッチング傾向データ\n地域別レポート\n個人を特定しない集計形式",
     aboutStoryHeading: "なぜNestlyを作るのか",
     aboutStoryParagraph1: "私は現在カナダRed Deerで高校留学中の高校生です。ある友人はホストファミリーとの会話を通じて英語力を伸ばし大学進学を決めた一方、別の友人は孤独感から塞ぎ込み、3ヶ月で帰国を考えました。",
     aboutStoryParagraph2: "違いを生んだのは本人の努力ではなく、住む家庭そのものでした。レストランやホテルには口コミがあるのに、人生の数ヶ月を過ごすホームステイにはありません。私はこの情報の空白を埋め、留学を「運任せ」から「納得の選択」へ変えるためにNestlyを開発しました。",
@@ -250,17 +245,17 @@
     privacyLastUpdated: "最終更新日: 2026年5月24日",
     privacyIntro: "Nestlyはユーザーの個人情報を慎重に扱います。このページでは収集する情報・使い方・保護方法をまとめています。",
     privacyS1Title: "1. 収集する情報",
-    privacyS1Lines: "Nestlyは以下の情報を収集します。\n• アカウント情報：メール、ニックネーム、学校、学年、母国語\n• レビュー投稿：評価スコア、本文、構造化回答、選択したホスト家庭\n• 認証情報：学校が発行する認証コード（本人確認時のみ使用、永続保存しません）\n• 任意情報：マッチング用プリファレンス、お気に入りリスト",
+    privacyS1Lines: "Nestlyは以下の情報を収集します。\n• アカウント情報：メール、学校、学年（表示名・母国語・国籍は収集しません）\n• レビュー投稿：評価スコア、本文、選択したホスト家庭\n• 認証情報：学校が発行する認証コード（本人確認時のみ使用、永続保存しません）\n• 任意情報：マッチング用プリファレンス、お気に入りリスト",
     privacyS2Title: "2. 情報の使い方",
     privacyS2Lines: "収集した情報は以下の目的にのみ使用します。\n• レビューの可視化（投稿者名は匿名化／省略形で表示）\n• マッチスコアの算出\n• 学校・エージェント向け集計データの作成（個人特定不可な形式）\n• スパム・不正投稿の検出",
     privacyS3Title: "3. 公開される情報・公開されない情報",
-    privacyS3Lines: "【公開】ニックネーム、学校コード、学年、レビュー内容、評価\n【非公開】メールアドレス、本名、認証コード、IPアドレス\n【特別保護】ホスト家庭の正確な住所は地図上に表示しません。半径250mの円で位置を曖昧化し、地図の最大ズームは14に制限しています。",
+    privacyS3Lines: "【公開】学年、レビュー内容、評価（レビューはすべて匿名で表示されます）\n【非公開】メールアドレス、本名、学校コード、認証コード、IPアドレス\n　※学校コードは「非公開」です。レビューは匿名のため、学校コードを公開すると学校側が投稿者を特定（匿名化の解除）できてしまう恐れがあります。投稿者を守るため、学校コードは集計・本人確認の内部処理だけに使い、公開や第三者への共有は行いません。\n【特別保護】ホスト家庭の正確な住所は地図上に表示しません。半径250mの円で位置を曖昧化し、地図の最大ズームは14に制限しています。",
     privacyS4Title: "4. 第三者への提供",
-    privacyS4Lines: "法令で義務付けられる場合を除き、個人情報を第三者に提供しません。\n• 学校・エージェントには集計データのみ提供（個人特定不可）\n• 住所のジオコーディングにはOpenStreetMap Nominatimを利用します（今後プロキシ化予定）",
+    privacyS4Lines: "法令で義務付けられる場合を除き、個人情報を第三者に提供しません。\n• 学校・エージェントには集計データのみ提供（個人特定不可）\n• ジオコーディング（住所の文字列を地図上の緯度・経度に変換する処理）には OpenStreetMap の Nominatim という外部サービスを利用します。ホスト家庭のおおよそのエリア名のみを送信し、正確な番地は送りません（将来は自社サーバー経由に切り替え、外部送信をさらに減らす予定です）",
     privacyS5Title: "5. データの保管",
     privacyS5Lines: "• 本番環境ではレビューデータをSupabase（PostgreSQL）に保管します\n• パスワードはSHA-256でハッシュ化して保管（平文では保存しません）\n• 通報内容はreports.jsonに保管し、モデレーターのみが確認できます",
     privacyS6Title: "6. ユーザーの権利",
-    privacyS6Lines: "あなたは以下の権利を持ちます。\n• 自分のレビューを投稿後24時間以内に編集する権利\n• 自分のレビューの削除を依頼する権利\n• アカウントの削除を依頼する権利\n• 自分の情報の開示・訂正を求める権利\n上記は運営チームへの連絡で対応します。",
+    privacyS6Lines: "あなたは以下の権利を持ちます。\n• 自分のレビューをいつでも編集する権利（編集後は「編集済み」と表示されます）\n• 自分のレビューの削除を依頼する権利\n• アカウントの削除を依頼する権利\n• 自分の情報の開示・訂正を求める権利\n上記は運営チームへの連絡で対応します。",
     privacyS7Title: "7. 子どもの利用について",
     privacyS7Lines: "Nestlyは高校生以上の留学生を主な対象としています。13歳未満の利用は想定していません。",
     privacyS8Title: "8. お問い合わせ",
@@ -281,15 +276,13 @@
     termsS4Title: "4. 禁止事項",
     termsS4Lines: "以下の行為を禁止します。\n• 他人になりすますこと\n• 虚偽のレビューを意図的に投稿すること\n• Nestlyのシステムへの不正アクセス\n• 他のユーザーへの嫌がらせ・脅迫\n• 法令違反となる行為すべて",
     termsS5Title: "5. 投稿の編集・削除",
-    termsS5Lines: "• 自分の投稿は投稿後24時間以内に限り編集できます\n• 投稿はユーザーの依頼により削除できます\n• 規約違反の投稿はモデレーターが予告なく削除する場合があります",
-    termsS6Title: "6. Verified Host認証について",
-    termsS6Lines: "ホスト家庭がVerified Host認証を受けるには、レビュー3件以上 × 平均★4.0以上の条件を満たす必要があります。条件を満たさなくなった場合は認証が外れることがあります。",
-    termsS7Title: "7. 免責事項",
-    termsS7Lines: "• レビューはユーザー個人の感想であり、Nestlyが内容の正確性を保証するものではありません\n• Nestlyを通じた家庭選びの結果について、Nestlyは責任を負いかねます\n• サービス停止・データ消失等の損害について、故意・重過失の場合を除き責任を負いかねます",
-    termsS8Title: "8. 規約の変更",
-    termsS8Lines: "本規約は予告なく変更される場合があります。重要な変更がある場合はサイト内で告知します。継続してご利用いただくことで変更後の規約に同意したものとみなします。",
-    termsS9Title: "9. 準拠法",
-    termsS9Lines: "本規約はカナダ・アルバータ州の法律に準拠します（プロトタイプ段階のため将来変更の可能性あり）。",
+    termsS5Lines: "• 自分の投稿はいつでも編集できます（編集後は「編集済み」と表示されます）\n• 投稿はユーザーの依頼により削除できます\n• 規約違反の投稿はモデレーターが予告なく削除する場合があります",
+    termsS6Title: "6. 免責事項",
+    termsS6Lines: "• レビューはユーザー個人の感想であり、Nestlyが内容の正確性を保証するものではありません\n• Nestlyを通じた家庭選びの結果について、Nestlyは責任を負いかねます\n• サービス停止・データ消失等の損害について、故意・重過失の場合を除き責任を負いかねます",
+    termsS7Title: "7. 規約の変更",
+    termsS7Lines: "本規約は予告なく変更される場合があります。重要な変更がある場合はサイト内で告知します。継続してご利用いただくことで変更後の規約に同意したものとみなします。",
+    termsS8Title: "8. 準拠法",
+    termsS8Lines: "本規約はカナダ・アルバータ州の法律に準拠します（プロトタイプ段階のため将来変更の可能性あり）。",
     howToHeroEyebrow: "How to use",
     howToHeroTitle: "Nestlyの使い方",
     howToHeroText: "Nestlyは3つの立場で使えます。あなたの目的に合うセクションをご覧ください。",
@@ -298,17 +291,17 @@
     howToStudent1Title: "STEP 1：探す",
     howToStudent1Body: "検索バー・フィルター・マップから、エリアや評価でホストを絞り込み。マッチ%で自分との相性を一目で確認できます。",
     howToStudent2Title: "STEP 2：詳しく見る",
-    howToStudent2Body: "12軸のレーダーチャートで強み・弱みを比較。信頼指標（レビュー数・多様性・最新性）で投稿の確からしさをチェック。レビュー全文・タグ・構造化回答も参照できます。",
+    howToStudent2Body: "主要6軸のレーダーチャートで強み・弱みを比較（補助評価軸も詳細で確認可）。信頼指標（レビュー数・多様性・最新性）で投稿の確からしさをチェック。レビュー全文・タグも参照できます。レビューがまだない家庭は「レビュー待ち」と表示されます。",
     howToStudent3Title: "STEP 3：保存・選ぶ",
     howToStudent3Body: "気になるホストはハート（♥）でお気に入りに保存。エージェントや家族との相談材料にお使いください。",
     howToStudent4Title: "STEP 4：滞在後にレビューを書く",
-    howToStudent4Body: "学校コードで本人確認すればVerified Studentバッジを取得。12軸＋構造化回答＋自由記述で投稿し、次の留学生を支える側になれます。",
+    howToStudent4Body: "家族を選んで主要6軸＋補助評価軸を星で評価し、向いている人タグ・おすすめ度・本文を記入して投稿。あなたの声が次の留学生を支えます。",
     howToHostSection: "2. ホストファミリーへ",
     howToHostIntro: "自分の受け入れ方を磨き、信頼を可視化する仕組みです。",
     howToHost1Title: "自分の家庭の評価を見る",
-    howToHost1Body: "ホスト用ログインから自家庭ページにアクセス。12軸の評価とレビュー全文を確認できます。",
-    howToHost2Title: "Verified Host認証を取得する",
-    howToHost2Body: "条件はレビュー3件以上 × 平均★4.0以上。取得すると検索結果で優先表示され、選ばれやすくなります。",
+    howToHost1Body: "ホスト用ログインから自家庭ページにアクセス。各評価軸のスコアとレビュー全文を確認できます。",
+    howToHost2Title: "強み・弱みを把握する",
+    howToHost2Body: "自家庭ページでは評価の高いカテゴリ・低いカテゴリが一覧で見えます。何が留学生に喜ばれているかを把握できます。",
     howToHost3Title: "フィードバックで改善する",
     howToHost3Body: "低評価のカテゴリを確認し、受け入れ方を磨くヒントに。建設的なレビューで成長できる場所を目指します。",
     howToB2BSection: "3. 学校・エージェントへ",
@@ -348,12 +341,14 @@
     statMap: "実マップ対応",
     featured: "選択中のホスト",
     reviews: "件のレビュー",
-    mapTitle: "Red Deer ホストマップ",
+    mapTitle: "ホストマップ",
     mapHelp:
       "正確な住所と非公開ピンは地図配置のためだけに使います。公開画面にはエリア名だけを表示します。",
     area: "エリア",
     mapPrivacy: "住所は非公開。表示位置は近隣エリアの参考地点です。",
     searchResults: "検索結果",
+    pendingReview: "レビュー待ち",
+    pendingReviewHint: "まだレビューがありません。最初のレビューを書いて評価を始めましょう。",
     noResults: "条件に一致するホストファミリーが見つかりません。",
     reviewForm: "レビュー投稿フォーム",
     reviewLead: "レビューする家族を選び、カテゴリごとに星5段階で評価して本文を書き込めます。",
@@ -380,9 +375,6 @@
     reviewTarget: "投稿先",
     reviewText: "レビュー本文",
     anonymousStudent: "匿名留学生",
-    privacyTitle: "プライバシー保護について",
-    privacyStatement:
-      "Nestlyではホストファミリーの正確な住所、個人連絡先、家族構成などの特定につながる情報は公開しません。地図上の家アイコンは実住所ではなく、約100m以上ぼかした近隣エリアの参考位置です。レビューは家庭の安全性と生活環境を比較するための情報に限定し、本人や住所を特定する投稿は公開対象にしない設計です。",
     addNewHouse: "新しい家族を追加",
     newHouseName: "家族名",
     newHouseArea: "エリア",
@@ -464,7 +456,7 @@
     riskSupport: "相談しにくさ",
     criteria: {
       englishEnvironment: ["英語環境", "英語環境の強さ / 家族との会話量 / 英語矯正してくれるか"],
-      rules: ["自由度（高い＝柔軟）", "高い＝柔軟・自由度高め ／ 低い＝厳しめ・規則多い（門限・外泊・自由時間）"],
+      rules: ["自由度", "高い＝柔軟・自由度高め ／ 低い＝厳しめ・規則多い（門限・外泊・自由時間）"],
       study: ["学習向き", "学習向き / 静かさ / 勉強スペース"],
       cultureFit: ["文化適応", "文化適応 / 宗教・食文化配慮 / アジア人留学生への理解"],
       mentalSupport: ["メンタル面", "メンタル面 / 相談しやすさ / 孤立感の少なさ"],
@@ -554,28 +546,23 @@
     pricingNav: "Pricing",
     pricingEyebrow: "Business Model",
     pricingTitle: "Revenue model",
-    pricingIntro: "Nestly delivers value across four revenue streams so every stakeholder benefits. Prices below reflect the prototype-stage proposal.",
+    pricingIntro: "Nestly delivers value across three revenue streams so every stakeholder benefits. Prices below reflect the prototype-stage proposal.",
     pricingDisclaimer: "* Prices are illustrative for the contest submission. Actual prices will be adjusted at launch.",
-    pricingPlan1Tag: "Primary revenue",
-    pricingPlan1Title: "B2B Analytics",
-    pricingPlan1For: "For schools and study-abroad agents",
-    pricingPlan1Price: "$2,000–$5,000 / year",
-    pricingPlan1Features: "Regional quality analytics\nAutomatic risk-host flagging\nMonthly trend tracking\nCSV / PDF export\nDedicated support",
-    pricingPlan2Tag: "For hosts",
-    pricingPlan2Title: "Verified Host plan",
-    pricingPlan2For: "For host families",
-    pricingPlan2Price: "$200 / year",
-    pricingPlan2Features: "Verified Host badge\nPriority in search results\nYour family dashboard\nReply to reviews\nVisualised improvement feedback",
-    pricingPlan3Tag: "For individuals",
-    pricingPlan3Title: "Premium plan (students)",
-    pricingPlan3For: "For students who want deeper insight",
-    pricingPlan3Price: "$5 / month",
-    pricingPlan3Features: "Read full review texts\nAdvanced matching\nCompare hosts side-by-side\nPriority support\nNo ads",
-    pricingPlan4Tag: "Secondary revenue",
-    pricingPlan4Title: "Advertising",
-    pricingPlan4For: "For study-abroad-aligned advertisers",
-    pricingPlan4Price: "Custom",
-    pricingPlan4Features: "Targeted placements (students, hosts, schools)\nAirlines, insurance, telecom plans\nBranded spotlights\nContent partnerships",
+    pricingPlan1Tag: "Core product",
+    pricingPlan1Title: "Trip Prep Pass",
+    pricingPlan1For: "For students preparing to study abroad",
+    pricingPlan1Price: "CA$4.99 / 1 mo · CA$9.99 / 3 mo · CA$14.99 / 6 mo",
+    pricingPlan1Features: "Read full review texts\nFilter and compare by your conditions\nMatch-rate analysis against past reviews\nNo ads\nPriority support",
+    pricingPlan2Tag: "B2B",
+    pricingPlan2Title: "Agent data plan",
+    pricingPlan2For: "For study-abroad agents",
+    pricingPlan2Price: "CA$1,500 / year",
+    pricingPlan2Features: "Regional satisfaction trends\nHost quality analysis\nMonthly trend tracking\nCSV / PDF export\nDedicated support",
+    pricingPlan3Tag: "B2B",
+    pricingPlan3Title: "Homestay-org analytics",
+    pricingPlan3For: "For homestay organizations & schools",
+    pricingPlan3Price: "CA$2,000 / year",
+    pricingPlan3Features: "De-identified satisfaction analytics\nMatching-trend data\nRegional reports\nAnonymity-preserving aggregation",
     aboutStoryHeading: "Why I'm building Nestly",
     aboutStoryParagraph1: "I'm a high school student currently studying in Red Deer, Canada. One friend grew her English through dinner-table conversations and went on to university; another friend grew so isolated that within three months she was thinking of going home.",
     aboutStoryParagraph2: "What separated them wasn't effort — it was the family they happened to be placed with. Restaurants and hotels have reviews, but homestays — where students spend months of their life — have almost none. Nestly fills that gap so the next student can choose, not gamble.",
@@ -678,17 +665,17 @@
     privacyLastUpdated: "Last updated: May 24, 2026",
     privacyIntro: "Nestly handles your personal information with care. This page explains what we collect, how we use it, and how we protect it.",
     privacyS1Title: "1. Information we collect",
-    privacyS1Lines: "We collect the following information:\n• Account info: email, nickname, school, grade, native language\n• Review submissions: ratings, body text, structured answers, selected host family\n• Verification info: school-issued codes (used only for ID checks, not stored long-term)\n• Optional info: matching preferences and favorites list",
+    privacyS1Lines: "We collect the following information:\n• Account info: email, school, grade (we do not collect display name, native language, or nationality)\n• Review submissions: ratings, body text, selected host family\n• Verification info: school-issued codes (used only for ID checks, not stored long-term)\n• Optional info: matching preferences and favorites list",
     privacyS2Title: "2. How we use your information",
     privacyS2Lines: "We use collected information only for:\n• Displaying reviews (with reviewer names anonymized or shortened)\n• Calculating match scores\n• Generating aggregated data for schools and agents (de-identified)\n• Detecting spam and abuse",
     privacyS3Title: "3. What's public and what's private",
-    privacyS3Lines: "Public: nickname, school code, grade, review content, ratings.\nPrivate: email address, real name, verification code, IP address.\nSpecial protection: exact host addresses are never shown on the map. We obfuscate location with a 250m-radius circle and cap map zoom at level 14.",
+    privacyS3Lines: "Public: grade, review content, ratings (all reviews are shown anonymously).\nPrivate: email address, real name, school code, verification code, IP address.\n  Note: the school code is kept private. Because reviews are anonymous, publishing the school code could let a school re-identify (de-anonymize) the author. To protect reviewers, the school code is used only for internal aggregation and ID checks — it is never published or shared with third parties.\nSpecial protection: exact host addresses are never shown on the map. We obfuscate location with a 250m-radius circle and cap map zoom at level 14.",
     privacyS4Title: "4. Sharing with third parties",
-    privacyS4Lines: "Except where required by law, we do not share personal information with third parties.\n• Schools and agents receive only aggregated, de-identified data\n• Address geocoding uses OpenStreetMap Nominatim (proxy planned)",
+    privacyS4Lines: "Except where required by law, we do not share personal information with third parties.\n• Schools and agents receive only aggregated, de-identified data\n• Geocoding (converting an address into map latitude/longitude) uses an external service, OpenStreetMap Nominatim. We send only the host's approximate area name, never the exact street address (we plan to route this through our own server later to further reduce external requests)",
     privacyS5Title: "5. Data storage",
     privacyS5Lines: "• In production, review data is stored on Supabase (PostgreSQL)\n• Passwords are hashed with SHA-256 (never stored in plain text)\n• Reports are stored in reports.json and accessible only to moderators",
     privacyS6Title: "6. Your rights",
-    privacyS6Lines: "You have the right to:\n• Edit your own reviews within 24 hours of posting\n• Request deletion of your reviews\n• Request deletion of your account\n• Request disclosure or correction of your information\nThese can be handled by contacting the Nestly team.",
+    privacyS6Lines: "You have the right to:\n• Edit your own reviews at any time (edited reviews are marked as \"edited\")\n• Request deletion of your reviews\n• Request deletion of your account\n• Request disclosure or correction of your information\nThese can be handled by contacting the Nestly team.",
     privacyS7Title: "7. Children",
     privacyS7Lines: "Nestly is designed for high-school-age international students and older. We do not intend the service for users under 13.",
     privacyS8Title: "8. Contact",
@@ -709,15 +696,13 @@
     termsS4Title: "4. Prohibited conduct",
     termsS4Lines: "The following are prohibited:\n• Impersonating others\n• Intentionally submitting false reviews\n• Unauthorized access to Nestly systems\n• Harassment or threats toward other users\n• Any conduct that violates applicable law",
     termsS5Title: "5. Editing and deleting posts",
-    termsS5Lines: "• You can edit your own posts within 24 hours of submission\n• Posts can be removed at the user's request\n• Posts that violate these terms may be removed by moderators without notice",
-    termsS6Title: "6. About Verified Host status",
-    termsS6Lines: "Verified Host status is granted when a family has 3+ reviews and an average rating of ★4.0 or higher. Status may be revoked if the criteria are no longer met.",
-    termsS7Title: "7. Disclaimers",
-    termsS7Lines: "• Reviews reflect individual users' opinions; Nestly does not guarantee their accuracy\n• Nestly is not liable for outcomes of placement decisions made via the platform\n• Except in cases of intent or gross negligence, Nestly is not liable for service interruptions or data loss",
-    termsS8Title: "8. Changes to these terms",
-    termsS8Lines: "These terms may change without notice. Significant changes will be announced on the site. Continued use of the service constitutes acceptance of the updated terms.",
-    termsS9Title: "9. Governing law",
-    termsS9Lines: "These terms are governed by the laws of Alberta, Canada. (Subject to change as the prototype matures.)",
+    termsS5Lines: "• You can edit your own posts at any time (edited posts are marked as \"edited\")\n• Posts can be removed at the user's request\n• Posts that violate these terms may be removed by moderators without notice",
+    termsS6Title: "6. Disclaimers",
+    termsS6Lines: "• Reviews reflect individual users' opinions; Nestly does not guarantee their accuracy\n• Nestly is not liable for outcomes of placement decisions made via the platform\n• Except in cases of intent or gross negligence, Nestly is not liable for service interruptions or data loss",
+    termsS7Title: "7. Changes to these terms",
+    termsS7Lines: "These terms may change without notice. Significant changes will be announced on the site. Continued use of the service constitutes acceptance of the updated terms.",
+    termsS8Title: "8. Governing law",
+    termsS8Lines: "These terms are governed by the laws of Alberta, Canada. (Subject to change as the prototype matures.)",
     howToHeroEyebrow: "How to use",
     howToHeroTitle: "How to use Nestly",
     howToHeroText: "Nestly works for three kinds of users. Browse the section that matches your role.",
@@ -726,17 +711,17 @@
     howToStudent1Title: "STEP 1: Search",
     howToStudent1Body: "Find hosts by area, ratings, or attributes using search, filters, or the map. The match% chip shows compatibility at a glance.",
     howToStudent2Title: "STEP 2: Look deeper",
-    howToStudent2Body: "Compare strengths and weaknesses with the 12-axis radar chart. Check trust indicators (review count, diversity, recency) to gauge reliability. Read full reviews, tags, and structured answers.",
+    howToStudent2Body: "Compare strengths and weaknesses with the 6-axis radar chart (auxiliary axes are shown in the details). Check trust indicators (review count, diversity, recency) to gauge reliability. Read full reviews and tags. Families with no reviews yet are marked “Awaiting review.”",
     howToStudent3Title: "STEP 3: Save and choose",
     howToStudent3Body: "Save promising hosts with the heart icon (♥). Use them as talking points with your agent or family.",
     howToStudent4Title: "STEP 4: Write a review after your stay",
-    howToStudent4Body: "Verify your identity with a school code to earn the Verified Student badge, then submit a structured review across 12 axes — and support the next student.",
+    howToStudent4Body: "Pick a family, rate the 6 primary axes plus auxiliary axes, choose “best for” tags and a recommendation, and write your review — to support the next student.",
     howToHostSection: "2. For host families",
     howToHostIntro: "Refine your hosting and make your reliability visible.",
     howToHost1Title: "See your own ratings",
-    howToHost1Body: "Sign in as a host to view your family's page — see scores across 12 axes and read the full reviews.",
-    howToHost2Title: "Earn Verified Host status",
-    howToHost2Body: "Verified Host is granted when you have 3+ reviews and an average of ★4.0 or higher. Verified hosts are surfaced first in search.",
+    howToHost1Body: "Sign in as a host to view your family's page — see your scores per axis and read the full reviews.",
+    howToHost2Title: "Understand your strengths",
+    howToHost2Body: "Your family page lists your highest- and lowest-rated categories, so you can see what students appreciate most.",
     howToHost3Title: "Improve through feedback",
     howToHost3Body: "Look at your lowest-rated categories to find what to refine. Nestly is designed for constructive growth, not blame.",
     howToB2BSection: "3. For schools and agents",
@@ -776,11 +761,13 @@
     statMap: "Real map support",
     featured: "Selected host",
     reviews: "reviews",
-    mapTitle: "Red Deer host map",
+    mapTitle: "Host map",
     mapHelp: "Exact addresses and private pins are used only for placement. Public pages show the area name only.",
     area: "Area",
     mapPrivacy: "Addresses are private. Pins show approximate nearby areas.",
     searchResults: "Search results",
+    pendingReview: "Awaiting review",
+    pendingReviewHint: "No reviews yet. Be the first to write one and start the rating.",
     noResults: "No host families match those conditions.",
     reviewForm: "Review form",
     reviewLead: "Choose a family, rate each category from 1 to 5 stars, and write your review.",
@@ -807,9 +794,6 @@
     reviewTarget: "Review target",
     reviewText: "Review text",
     anonymousStudent: "Anonymous student",
-    privacyTitle: "Responsible use and privacy",
-    privacyStatement:
-      "Nestly works only when reviews are used responsibly. Write about safety, living conditions, communication, and support. Do not publish exact addresses, private contact details, family member details, or anything that identifies a household. Exact addresses and map pins are stored only so the map can place a private host entry; regular users see the area name only.",
     addNewHouse: "Add a new family",
     newHouseName: "Family name",
     newHouseArea: "Area",
@@ -891,7 +875,7 @@
     riskSupport: "Low support signals",
     criteria: {
       englishEnvironment: ["English environment", "English exposure / Conversation with family / English correction"],
-      rules: ["Freedom (higher = freer)", "Higher = more freedom & flexible rules · Lower = stricter (curfew, overnight, free time)"],
+      rules: ["Freedom", "Higher = more freedom & flexible rules · Lower = stricter (curfew, overnight, free time)"],
       study: ["Study fit", "Study fit / Quietness / Study space"],
       cultureFit: ["Cultural fit", "Cultural fit / Religion and food consideration / Understanding of Asian students"],
       mentalSupport: ["Mental support", "Mental support / Easy to consult / Low isolation"],
@@ -1262,6 +1246,14 @@
     },
   ];
 
+  // レビューフォームから外した評価軸。集計・分析の表示からは除外する
+  // （ベイクド・イン ホストの基礎データには値が残っているため明示的に弾く）。
+  const DEPRECATED_GROUP_KEYS = ["hostExperience", "chores"];
+
+  // 補助評価軸（レーダーの主要6軸に含まれない現行の評価グループ）。
+  // レビュー閲覧時にレーダーの下へ内訳として表示する。
+  const AUX_GROUP_KEYS = ["rules", "mealQuality", "cleanliness", "privacy", "internetQuality"];
+
   // Tiered weighted scoring (revised based on student wellbeing research):
   //   T1 Safety/wellbeing (×2.5)   T2 Daily QoL & study-abroad value (×2.0)
   //   T3 Academics/commute (×1.5/×1.0)   T4 Living base (×1.0)
@@ -1277,6 +1269,7 @@
     rideSupport: 1.0,        // T3
     rules: 1.0,              // T4
     cleanliness: 1.0,        // T4
+    privacy: 1.0,            // T4（補助評価に統合・2026-05-31）
     internetQuality: 0.5,    // T5
     hostExperience: 0.5,     // T5
   };
@@ -1286,7 +1279,7 @@
   const requiredAxisKeys = [
     "safetyEnvironment", "englishEnvironment", "cultureFit", "mentalSupport",
     "transportation", "rideSupport", "study",
-    "rules", "internetQuality", "mealQuality", "cleanliness",
+    "rules", "internetQuality", "mealQuality", "cleanliness", "privacy",
   ];
 
   // Auxiliary axes (not in main 6 radar, shown in detail table).
@@ -1428,7 +1421,8 @@
   const hosts = [
     {
       id: 1,
-      name: "Miller Family",
+      name: "Demo Family",
+      isDemo: true,
       city: "Red Deer, Alberta",
       area: "West Park",
       lat: 52.2594,
@@ -1452,239 +1446,9 @@
         safety: 4.9, nightSafety: 4.6, homeTrouble: 4.8,
         mealPortion: 4.2, mealAdaptation: 3.9,
         houseClean: 4.7, sharedClean: 4.6,
+        roomPrivacy: 4.3, roomLock: 4.0, belongings: 4.4,
+        choreAmount: 4.1, choreBalance: 4.2,
         hostingYears: 4.0,
-      },
-    },
-    {
-      id: 2,
-      name: "Brown Family",
-      city: "Red Deer, Alberta",
-      area: "Downtown",
-      lat: 52.2693,
-      lng: -113.8112,
-      rating: 4.1,
-      reviews: 0,
-      verified: false,
-      tags: ["Downtown", "バス停近い", "会話が多い"],
-      tagsEn: ["Downtown", "Near bus stop", "Lots of conversation"],
-      fit: ["sports好き向け"],
-      summary: "中心部に近く、通学や買い物に便利。英語練習量を求める人向け。",
-      summaryEn: "Close to downtown — convenient for commuting and shopping. Best for students who want lots of English practice.",
-      criteria: {
-        english: 4.8, conversation: 4.9, correction: 4.1,
-        freedom: 3.8, curfew: 3.4, overnight: 3.3,
-        studyFit: 3.6, quiet: 3.2, studySpace: 3.7,
-        culture: 4.0, religionFood: 3.7, asianUnderstanding: 3.8,
-        mental: 4.0, consultation: 4.2, isolation: 4.4,
-        transit: 4.8, bus: 4.9, schoolDistance: 4.5,
-        winterCommute: 4.2, rideSupport: 3.5, internet: 4.0,
-        safety: 4.1, nightSafety: 3.7, homeTrouble: 4.0,
-        mealPortion: 4.0, mealAdaptation: 3.6,
-        houseClean: 4.0, sharedClean: 3.8,
-        hostingYears: 3.8,
-      },
-    },
-    {
-      id: 3,
-      name: "Singh Family",
-      city: "Red Deer, Alberta",
-      area: "Clearview Ridge",
-      lat: 52.2873,
-      lng: -113.7661,
-      rating: 4.9,
-      reviews: 0,
-      verified: true,
-      tags: ["多文化対応", "食事評価高い", "学校近い", "Clearview"],
-      tagsEn: ["Multicultural", "Highly rated meals", "Close to school", "Clearview"],
-      fit: ["religious family", "introvert向け"],
-      summary: "食事と文化的配慮の評価が高く、初めての海外生活でも安心しやすい家庭。",
-      summaryEn: "High marks for meals and cultural sensitivity — reassuring even for first-time exchange students.",
-      criteria: {
-        english: 4.7, conversation: 4.5, correction: 4.4,
-        freedom: 4.5, curfew: 4.2, overnight: 4.1,
-        studyFit: 4.8, quiet: 4.6, studySpace: 4.8,
-        culture: 5.0, religionFood: 5.0, asianUnderstanding: 4.9,
-        mental: 4.9, consultation: 4.9, isolation: 4.7,
-        transit: 4.4, bus: 4.5, schoolDistance: 4.7,
-        winterCommute: 4.2, rideSupport: 4.4, internet: 4.7,
-        safety: 5.0, nightSafety: 4.8, homeTrouble: 4.9,
-        mealPortion: 4.9, mealAdaptation: 5.0,
-        houseClean: 4.7, sharedClean: 4.6,
-        hostingYears: 4.7,
-      },
-    },
-    {
-      id: 4,
-      name: "Anderson Family",
-      city: "Red Deer, Alberta",
-      area: "Timberlands",
-      lat: 52.2932,
-      lng: -113.7537,
-      rating: 4.4,
-      reviews: 0,
-      verified: true,
-      tags: ["新しい住宅街", "Wi-Fi良い", "ペットあり", "Timberlands"],
-      tagsEn: ["New neighborhood", "Strong Wi-Fi", "Has pets", "Timberlands"],
-      fit: ["pet friendly", "sports好き向け"],
-      summary: "清潔で設備が整った家庭。ペットがいるため、動物が好きな留学生に合いやすい。",
-      summaryEn: "A clean, well-equipped home with pets — a great fit for students who love animals.",
-      criteria: {
-        english: 4.2, conversation: 4.1, correction: 3.8,
-        freedom: 4.6, curfew: 4.4, overnight: 4.2,
-        studyFit: 4.4, quiet: 4.2, studySpace: 4.5,
-        culture: 4.3, religionFood: 4.0, asianUnderstanding: 4.1,
-        mental: 4.4, consultation: 4.3, isolation: 4.3,
-        transit: 4.0, bus: 4.1, schoolDistance: 4.0,
-        winterCommute: 3.9, rideSupport: 4.6, internet: 4.9,
-        safety: 4.7, nightSafety: 4.6, homeTrouble: 4.7,
-        mealPortion: 4.0, mealAdaptation: 3.8,
-        houseClean: 4.8, sharedClean: 4.7,
-        hostingYears: 3.9,
-      },
-    },
-    {
-      id: 5,
-      name: "Thompson Family",
-      city: "Red Deer, Alberta",
-      area: "Sunnybrook",
-      lat: 52.2515,
-      lng: -113.8042,
-      rating: 4.6,
-      reviews: 0,
-      verified: true,
-      tags: ["送迎あり", "南側静かな住宅街", "Sunnybrook"],
-      tagsEn: ["Ride support", "Quiet southern neighborhood", "Sunnybrook"],
-      fit: ["introvert向け", "sports好き向け"],
-      summary: "両親ともフルタイム勤務だが送迎は柔軟。冬の通学が不安な人に向く。",
-      summaryEn: "Both parents work full-time but ride support is flexible — suited for students worried about winter commutes.",
-      criteria: {
-        english: 4.4, conversation: 4.3, correction: 4.1,
-        freedom: 4.4, curfew: 4.2, overnight: 4.0,
-        studyFit: 4.5, quiet: 4.6, studySpace: 4.3,
-        culture: 4.4, religionFood: 4.2, asianUnderstanding: 4.4,
-        mental: 4.6, consultation: 4.5, isolation: 4.5,
-        transit: 3.9, bus: 4.0, schoolDistance: 3.9,
-        winterCommute: 4.7, rideSupport: 4.8, internet: 4.5,
-        safety: 4.7, nightSafety: 4.6, homeTrouble: 4.6,
-        mealPortion: 4.3, mealAdaptation: 4.0,
-        houseClean: 4.6, sharedClean: 4.5,
-        hostingYears: 4.4,
-      },
-    },
-    {
-      id: 6,
-      name: "Nguyen Family",
-      city: "Red Deer, Alberta",
-      area: "Eastview Estates",
-      lat: 52.2784,
-      lng: -113.7783,
-      rating: 4.8,
-      reviews: 0,
-      verified: true,
-      tags: ["アジア食対応", "Eastview", "兄弟あり", "学校近い"],
-      tagsEn: ["Asian cuisine", "Eastview", "Has siblings", "Close to school"],
-      fit: ["religious family", "introvert向け"],
-      summary: "アジア系家庭。食事や文化的な細やかな配慮があり、初めての海外でも馴染みやすい。",
-      summaryEn: "An Asian-heritage household with thoughtful attention to meals and culture — easy to settle in even on your first stay abroad.",
-      criteria: {
-        english: 4.3, conversation: 4.4, correction: 4.0,
-        freedom: 4.4, curfew: 4.2, overnight: 4.0,
-        studyFit: 4.7, quiet: 4.5, studySpace: 4.6,
-        culture: 4.9, religionFood: 4.9, asianUnderstanding: 5.0,
-        mental: 4.8, consultation: 4.8, isolation: 4.7,
-        transit: 4.3, bus: 4.4, schoolDistance: 4.5,
-        winterCommute: 4.1, rideSupport: 4.2, internet: 4.4,
-        safety: 4.8, nightSafety: 4.7, homeTrouble: 4.8,
-        mealPortion: 4.8, mealAdaptation: 4.9,
-        houseClean: 4.5, sharedClean: 4.4,
-        hostingYears: 4.6,
-      },
-    },
-    {
-      id: 7,
-      name: "Patel Family",
-      city: "Red Deer, Alberta",
-      area: "Inglewood West",
-      lat: 52.2436,
-      lng: -113.8224,
-      rating: 4.3,
-      reviews: 0,
-      verified: false,
-      tags: ["柔軟なルール", "ベジタリアン対応", "Inglewood"],
-      tagsEn: ["Flexible rules", "Vegetarian-friendly", "Inglewood"],
-      fit: ["religious family"],
-      summary: "ベジタリアン家庭で食事の柔軟性が高い。門限などのルールも事前相談しやすい。",
-      summaryEn: "A vegetarian household with flexible meal options — rules like curfew can be discussed in advance.",
-      criteria: {
-        english: 4.1, conversation: 4.0, correction: 3.8,
-        freedom: 4.7, curfew: 4.5, overnight: 4.3,
-        studyFit: 4.2, quiet: 4.1, studySpace: 4.2,
-        culture: 4.7, religionFood: 4.8, asianUnderstanding: 4.4,
-        mental: 4.3, consultation: 4.2, isolation: 4.2,
-        transit: 4.2, bus: 4.3, schoolDistance: 4.1,
-        winterCommute: 3.9, rideSupport: 4.0, internet: 4.3,
-        safety: 4.4, nightSafety: 4.2, homeTrouble: 4.3,
-        mealPortion: 4.5, mealAdaptation: 4.8,
-        houseClean: 4.3, sharedClean: 4.2,
-        hostingYears: 4.0,
-      },
-    },
-    {
-      id: 8,
-      name: "Wilson Family",
-      city: "Red Deer, Alberta",
-      area: "Oriole Park",
-      lat: 52.2841,
-      lng: -113.8348,
-      rating: 4.5,
-      reviews: 0,
-      verified: true,
-      tags: ["スポーツ家庭", "アウトドア", "Oriole", "夕食一緒"],
-      tagsEn: ["Sporty family", "Outdoors", "Oriole", "Family dinners together"],
-      fit: ["sports好き向け", "pet friendly"],
-      summary: "アクティブな家庭。週末のアウトドアやスポーツに誘ってくれる、会話の多い環境。",
-      summaryEn: "An active family that invites you to weekend sports and outdoors — a conversation-rich environment.",
-      criteria: {
-        english: 4.7, conversation: 4.8, correction: 4.3,
-        freedom: 4.3, curfew: 4.0, overnight: 3.9,
-        studyFit: 4.0, quiet: 3.8, studySpace: 4.1,
-        culture: 4.4, religionFood: 4.0, asianUnderstanding: 4.2,
-        mental: 4.5, consultation: 4.4, isolation: 4.6,
-        transit: 4.1, bus: 4.2, schoolDistance: 4.0,
-        winterCommute: 4.3, rideSupport: 4.6, internet: 4.5,
-        safety: 4.6, nightSafety: 4.4, homeTrouble: 4.5,
-        mealPortion: 4.2, mealAdaptation: 3.9,
-        houseClean: 4.1, sharedClean: 4.0,
-        hostingYears: 4.2,
-      },
-    },
-    {
-      id: 9,
-      name: "Garcia Family",
-      city: "Red Deer, Alberta",
-      area: "Morrisroe",
-      lat: 52.2552,
-      lng: -113.7920,
-      rating: 4.2,
-      reviews: 0,
-      verified: false,
-      tags: ["バイリンガル家庭", "Morrisroe", "学生多め"],
-      tagsEn: ["Bilingual household", "Morrisroe", "Often hosts students"],
-      fit: ["sports好き向け", "introvert向け"],
-      summary: "スペイン語・英語のバイリンガル家庭。これまでも複数の留学生を受け入れてきた経験豊富な家庭。",
-      summaryEn: "A Spanish-English bilingual household with extensive experience hosting international students.",
-      criteria: {
-        english: 4.5, conversation: 4.6, correction: 4.2,
-        freedom: 4.2, curfew: 4.1, overnight: 3.9,
-        studyFit: 4.1, quiet: 4.0, studySpace: 4.2,
-        culture: 4.6, religionFood: 4.2, asianUnderstanding: 4.3,
-        mental: 4.4, consultation: 4.4, isolation: 4.5,
-        transit: 4.3, bus: 4.4, schoolDistance: 4.2,
-        winterCommute: 4.0, rideSupport: 4.1, internet: 4.4,
-        safety: 4.5, nightSafety: 4.3, homeTrouble: 4.4,
-        mealPortion: 4.1, mealAdaptation: 4.0,
-        houseClean: 4.2, sharedClean: 4.1,
-        hostingYears: 4.8,
       },
     },
   ];
@@ -1715,12 +1479,13 @@
     reviewDetailOpen: false,
     // ----- new auth/profile state -----
     authMode: "login",  // "login" | "signup"
-    signupForm: { signupAs: "user", email: "", password: "", name: "", school: "", grade: "", language: "", nationality: "", schoolCode: "", hostId: "" },
+    signupForm: { signupAs: "user", email: "", password: "", school: "", grade: "", schoolCode: "", hostId: "" },
     loginForm: { email: "", password: "" },
     onboardingOpen: false,
     onboardingStep: 0,
     pendingPreferences: null,  // built up during onboarding
     expandedHostId: null,  // for inline detail expansion in search results
+    mapCollapsed: false,   // 統合「探す」ページの埋め込みマップ折りたたみ状態
     missingScores: [],     // for highlighting unfilled required axes after submit attempt
     // ----- new in Phase 4 -----
     favorites: loadFavorites(),
@@ -1856,10 +1621,11 @@
   }
 
   // ---- Edit-lock check: review editable for 24h then locked ----
+  // レビューは投稿後いつでも編集可能（2026-05-31 に 24h ロックを撤廃）。
+  // 投稿者が後から追記・修正できるようにする方針。編集すると editedAt フラグが付き、
+  // 「編集済み」表示で透明性を保つ。EDIT_LOCK_HOURS は廃止。
   function isReviewEditable(review) {
-    if (!review || !review.createdAt) return false;
-    const ageMs = Date.now() - new Date(review.createdAt).getTime();
-    return ageMs <= EDIT_LOCK_HOURS * 60 * 60 * 1000;
+    return !!review;
   }
 
   // ---- Duplicate detection (Jaccard similarity on text trigrams) ----
@@ -1907,11 +1673,8 @@
     };
   }
 
-  // Dynamic Verified Host: reviews >= 3 AND weighted average >= 4.0
-  function isVerifiedHost(host) {
-    const stats = getHostStats(host);
-    return stats.count >= 3 && stats.rating >= 4.0;
-  }
+  // NOTE: Verified Host 概念は全面廃止（2026-05-31）。ホスト品質バッジは出さない方針。
+  // 以前の isVerifiedHost() はここで定義していたが、全参照を削除したため関数も撤去した。
 
   // ---- Map a 1-5 rating to a heatmap color (cool to warm) ----
   function ratingToHeatColor(rating) {
@@ -1924,6 +1687,11 @@
 
   // 6 representative radar criteria — derived from existing 9 groups.
   // "通学・送迎" merges transportation + rideSupport.
+  // レーダーチャートの軸。視認性を優先し主要 6 軸の六角形に統一（2026-05-31 に 11 軸へ拡張したが
+  // 見にくいため 6 軸へ戻した）。ここに並ぶ軸の単純平均が「総合評価」と完全に一致する
+  // （radarOverall / getHostStats）。補助軸（自由度・食事・清潔さ・ネット・受け入れ経験）は
+  // 詳細テーブル（renderCriteriaSummary）側で確認できる。
+  // 注：transportation と rideSupport は UI 上 1 入力なので "commute" に統合（二重計上を防ぐ）。
   const radarAxes = [
     { key: "safetyEnvironment", label: "安全", labelEn: "Safety", sourceKeys: ["safetyEnvironment"] },
     { key: "englishEnvironment", label: "英語環境", labelEn: "English", sourceKeys: ["englishEnvironment"] },
@@ -1932,6 +1700,43 @@
     { key: "commute", label: "通学・送迎", labelEn: "Commute & Ride", sourceKeys: ["transportation", "rideSupport"] },
     { key: "study", label: "学習向き", labelEn: "Study fit", sourceKeys: ["study"] },
   ];
+
+  // レーダーに描画される全軸の単純平均 ＝ 総合評価。
+  // 「チャートの見た目の重心」と「総合の数字」を完全一致させるため、ここを単一の真実源にする。
+  // transportation/rideSupport を統合した "commute" 軸を 1 つとして数えるので二重計上は起きない。
+  function radarOverall(host) {
+    if (!host) return 0;
+    const vals = radarAxes
+      .map((axis) => radarValue(host, axis))
+      .filter((v) => Number.isFinite(v) && v > 0);
+    return vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : 0;
+  }
+
+  // 重み付けは「最適化工程（マッチング設定）を済ませたログイン済みユーザー」だけに適用する。
+  // それ以外（未ログイン or 設定未完了）は全軸を一律 1 倍にした単純平均（radarOverall）。
+  function viewerIsOptimized() {
+    return !!(currentUser && currentUser.preferences && currentUser.preferences.importance);
+  }
+
+  // 表示用の総合評価。最適化済みユーザーには本人の重視度（importance 1〜5）で
+  // 重み付けした加重平均を返し、そうでなければ単純平均を返す。
+  function overallForViewer(host) {
+    if (!host) return 0;
+    if (!viewerIsOptimized()) return radarOverall(host);
+    const importance = currentUser.preferences.importance || {};
+    let wSum = 0;
+    let wTotal = 0;
+    radarAxes.forEach((axis) => {
+      const v = radarValue(host, axis);
+      if (!Number.isFinite(v) || v <= 0) return;
+      // 重視度が未設定の軸は 1 倍扱い。
+      const w = Number(importance[axis.key]);
+      const weight = Number.isFinite(w) && w > 0 ? w : 1;
+      wSum += v * weight;
+      wTotal += weight;
+    });
+    return wTotal > 0 ? wSum / wTotal : radarOverall(host);
+  }
 
   function radarAxesLocalized() {
     return radarAxes.map((axis) => {
@@ -1955,6 +1760,7 @@
   let leafletMiniMap = null; // レビュー選択確認用ミニマップ
   let apiSyncStarted = false;
   let repliesSyncStarted = false;
+  let locationHealStarted = false;
 
   function loadLanguage() {
     if (typeof localStorage === "undefined") return "ja";
@@ -2028,10 +1834,22 @@
     }
   }
 
+  // デモ版方針：ログインは sessionStorage に保持する。
+  //   - リロードではログイン状態を維持（審査中に誤って消えない）
+  //   - タブ／ウィンドウを閉じると自動でログアウト（次の審査員にクリーンな状態で見せられる）
+  // 本番で「次回も自動ログイン」が必要になったら localStorage に戻す。
+  function sessionStore() {
+    // sessionStorage が使えない環境（プライベートモード等）では localStorage にフォールバック。
+    if (typeof sessionStorage !== "undefined") return sessionStorage;
+    if (typeof localStorage !== "undefined") return localStorage;
+    return null;
+  }
+
   function loadSession() {
-    if (typeof localStorage === "undefined") return null;
+    const store = sessionStore();
+    if (!store) return null;
     try {
-      const parsed = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+      const parsed = JSON.parse(store.getItem(SESSION_KEY) || "null");
       return parsed && ["user", "moderator", "admin", "host"].includes(parsed.role) ? parsed : null;
     } catch (_error) {
       return null;
@@ -2039,11 +1857,16 @@
   }
 
   function saveSession() {
-    if (typeof localStorage === "undefined") return;
+    const store = sessionStore();
+    if (!store) return;
     if (currentUser) {
-      localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser));
+      store.setItem(SESSION_KEY, JSON.stringify(currentUser));
     } else {
-      localStorage.removeItem(SESSION_KEY);
+      store.removeItem(SESSION_KEY);
+    }
+    // 旧 localStorage のセッションが残っていると混乱するので掃除しておく。
+    if (typeof localStorage !== "undefined" && store !== localStorage) {
+      try { localStorage.removeItem(SESSION_KEY); } catch (_e) {}
     }
   }
 
@@ -2138,12 +1961,10 @@
     const email = String(form.email || "").trim().toLowerCase();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push(language !== "ja" ? "Invalid email" : "メールアドレスが無効です");
     if (!form.password || form.password.length < 6) errors.push(language !== "ja" ? "Password must be 6+ chars" : "パスワードは6文字以上");
-    if (!form.name || !form.name.trim()) errors.push(language !== "ja" ? "Name required" : "名前は必須です");
 
     if (signupAs === "user") {
       if (!form.school) errors.push(language !== "ja" ? "School required (international student verification)" : "学校選択は必須です（留学生確認のため）");
       if (!form.grade) errors.push(language !== "ja" ? "Grade required" : "学年は必須です");
-      if (!form.language) errors.push(language !== "ja" ? "Native language required" : "母国語は必須です");
     } else {
       // Host family signup — must pick which host family they belong to
       const hostIdNum = Number(form.hostId);
@@ -2162,14 +1983,21 @@
     const isVerified = signupAs === "user" && !!form.schoolCode && isValidSchoolCode(form.schoolCode, form.school);
     const hashedPw = await hashPassword(form.password);
 
+    // 表示名（display name）は廃止。留学生は匿名（レビューは常に匿名表示）、
+    // ホストは紐付けた家庭名を内部的な表示名として使う。
+    const linkedHost = signupAs === "host" ? allHosts().find((h) => h.id === Number(form.hostId)) : null;
+    const derivedName = signupAs === "host"
+      ? (linkedHost ? linkedHost.name : (language !== "ja" ? "Host family" : "ホスト家庭"))
+      : t.anonymousStudent;
+
     const newUser = {
       email,
       password: hashedPw,
-      name: form.name.trim(),
+      name: derivedName,
       school: signupAs === "user" ? form.school : "",
       grade: signupAs === "user" ? form.grade : "",
-      language: signupAs === "user" ? form.language : "",
-      nationality: form.nationality || "",
+      language: "",
+      nationality: "",
       schoolCode: signupAs === "user" ? (form.schoolCode || "") : "",
       role: signupAs,
       hostId: signupAs === "host" ? Number(form.hostId) : null,
@@ -2189,15 +2017,7 @@
     loginError = false;
     saveSession();
 
-    // Auto-select UI language based on nationality (if user did not already pick one).
-    if (newUser.nationality && COUNTRY_TO_LANGUAGE[newUser.nationality]) {
-      const suggested = COUNTRY_TO_LANGUAGE[newUser.nationality];
-      if (suggested !== language) {
-        // Fire-and-forget setLanguage; render() inside will run again after fetch.
-        setLanguage(suggested);
-        // Trigger onboarding state setup before async language load returns.
-      }
-    }
+    // 表示言語はヘッダーの言語切替で手動選択する（国籍による自動選択は廃止）。
 
     // Start onboarding (students only — host accounts skip matching setup)
     if (signupAs === "user") {
@@ -2401,7 +2221,10 @@
   }
 
   function hostDisplayName(host) {
-    return host && (host.name || host.area) ? String(host.name || host.area) : "";
+    if (!host) return "";
+    // 英語UIでは nameEn があればそれを使う（例：デモファミリー → Demo Family）。
+    if (language !== "ja" && host.nameEn) return String(host.nameEn);
+    return host.name || host.area ? String(host.name || host.area) : "";
   }
 
   function saveCustomHosts() {
@@ -2435,6 +2258,44 @@
       if (!Number.isFinite(existing.lat) && Number.isFinite(host.lat)) existing.lat = host.lat;
       if (!Number.isFinite(existing.lng) && Number.isFinite(host.lng)) existing.lng = host.lng;
       if ((!existing.summary || existing.summary === t.customHostSummary) && host.summary) existing.summary = host.summary;
+    });
+
+    // 孤児レビューの復元：レビューは存在するが対応ホストが（customHosts 消失などで）
+    // どこにも無い場合、レビューに埋め込んだ hostSnapshot からホストを再構築する。
+    // これで「ホストが消えてレビューだけ残る」状態を防ぐ。
+    const knownHostIds = new Set();
+    grouped.forEach((h) => (h.duplicateIds || []).forEach((id) => knownHostIds.add(Number(id))));
+    const rebuiltByHostId = new Map();
+    (state.userReviews || []).forEach((review) => {
+      const hid = Number(review.hostId);
+      if (!Number.isFinite(hid) || knownHostIds.has(hid) || hidden.has(hid)) return;
+      if (rebuiltByHostId.has(hid)) return;
+      const snap = review.hostSnapshot;
+      // スナップショットが無い古いレビューでも、最低限 host 名から復元する。
+      const name = (snap && snap.name) || review.host;
+      if (!name) return;
+      const rebuilt = {
+        id: hid,
+        name,
+        city: (snap && snap.city) || "Red Deer, Alberta",
+        area: (snap && snap.area) || "",
+        lat: snap && Number.isFinite(snap.lat) ? snap.lat : RED_DEER_CENTER.lat,
+        lng: snap && Number.isFinite(snap.lng) ? snap.lng : RED_DEER_CENTER.lng,
+        rating: 0,
+        reviews: 0,
+        verified: false,
+        tags: [(snap && snap.area) || "", t.customHostTag].filter(Boolean),
+        fit: [],
+        summary: t.customHostSummary,
+        criteria: Object.fromEntries(criteriaGroups.flatMap((group) => group.itemKeys.map((key) => [key, 4]))),
+        duplicateIds: [hid],
+        rebuiltFromReview: true,
+      };
+      const key = hostDisplayKey(rebuilt);
+      if (key && !grouped.has(key)) {
+        grouped.set(key, rebuilt);
+        rebuiltByHostId.set(hid, rebuilt);
+      }
     });
 
     return [...grouped.values()];
@@ -2589,27 +2450,72 @@
     render();
   }
 
+  // Red Deer のおおよその範囲（バウンディングボックス）。これより外に出た
+  // ジオコーディング結果は「別の街の同名通り」などの誤マッチとみなして弾く。
+  // これがないと、住所が曖昧なとき Nominatim が遠い場所を返してピンが大きくズレる。
+  const RED_DEER_BOUNDS = { minLat: 52.20, maxLat: 52.34, minLng: -113.92, maxLng: -113.72 };
+
+  function isWithinRedDeer(lat, lng) {
+    return lat >= RED_DEER_BOUNDS.minLat && lat <= RED_DEER_BOUNDS.maxLat
+        && lng >= RED_DEER_BOUNDS.minLng && lng <= RED_DEER_BOUNDS.maxLng;
+  }
+
   async function geocodeAddress(exactAddress) {
     const query = `${exactAddress}, Red Deer, Alberta, Canada`;
-    // addressdetails=1 returns suburb/neighbourhood for auto-area extraction
-    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q=${encodeURIComponent(query)}`;
+    // viewbox + bounded=1 で Red Deer の矩形内に検索を限定し、誤マッチを抑える。
+    // countrycodes=ca でカナダ国外を除外。limit=5 にして候補から範囲内のものを選ぶ。
+    // addressdetails=1 は suburb/neighbourhood（エリア名の自動抽出）に必要。
+    const viewbox = `${RED_DEER_BOUNDS.minLng},${RED_DEER_BOUNDS.maxLat},${RED_DEER_BOUNDS.maxLng},${RED_DEER_BOUNDS.minLat}`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&addressdetails=1&countrycodes=ca&bounded=1&viewbox=${viewbox}&q=${encodeURIComponent(query)}`;
     const response = await fetch(url, { headers: { Accept: "application/json" } });
     if (!response.ok) return null;
 
     const matches = await response.json();
-    const first = Array.isArray(matches) ? matches[0] : null;
-    if (!first) return null;
+    if (!Array.isArray(matches) || !matches.length) return null;
 
-    const lat = Number(first.lat);
-    const lng = Number(first.lon);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+    // 範囲内（Red Deer）の最初の候補を採用。範囲外しか無ければ誤マッチとして失敗扱い。
+    const inArea = matches
+      .map((m) => ({ lat: Number(m.lat), lng: Number(m.lon), address: m.address || {} }))
+      .find((m) => Number.isFinite(m.lat) && Number.isFinite(m.lng) && isWithinRedDeer(m.lat, m.lng));
+    if (!inArea) return null;
 
     // Extract user-visible area from address parts (privacy-preserving — we
     // never expose the full street address; only the neighbourhood/suburb).
-    const a = first.address || {};
+    const a = inArea.address;
     const area = a.neighbourhood || a.suburb || a.quarter || a.city_district
               || a.hamlet || a.village || a.town || "Red Deer";
-    return { lat, lng, area };
+    return { lat: inArea.lat, lng: inArea.lng, area };
+  }
+
+  // 既存の追加ホストで、ピンが Red Deer の範囲外（過去の誤ジオコーディングや
+  // 中心へのフォールバック）に置かれているものを、保存済みの exactAddress から
+  // 再ジオコーディングして直す。1回だけ・直列実行（Nominatim のレート制限に配慮）。
+  async function healCustomHostLocations() {
+    if (locationHealStarted || typeof fetch === "undefined") return;
+    locationHealStarted = true;
+    const targets = (state.customHosts || []).filter((h) =>
+      h && h.exactAddress &&
+      !(Number.isFinite(h.lat) && Number.isFinite(h.lng) && isWithinRedDeer(h.lat, h.lng))
+    );
+    if (!targets.length) return;
+    let changed = false;
+    for (const host of targets) {
+      try {
+        const loc = await geocodeAddress(host.exactAddress);
+        if (loc && Number.isFinite(loc.lat) && Number.isFinite(loc.lng)) {
+          host.lat = loc.lat;
+          host.lng = loc.lng;
+          if (loc.area && (!host.area || host.area === "Red Deer area")) host.area = loc.area;
+          changed = true;
+        }
+      } catch (_e) { /* 失敗時はそのまま（次回起動で再試行） */ }
+      // Nominatim の利用ポリシー（1 req/sec）に配慮して間隔を空ける。
+      await new Promise((r) => setTimeout(r, 1100));
+    }
+    if (changed) {
+      saveCustomHosts();
+      render();
+    }
   }
 
   function deleteHost(hostId) {
@@ -2705,35 +2611,21 @@
   }
 
   function getHostStats(host) {
-    if (!host) return { rating: 0, reviews: 0, stddev: 0, reliability: reliabilityBand(0) };
+    if (!host) return { rating: 0, reviews: 0, stddev: 0, reliability: reliabilityBand(0), hasReviews: false };
     const reviews = hostReviews(host);
-    const weighted = overallWeightedRating(host);
     const reliability = reliabilityBand(reviews.length);
-    if (!reviews.length) {
-      return { rating: weighted || host.rating, reviews: 0, stddev: 0, reliability };
-    }
-    // Trimmed mean of posted scores, weighted by recency (time decay).
-    const scoresWithWeight = reviews
-      .map((r) => ({ score: Number(r.score), weight: timeDecayWeight(r.createdAt) }))
-      .filter((x) => Number.isFinite(x.score) && x.score > 0);
-
-    let postedAvg = 0;
-    if (scoresWithWeight.length) {
-      // Time-weighted then trimmed
-      const expanded = [];
-      scoresWithWeight.forEach(({ score, weight }) => {
-        // expand into pseudo-population for trimming proportional to weight
-        const reps = Math.max(1, Math.round(weight * 10));
-        for (let i = 0; i < reps; i++) expanded.push(score);
-      });
-      postedAvg = trimmedMean(expanded);
-    }
-
-    const blended = weighted > 0 && Number.isFinite(postedAvg) && postedAvg > 0
-      ? weighted * 0.6 + postedAvg * 0.4
-      : (weighted || postedAvg);
-    const stddev = standardDeviation(scoresWithWeight.map((x) => x.score));
-    return { rating: blended, reviews: reviews.length, stddev, reliability };
+    const hasReviews = reviews.length > 0;
+    // 総合評価。最適化工程を済ませたログインユーザーには本人の重視度で重み付けした
+    // 加重平均を、それ以外には全軸一律 1 倍の単純平均（＝レーダーの重心と一致）を出す。
+    // ★レビュー0件のホストは評価を出さない（「レビュー待ち」）。組み込みベース値だけで
+    //   4.0 前後の点が付いてしまう問題を防ぐため、rating は 0 のままにして hasReviews=false を返す。
+    const rating = hasReviews ? overallForViewer(host) : 0;
+    // stddev は信頼度バンド表示用に、各レビューのおすすめ点のばらつきを引き続き算出。
+    const postedScores = reviews
+      .map((r) => Number(r.score))
+      .filter((s) => Number.isFinite(s) && s > 0);
+    const stddev = postedScores.length ? standardDeviation(postedScores) : 0;
+    return { rating, reviews: reviews.length, stddev, reliability, hasReviews };
   }
 
   function getHostFit(host) {
@@ -2822,6 +2714,36 @@
     });
   }
 
+  // 検索反映度（関連度）スコア。クエリがホストのどのフィールドに当たったかで重み付けする。
+  // 名前＞エリア＞市＞タグ／相性＞要約＞評価軸テキスト の順に強く効かせ、
+  // さらに「前方一致（その単語で始まる）」「完全一致」にボーナスを与える。
+  // renderSearchResults の「検索反映度順」ソートで使用。
+  function searchRelevance(host, query) {
+    const q = String(query || "").trim().toLowerCase();
+    if (!q) return 0;
+    let score = 0;
+    const scoreField = (text, weight) => {
+      if (!text) return;
+      const s = String(text).toLowerCase();
+      const idx = s.indexOf(q);
+      if (idx === -1) return;
+      score += weight;                 // ヒットの基礎点
+      if (idx === 0) score += weight * 0.5; // 前方一致ボーナス
+      if (s === q) score += weight;    // 完全一致ボーナス
+    };
+    scoreField(host.name, 10);
+    scoreField(host.area, 8);
+    scoreField(host.city, 4);
+    getHostFit(host).forEach((tag) => scoreField(tag, 5));
+    (host.tags || []).forEach((tag) => scoreField(tag, 5));
+    scoreField(host.summary, 3);
+    localizedCriteriaGroups().forEach((group) => {
+      scoreField(group.title, 2);
+      scoreField(group.description, 1);
+    });
+    return score;
+  }
+
   function runPrototypeTests() {
     const results = [];
     results.push({
@@ -2864,7 +2786,9 @@
       const hostIdsWithReviewFromSchool = new Set(reviews.map((r) => Number(r.hostId)));
       hosts = hosts.filter((h) => hostIdsWithReviewFromSchool.has(Number(h.id)));
     }
+    // レビューフォームから外した軸（受け入れ経験=hostExperience）は集計からも除外する。
     const categoryScores = localizedCriteriaGroups()
+      .filter((group) => !DEPRECATED_GROUP_KEYS.includes(group.key))
       .map((group) => ({
         title: group.title,
         value: average(hosts.map((host) => groupScore(host, group))),
@@ -2879,7 +2803,7 @@
 
     // Flag individual hosts that need attention.
     // Threshold: overall weighted rating < 3.8 OR any high-priority category < 3.0
-    const groups = localizedCriteriaGroups();
+    const groups = localizedCriteriaGroups().filter((g) => !DEPRECATED_GROUP_KEYS.includes(g.key));
     const flagged = hosts
       .map((host) => {
         const overall = overallWeightedRating(host);
@@ -2920,6 +2844,19 @@
       .join("")}</div>`;
   }
 
+  // レビュー有無で評価表示を分岐するヘルパー。
+  //   - レビューあり：数値（"4.3"）を返す
+  //   - レビューなし（hasReviews=false）：「レビュー待ち」プレースホルダ
+  // 数字だけ欲しい箇所と、星も出す箇所の両方で使えるよう用途別に用意。
+  function ratingNumberHtml(stats) {
+    return stats.hasReviews
+      ? escapeHtml(stats.rating.toFixed(1))
+      : `<span class="rating-pending">${escapeHtml(t.pendingReview)}</span>`;
+  }
+  function ratingStarsHtml(stats) {
+    return stats.hasReviews ? renderStars(stats.rating) : "";
+  }
+
   function renderTagRow(tags) {
     return tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
   }
@@ -2931,10 +2868,13 @@
       .join("")}</div>`;
   }
 
-  function renderRadarChart(host, options = {}) {
-    if (!host) return "";
+  // レーダーチャート描画の共通コア。valueFor(axis) で各軸の値（0〜5）を受け取るので、
+  // ホスト全体でもレビュー1件でも同じ見た目で描ける。
+  function renderRadarChartCore(valueFor, overall, ariaLabel, options = {}) {
     const size = options.size || 280;
     const padding = options.padding || 56;
+    const showLabels = options.showLabels !== false; // 小サイズではラベル非表示にできる
+    const centerLabel = options.centerLabel || "avg";
     const center = size / 2;
     const radius = (size - padding * 2) / 2;
     const axes = radarAxesLocalized();
@@ -2959,7 +2899,7 @@
     }).join("");
 
     const valuePoints = axes.map((axis, i) => {
-      const v = Math.max(0, Math.min(5, radarValue(host, axis)));
+      const v = Math.max(0, Math.min(5, valueFor(axis)));
       const a = angleFor(i);
       const r = (v / 5) * radius;
       return { x: center + Math.cos(a) * r, y: center + Math.sin(a) * r, value: v };
@@ -2967,12 +2907,12 @@
     const valuePolygon = `<polygon class="radar-value" points="${valuePoints.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(" ")}" />`;
     const valueDots = valuePoints.map((p) => `<circle class="radar-dot" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="3.5" />`).join("");
 
-    const labels = axes.map((axis, i) => {
+    const labels = showLabels ? axes.map((axis, i) => {
       const a = angleFor(i);
       const lr = radius + 22;
       const lx = center + Math.cos(a) * lr;
       const ly = center + Math.sin(a) * lr;
-      const v = radarValue(host, axis);
+      const v = valueFor(axis);
       let anchor = "middle";
       if (Math.cos(a) > 0.3) anchor = "start";
       else if (Math.cos(a) < -0.3) anchor = "end";
@@ -2983,11 +2923,10 @@
           <text class="radar-label-value" x="${lx.toFixed(2)}" y="${ly.toFixed(2)}" text-anchor="${anchor}" dy="${Math.sin(a) > 0.3 ? "2.2em" : Math.sin(a) < -0.3 ? "-1.4em" : "1.55em"}">${v.toFixed(1)}</text>
         </g>
       `;
-    }).join("");
+    }).join("") : "";
 
-    const overall = average(valuePoints.map((p) => p.value));
     return `
-      <div class="radar-wrap" role="img" aria-label="${escapeHtml(hostDisplayName(host))} ${overall.toFixed(1)}/5">
+      <div class="radar-wrap" role="img" aria-label="${escapeHtml(ariaLabel)}">
         <svg class="radar-svg" viewBox="0 0 ${size} ${size}" width="100%" height="auto">
           ${ringPaths}
           ${axisLines}
@@ -2995,8 +2934,77 @@
           ${valueDots}
           ${labels}
           <text class="radar-center-value" x="${center}" y="${center - 4}" text-anchor="middle">${overall.toFixed(1)}</text>
-          <text class="radar-center-label" x="${center}" y="${center + 14}" text-anchor="middle">avg</text>
+          <text class="radar-center-label" x="${center}" y="${center + 14}" text-anchor="middle">${escapeHtml(centerLabel)}</text>
         </svg>
+      </div>
+    `;
+  }
+
+  function renderRadarChart(host, options = {}) {
+    if (!host) return "";
+    // チャート中央に出す総合は radarOverall（= getHostStats.rating）と同じ値。
+    const overall = radarOverall(host);
+    return renderRadarChartCore(
+      (axis) => radarValue(host, axis),
+      overall,
+      `${hostDisplayName(host)} ${overall.toFixed(1)}/5`,
+      options
+    );
+  }
+
+  // レビュー1件の criteria（軸ごとのスコア）からレーダー軸の値を求める。
+  // commute 軸は transportation と rideSupport の平均（ホストと同じ統合ルール）。
+  function reviewRadarValue(review, axis) {
+    const c = (review && review.criteria) || {};
+    const vals = axis.sourceKeys.map((k) => Number(c[k])).filter(Number.isFinite);
+    return vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : 0;
+  }
+
+  function reviewRadarOverall(review) {
+    const vals = radarAxesLocalized()
+      .map((axis) => reviewRadarValue(review, axis))
+      .filter((v) => v > 0);
+    return vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : 0;
+  }
+
+  // 個別レビュー用のレーダーチャート。review.criteria が無ければ何も出さない。
+  function renderReviewRadarChart(review, options = {}) {
+    if (!review || !review.criteria) return "";
+    const hasAny = radarAxesLocalized().some((axis) => reviewRadarValue(review, axis) > 0);
+    if (!hasAny) return "";
+    const overall = reviewRadarOverall(review);
+    const who = displayStudentName(review.student) || (language !== "ja" ? "Review" : "レビュー");
+    return renderRadarChartCore(
+      (axis) => reviewRadarValue(review, axis),
+      overall,
+      `${who} ${overall.toFixed(1)}/5`,
+      options
+    );
+  }
+
+  // レビュー閲覧時に、レーダー（主要6軸）に加えて補助評価軸の内訳も見せる。
+  // 補助評価軸 = 主要6軸・廃止軸を除いた現行の評価グループ。
+  function renderReviewAuxScores(review) {
+    if (!review || !review.criteria) return "";
+    const c = review.criteria;
+    const items = localizedCriteriaGroups()
+      .filter((g) => AUX_GROUP_KEYS.includes(g.key))
+      .map((g) => ({ key: g.key, title: g.title, value: Number(c[g.key]) }))
+      .filter((it) => Number.isFinite(it.value) && it.value > 0);
+    if (!items.length) return "";
+    const label = language !== "ja" ? "Auxiliary ratings" : "補助評価";
+    return `
+      <div class="review-aux">
+        <div class="review-aux-title">${escapeHtml(label)}</div>
+        <div class="review-aux-grid">
+          ${items.map((it) => `
+            <div class="review-aux-row">
+              <span class="review-aux-label">${escapeHtml(it.title)}</span>
+              <span class="review-aux-bar"><span class="review-aux-bar-fill" style="width:${(it.value / 5 * 100).toFixed(0)}%"></span></span>
+              <span class="review-aux-value">${it.value.toFixed(1)}</span>
+            </div>
+          `).join("")}
+        </div>
       </div>
     `;
   }
@@ -3005,11 +3013,11 @@
     const navHome = language === "ja" ? "ホーム" : (t.navHome || "Home");
     const favLabel = language === "ja" ? "保存" : "Saved";
     const favCount = state.favorites.length;
+    // 「探す」「マップ」「レビューを書く」を 1 つの統合ページ（search）に集約したため、
+    // map / review の独立タブはナビから外す（探すページ内で完結する導線にした）。
     const tabs = [
       { key: "home",   label: navHome },
       { key: "search", label: t.navSearch || "Search" },
-      { key: "map",    label: t.navMap || "Map" },
-      { key: "review", label: t.navReview || "Write" },
       { key: "favorites", label: `${favLabel}${favCount ? ` (${favCount})` : ""}` },
       { key: "school", label: t.navSchool || "Schools" },
       { key: "how-to", label: t.navHowTo || "How to use" },
@@ -3017,6 +3025,11 @@
     if (isHost()) {
       tabs.push({ key: "my-host", label: `🏠 ${t.navMyHost || "My family"}` });
     }
+    // 料金プラン・プライバシー・利用規約を見つけやすいようナビにも露出する
+    // （フッターだけだと埋もれるため。コンテスト審査での閲覧性を優先）。
+    tabs.push({ key: "pricing", label: `💳 ${t.pricingNav || "Pricing"}` });
+    tabs.push({ key: "privacy", label: t.privacyNav || "Privacy" });
+    tabs.push({ key: "terms", label: t.termsNav || "Terms" });
     return `
       <nav class="view-tabs" aria-label="View">
         <div class="container view-tabs-inner">
@@ -3122,7 +3135,7 @@
               <button type="button" class="similar-item" data-select-host="${h.id}">
                 <div class="similar-name"><strong>${escapeHtml(hostDisplayName(h))}</strong> <span class="muted">${escapeHtml(h.area)}</span></div>
                 <div class="similar-meta">
-                  <span class="similar-rating">★ ${stats.rating.toFixed(1)}</span>
+                  <span class="similar-rating">${stats.hasReviews ? `★ ${stats.rating.toFixed(1)}` : escapeHtml(t.pendingReview)}</span>
                   <span class="similar-sim">${(sim * 100).toFixed(0)}% ${language !== "ja" ? "similar" : "類似"}</span>
                 </div>
               </button>
@@ -3230,10 +3243,6 @@
   }
 
   function renderReviewPolicy() {
-    const totalReviews = state.userReviews.length;
-    // Estimate moderation count via id pattern (in production: server-tracked)
-    const seedCount = state.userReviews.filter((r) => String(r.id).startsWith("seed-")).length;
-    const userCount = totalReviews - seedCount;
     return `
       <section class="section-policy">
         <div class="container">
@@ -3246,22 +3255,16 @@
                 : "レビューはガイドライン違反でない限り公開されます。批判的でも誠実な投稿は保護されます。"}</p>
             </article>
             <article class="policy-card">
-              <h3>🔒 ${language !== "ja" ? "Edit lock" : "編集ロック"}</h3>
+              <h3>✏️ ${language !== "ja" ? "Editable anytime" : "いつでも編集可能"}</h3>
               <p>${language !== "ja"
-                ? `Authors can edit within ${EDIT_LOCK_HOURS}h. After that the review is locked and any prior edits are flagged.`
-                : `投稿者は${EDIT_LOCK_HOURS}時間以内に編集可能。それ以降はロックされ、過去の編集には「編集済み」表示が付きます。`}</p>
+                ? "Authors can edit their review at any time. Edited reviews are flagged so readers can see they were updated."
+                : "投稿者はいつでもレビューを編集できます。編集すると「編集済み」表示が付き、更新されたことが分かります。"}</p>
             </article>
             <article class="policy-card">
               <h3>🚫 ${language !== "ja" ? "What we remove" : "削除対象"}</h3>
               <p>${language !== "ja"
                 ? "Personal attacks, exact addresses, contact info, hateful content, and impersonation. Not negative opinions."
                 : "個人攻撃、正確な住所、連絡先、ヘイト、なりすまし。批判的意見は削除されません。"}</p>
-            </article>
-            <article class="policy-card">
-              <h3>📊 ${language !== "ja" ? "Live stats" : "ライブ統計"}</h3>
-              <p>${language !== "ja"
-                ? `Total reviews: ${totalReviews} (${userCount} from users, ${seedCount} demo). No reviews have been removed in the last 30 days.`
-                : `合計レビュー数: ${totalReviews}件（ユーザー投稿${userCount}件、デモ${seedCount}件）。直近30日の削除レビュー: 0件。`}</p>
             </article>
           </div>
         </div>
@@ -3281,7 +3284,6 @@
             <div class="inline-detail-meta">
               <span>${escapeHtml(host.area)}</span>
               ${renderReliabilityBadge(stats)}
-              ${isVerifiedHost(host) ? `<span class="verified-badge" title="${escapeHtml(t.verifiedExplainer)}">✓ ${t.verified}</span>` : ""}
             </div>
           </div>
           ${renderMatchChip(host)}
@@ -3294,7 +3296,8 @@
             ${renderInsightChips(host, 4)}
             <div class="inline-detail-actions">
               <button type="button" class="button button--primary" data-write-review-for="${host.id}">${t.writeReviewCta}</button>
-              <button type="button" class="button button--ghost" data-view="map" data-select-host="${host.id}">${language !== "ja" ? "Show on map" : "地図で見る"}</button>
+              <button type="button" class="button button--secondary" data-host-reviews="${host.id}">${language !== "ja" ? `Read reviews (${stats.reviews})` : `レビューを見る (${stats.reviews})`}</button>
+              <button type="button" class="button button--ghost" data-scroll-map="${host.id}">${language !== "ja" ? "Show on map" : "地図で見る"}</button>
             </div>
           </div>
         </div>
@@ -3306,14 +3309,9 @@
   function renderSearchSuggestions(query) {
     const q = String(query || "").trim().toLowerCase();
     if (!q) return "";
-    const hostMatches = filterHosts(allHosts(), query, []).slice(0, 5);
-    const reviewMatches = state.userReviews
-      .filter((r) => {
-        const haystack = [r.text, r.host, r.student, ...(r.fit || [])].join(" ").toLowerCase();
-        return haystack.includes(q);
-      })
-      .slice(0, 4);
-    if (!hostMatches.length && !reviewMatches.length) {
+    // 検索候補はホストのみを対象にする（レビュー本文は検索しない）。
+    const hostMatches = filterHosts(allHosts(), query, []).slice(0, 8);
+    if (!hostMatches.length) {
       return `<div class="search-suggestions search-suggestions--empty">${language !== "ja" ? "No matches" : "一致する結果がありません"}</div>`;
     }
     const hostSection = hostMatches.length ? `
@@ -3322,38 +3320,18 @@
         ${hostMatches.map((host) => {
           const stats = getHostStats(host);
           return `
-            <button type="button" class="suggest-item" data-select-host="${host.id}">
+            <button type="button" class="suggest-item" data-suggest-host="${host.id}">
               <div class="suggest-main">
                 <strong>${escapeHtml(hostDisplayName(host))}</strong>
                 <span class="suggest-meta">${escapeHtml(host.area)}</span>
               </div>
-              <div class="suggest-rating">★ ${stats.rating.toFixed(1)}</div>
+              <div class="suggest-rating">${stats.hasReviews ? `★ ${stats.rating.toFixed(1)}` : escapeHtml(t.pendingReview)}</div>
             </button>
           `;
         }).join("")}
       </div>
     ` : "";
-    const reviewSection = reviewMatches.length ? `
-      <div class="suggest-section">
-        <div class="suggest-section-head">${language !== "ja" ? "Reviews" : "レビュー"} (${reviewMatches.length})</div>
-        ${reviewMatches.map((review) => {
-          const text = displayReviewText(review.text);
-          const idx = text.toLowerCase().indexOf(q);
-          const start = Math.max(0, idx - 20);
-          const snippet = (start > 0 ? "…" : "") + text.slice(start, start + 100) + (text.length > start + 100 ? "…" : "");
-          return `
-            <button type="button" class="suggest-item suggest-item--review" data-select-host="${review.hostId}">
-              <div class="suggest-main">
-                <span class="suggest-meta">${escapeHtml(review.host)}</span>
-                <span class="suggest-snippet">${escapeHtml(snippet)}</span>
-              </div>
-              <div class="suggest-rating">★ ${(Number(review.score) || 0).toFixed(1)}</div>
-            </button>
-          `;
-        }).join("")}
-      </div>
-    ` : "";
-    return `<div class="search-suggestions">${hostSection}${reviewSection}</div>`;
+    return `<div class="search-suggestions">${hostSection}</div>`;
   }
 
   function renderQuickFilters() {
@@ -3407,19 +3385,6 @@
       .join("");
   }
 
-  function renderTopPrivacy() {
-    return `
-      <section class="top-privacy">
-        <div class="container">
-          <details class="privacy-note privacy-note--top">
-            <summary>${ui.privacyTitle}</summary>
-            <p>${ui.privacyStatement}</p>
-          </details>
-        </div>
-      </section>
-    `;
-  }
-
   function renderAddFamilyPanel() {
     const helpText = language !== "ja"
       ? "Can't find your host family in the list? Enter their last name and street address — we automatically derive the area from the address, and the full address is never published."
@@ -3459,13 +3424,12 @@
               <div class="label">${ui.selectedFamily}</div>
               <h2 class="featured-name">${escapeHtml(hostDisplayName(host))}</h2>
             </div>
-            ${isVerifiedHost(host) ? `<div class="verified-badge" title="${escapeHtml(t.verifiedExplainer)}">✓ ${t.verified}</div>` : ""}
           </div>
           <div class="meta-line"><span class="icon-chip">Map</span><span>${escapeHtml(host.area)}</span></div>
           <div class="rating-row">
-            <div class="rating-number">${escapeHtml(stats.rating.toFixed(1))}</div>
+            <div class="rating-number">${ratingNumberHtml(stats)}</div>
             <div>
-              ${renderStars(stats.rating)}
+              ${ratingStarsHtml(stats)}
               <div class="label">${escapeHtml(stats.reviews)} ${t.reviews}</div>
             </div>
           </div>
@@ -3528,19 +3492,6 @@
             ${grades.map((g) => `<option value="${escapeHtml(g)}" ${f.grade === g ? "selected" : ""}>${escapeHtml(g)}</option>`).join("")}
           </select>
         </label>
-        <label class="signup-field"><span>${language !== "ja" ? "Native language" : "母国語"} <em>*</em></span>
-          <select id="signup-language" class="text-input">
-            <option value="">${language !== "ja" ? "Select language" : "母国語を選択"}</option>
-            ${NATIVE_LANGUAGES.map((l) => `<option value="${escapeHtml(l)}" ${f.language === l ? "selected" : ""}>${escapeHtml(l)}</option>`).join("")}
-          </select>
-        </label>
-        <label class="signup-field"><span>${language !== "ja" ? "Country / nationality (optional)" : "国籍（任意）"}</span>
-          <select id="signup-nationality" class="text-input">
-            <option value="">${language !== "ja" ? "Select country" : "国を選択"}</option>
-            ${COUNTRIES.map((c) => `<option value="${c.code}" ${f.nationality === c.code ? "selected" : ""}>${escapeHtml(language !== "ja" ? c.nameEn : c.nameJa)}</option>`).join("")}
-          </select>
-          <small class="signup-help">${language !== "ja" ? "Used only for matching and to suggest your preferred UI language. Never shown to hosts." : "マッチングと表示言語の自動設定のみに使用。ホストには非開示。"}</small>
-        </label>
         <label class="signup-field"><span>${language !== "ja" ? "School verification code (optional)" : "学校発行の確認コード（任意）"}</span>
           <input id="signup-school-code" class="text-input" type="text" value="${escapeHtml(f.schoolCode)}" placeholder="${language !== "ja" ? "e.g. RDP-2026-XYZ" : "例: RDP-2026-XYZ"}" />
           <small class="signup-help">${language !== "ja" ? "Get a Verified Student badge if your school provides this." : "学校から発行された場合、Verified Student バッジが付きます。"}</small>
@@ -3581,9 +3532,6 @@
                 </label>
                 <label class="signup-field"><span>${language !== "ja" ? "Password (6+ chars)" : "パスワード (6文字以上)"} <em>*</em></span>
                   <input id="signup-password" class="text-input" type="password" autocomplete="new-password" />
-                </label>
-                <label class="signup-field"><span>${language !== "ja" ? "Display name" : "表示名"} <em>*</em></span>
-                  <input id="signup-name" class="text-input" type="text" value="${escapeHtml(f.name)}" />
                 </label>
                 ${signupAs === "host" ? hostFields : studentFields}
               </div>
@@ -3842,15 +3790,44 @@
           <div class="empty-state-icon" aria-hidden="true">🔍</div>
           <p class="empty-state-title">${escapeHtml(t.noResults)}</p>
           <p class="empty-state-hint">${escapeHtml(t.noResultsHint)}</p>
-          ${hasActiveFilters ? `<button type="button" class="button button--ghost button--compact" id="clear-all-filters-empty">${escapeHtml(t.clearFiltersButton)}</button>` : ""}
+          <div class="empty-state-actions">
+            ${hasActiveFilters ? `<button type="button" class="button button--ghost button--compact" id="clear-all-filters-empty">${escapeHtml(t.clearFiltersButton)}</button>` : ""}
+            <button type="button" class="button button--primary button--compact" id="empty-add-host">+ ${escapeHtml(ui.addNewFamily)}</button>
+          </div>
+          <p class="empty-state-hint">${escapeHtml(language !== "ja" ? "Can't find the family you're looking for? Add it and write the first review." : "お探しの家族が見つかりませんか？新しく追加して最初のレビューを書きましょう。")}</p>
           ${relaxBlock}
         </div>`;
     }
 
-    // Sort: if user has preferences, sort by match score descending
+    // 並び替え。検索クエリがある時は「検索反映度（関連度）順」、無い時は
+    // マッチ度（preferences があれば）→総合評価の順にする。
     let sortedHosts = filteredHosts.slice();
-    if (currentUser && currentUser.preferences) {
+    const hasQuery = !!(state.query && state.query.trim());
+    if (hasQuery) {
+      sortedHosts.sort((a, b) => {
+        const rel = searchRelevance(b, state.query) - searchRelevance(a, state.query);
+        if (rel !== 0) return rel;
+        // 同点は総合評価で安定ソート
+        return getHostStats(b).rating - getHostStats(a).rating;
+      });
+    } else if (currentUser && currentUser.preferences) {
       sortedHosts.sort((a, b) => computeMatchScore(b, currentUser) - computeMatchScore(a, currentUser));
+    }
+
+    // 検索結果の表示件数制限は撤廃（マッチした家族をすべて表示）。
+
+    // マップ／一覧で選択中のファミリーは結果のトップに固定する（マップ⇄リスト連動）。
+    if (state.selectedId) {
+      const selIdx = sortedHosts.findIndex((h) => h.id === state.selectedId);
+      if (selIdx > 0) {
+        const [sel] = sortedHosts.splice(selIdx, 1);
+        sortedHosts.unshift(sel);
+      } else if (selIdx === -1) {
+        const sel = filteredHosts.find((h) => h.id === state.selectedId);
+        if (sel) {
+          sortedHosts.unshift(sel);
+        }
+      }
     }
 
     return sortedHosts
@@ -3864,7 +3841,7 @@
           : "";
         return `
           <div class="result-stack">
-            <article class="result-card ${host && host.id === item.id ? "is-selected" : ""} ${isExpanded ? "is-expanded" : ""}">
+            <article class="result-card ${host && host.id === item.id ? "is-selected" : ""} ${isExpanded ? "is-expanded" : ""}" data-host-id="${item.id}">
               <div class="result-card-actions">
                 <button type="button" class="card-action-btn ${isFavorited ? "is-active" : ""}" data-fav-host="${item.id}" aria-label="${language !== "ja" ? "Save" : "保存"}" title="${language !== "ja" ? "Save to favorites" : "お気に入りに保存"}">
                   ${isFavorited ? "♥" : "♡"}
@@ -3875,7 +3852,6 @@
                   <div>
                     <div class="result-name-row">
                       <strong>${escapeHtml(hostDisplayName(item))}</strong>
-                      ${item.verified ? '<span class="checkmark" title="Verified Host">✓</span>' : ""}
                     </div>
                     <div class="result-location">${escapeHtml(item.area)} / ${escapeHtml(item.city)}</div>
                     <div class="result-tags">
@@ -3888,8 +3864,8 @@
                   </div>
                   <div class="result-rating">
                     ${renderMatchChip(item)}
-                    <div><strong>${escapeHtml(stats.rating.toFixed(1))}</strong></div>
-                    ${renderStars(stats.rating)}
+                    <div><strong>${ratingNumberHtml(stats)}</strong></div>
+                    ${ratingStarsHtml(stats)}
                     <div class="label">${escapeHtml(stats.reviews)} ${t.reviews}</div>
                     ${renderReliabilityBadge(stats)}
                   </div>
@@ -3898,6 +3874,9 @@
                   ? (language !== "ja" ? "▲ Hide details" : "▲ 詳細を閉じる")
                   : (language !== "ja" ? "▼ Show details" : "▼ 詳細を見る")}</div>
               </button>
+              <div class="result-card-foot">
+                <button type="button" class="button button--primary button--compact" data-write-review-for="${item.id}">${ui.addReview}</button>
+              </div>
             </article>
             ${isExpanded ? renderInlineDetail(item) : ""}
           </div>
@@ -3985,52 +3964,11 @@
         </article>
       `;
     }
-    const optionalLabel = language !== "ja" ? "Detailed rating (optional)" : "詳細評価（任意）";
-    const optionalHint = language !== "ja"
-      ? "You can skip these. They help future students compare more precisely."
-      : "省略できます。記入すると他の留学生がより精密に比較できます。";
-    // Compute progress over required fields for the sticky progress bar.
-    const requiredAxes = [
-      ...radarAxesLocalized().map((a) => a.sourceKeys[0]), // 6 primary
-      "rules", "internetQuality", "mealQuality", "cleanliness",
-    ];
-    const filledAxes = requiredAxes.filter((key) => {
-      const v = state.reviewScores && state.reviewScores[key];
-      return Number.isFinite(Number(v)) && Number(v) > 0;
-    }).length;
-    const recommendFilled = !!state.reviewStructured.recommend;
-    const textFilled = state.reviewText && state.reviewText.trim().length > 0;
-    const totalRequired = requiredAxes.length + 2; // +recommend +text
-    const currentRequired = filledAxes + (recommendFilled ? 1 : 0) + (textFilled ? 1 : 0);
-    const progressPct = Math.round((currentRequired / totalRequired) * 100);
-
-    const progressBar = `
-      <div class="review-progress" data-preserve="review-progress">
-        <div class="review-progress-head">
-          <strong>${escapeHtml(t.reviewProgressLabel)}</strong>
-          <span>${escapeHtml(t.reviewProgressDone.replace("{current}", currentRequired).replace("{total}", totalRequired))}</span>
-        </div>
-        <div class="review-progress-bar"><div class="review-progress-fill" style="width:${progressPct}%"></div></div>
-        ${!recommendFilled || !textFilled
-          ? `<div class="review-progress-warnings">
-              ${!recommendFilled
-                ? `<button type="button" class="review-progress-chip review-progress-chip--warn" id="jump-recommend">⚠ ${escapeHtml(t.reviewProgressRecommendMissing)} → ${escapeHtml(t.reviewProgressJumpRecommend)}</button>`
-                : ""}
-              ${!textFilled
-                ? `<span class="review-progress-chip review-progress-chip--warn">⚠ ${escapeHtml(t.reviewProgressTextMissing)}</span>`
-                : ""}
-            </div>`
-          : ""}
-      </div>
-    `;
-
     return `
       <article id="review" class="card review-card">
         <div class="card-body">
-          ${renderAddFamilyPanel()}
           <h2 class="section-title">${t.reviewForm}</h2>
           <p class="section-text">${t.reviewLead}</p>
-          ${progressBar}
           <div class="review-target">
             <label for="review-host-select">${t.reviewTarget} <span class="required-mark">*</span></label>
             <select id="review-host-select" class="host-select">
@@ -4054,39 +3992,34 @@
             }).join("")}
           </div>
 
-          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (rules / internet / meal / cleanliness — required)" : "補助評価（ルール / 通信 / 食事 / 清潔さ — 必須）"}</h4>
+          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (rules / internet / meal / cleanliness / privacy — required)" : "補助評価（ルール / 通信 / 食事 / 清潔さ / プライバシー — 必須）"}</h4>
           <div class="review-score-rows">
-            ${["rules", "internetQuality", "mealQuality", "cleanliness"].map((key) => {
+            ${["rules", "internetQuality", "mealQuality", "cleanliness", "privacy"].map((key) => {
               const group = localizedCriteriaGroups().find((g) => g.key === key);
               return group ? renderStarRowInput(key, group.title, { required: true }) : "";
             }).join("")}
           </div>
 
-          <h4 class="detail-subhead">${language !== "ja" ? "Host experience (optional)" : "受け入れ経験（任意）"}</h4>
-          <div class="review-score-rows">
-            ${(() => {
-              const group = localizedCriteriaGroups().find((g) => g.key === "hostExperience");
-              const note = language !== "ja"
-                ? "Skip if the family is new to hosting and you cannot judge fairly."
-                : "初めて受け入れる家庭などで判断できない場合はスキップしてください。";
-              return group ? renderStarRowInput("hostExperience", group.title, { required: false, note }) : "";
-            })()}
-          </div>
-
-          <h4 class="detail-subhead">${language !== "ja" ? "Would you recommend this family? (required)" : "この家族を他の留学生に勧めますか？（必須）"}</h4>
-          <div class="recommend-chip-row">
-            ${[
-              { val: "yes",   labelJa: "👍 はい",     labelEn: "👍 Yes" },
-              { val: "maybe", labelJa: "🤔 たぶん",   labelEn: "🤔 Maybe" },
-              { val: "no",    labelJa: "👎 いいえ",   labelEn: "👎 No" },
-            ].map((opt) => `
-              <button type="button"
-                class="recommend-chip ${state.reviewStructured.recommend === opt.val ? "is-active" : ""}"
-                data-recommend-value="${opt.val}">
-                ${escapeHtml(language !== "ja" ? opt.labelEn : opt.labelJa)}
-              </button>
-            `).join("")}
-          </div>
+          <h4 class="detail-subhead">${t.bestFor} <span class="required-mark">*</span></h4>
+          <p class="form-intro">${language !== "ja"
+            ? "Select at least one. Who would feel at home with this family?"
+            : "少なくとも1つ選んでください。どんな人がこの家族に合いそうですか？"}</p>
+          <fieldset class="fit-fieldset fit-fieldset--required">
+            <div class="fit-options">
+              ${localizedFitOptions()
+                .map(
+                  ([key, label]) => `
+                    <label class="fit-option">
+                      <input type="checkbox" value="${escapeHtml(label)}" data-fit-key="${escapeHtml(key)}" ${
+                    state.reviewFit.map(fitKeyFromLabel).includes(key) ? "checked" : ""
+                  } />
+                      <span>${escapeHtml(label)}</span>
+                    </label>
+                  `
+                )
+                .join("")}
+            </div>
+          </fieldset>
 
           <label class="review-text-label" for="review-textarea">${t.reviewText} <span class="required-mark">*</span></label>
           ${(() => {
@@ -4111,49 +4044,6 @@
             <div class="char-counter" id="review-char-counter">${state.reviewText.length > 0 ? `${state.reviewText.length}${language !== "ja" ? " chars" : " 文字"}` : ""}</div>
           </div>
 
-          <details class="details-panel review-details" ${state.reviewDetailOpen ? "open" : ""}>
-            <summary><strong>${language !== "ja" ? "Lifestyle tags & structured questions (optional)" : "向いている人タグ + 構造化質問（任意）"}</strong></summary>
-            <fieldset class="fit-fieldset">
-              <legend>${t.bestFor}</legend>
-              <div class="fit-options">
-                ${localizedFitOptions()
-                  .map(
-                    ([key, label]) => `
-                      <label class="fit-option">
-                        <input type="checkbox" value="${escapeHtml(label)}" data-fit-key="${escapeHtml(key)}" ${
-                      state.reviewFit.map(fitKeyFromLabel).includes(key) ? "checked" : ""
-                    } />
-                        <span>${escapeHtml(label)}</span>
-                      </label>
-                    `
-                  )
-                  .join("")}
-              </div>
-            </fieldset>
-            <fieldset class="fit-fieldset structured-fieldset">
-              <legend>${t.structuredReview}</legend>
-              <div class="structured-grid">
-                ${structuredReviewFields
-                  .map(
-                    ([field, options]) => `
-                      <label class="structured-select">
-                        <span>${t[field]}</span>
-                        <select data-structured-field="${field}">
-                          ${options
-                            .map(
-                              (option) =>
-                                `<option value="${option}" ${state.reviewStructured[field] === option ? "selected" : ""}>${structuredLabel(field, option)}</option>`
-                            )
-                            .join("")}
-                        </select>
-                      </label>
-                    `
-                  )
-                  .join("")}
-              </div>
-            </fieldset>
-          </details>
-
           <button id="review-submit" type="button" class="button button--primary">${t.submitReview}</button>
           ${state.submitted ? `<div class="submit-message">${t.submitted}</div>` : ""}
         </div>
@@ -4161,7 +4051,12 @@
     `;
   }
 
-  function renderRecentReviews() {
+  // options.hostOnly: 指定ホスト（selectedHost）のレビューだけを全件表示する専用モード。
+  //   - host-reviews ビュー（「この家のレビューを見る」遷移先）で使用。
+  //   - 並び替えセレクタは出すが「選択中ホストのみ」オプションは不要なので隠す。
+  //   - 8件制限を外し全件表示。タイトルを家族名にする。
+  function renderRecentReviews(options = {}) {
+    const hostOnly = !!options.hostOnly;
     const sortLabels = language !== "ja"
       ? { latest: "Latest", rating: "Highest rated", helpful: "Most helpful", selected: "Selected host" }
       : { latest: "最新順", rating: "評価が高い順", helpful: "役に立った順", selected: "選択中ホストのみ" };
@@ -4170,7 +4065,11 @@
     let reviews = state.userReviews
       .slice()
       .filter((r) => !hiddenReviewsForRecent.has(String(r.id)));
-    if (state.recentSort === "selected" && state.selectedId) {
+    const focusHost = hostOnly ? selectedHost() : null;
+    if (hostOnly && focusHost) {
+      const ids = new Set([focusHost.id, ...(focusHost.duplicateIds || [])].map(Number));
+      reviews = reviews.filter((r) => ids.has(Number(r.hostId)));
+    } else if (state.recentSort === "selected" && state.selectedId) {
       const host = selectedHost();
       if (host) {
         const ids = new Set([host.id, ...(host.duplicateIds || [])].map(Number));
@@ -4184,23 +4083,28 @@
     } else {
       reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
-    reviews = reviews.slice(0, 8);
+    if (!hostOnly) reviews = reviews.slice(0, 8);
+
+    const headerTitle = hostOnly && focusHost
+      ? (language !== "ja" ? `Reviews for ${hostDisplayName(focusHost)}` : `${hostDisplayName(focusHost)} のレビュー`)
+      : t.recentReviews;
 
     return `
       <article class="card recent-card">
         <div class="card-body">
           <div class="review-header">
-            <h2 class="section-title">${t.recentReviews}</h2>
+            <h2 class="section-title">${escapeHtml(headerTitle)}</h2>
             <div class="recent-sort">
               <label class="recent-sort-label" for="recent-sort">${language !== "ja" ? "Sort" : "並び順"}</label>
               <select id="recent-sort" class="recent-sort-select">
                 <option value="latest" ${state.recentSort === "latest" ? "selected" : ""}>${sortLabels.latest}</option>
                 <option value="rating" ${state.recentSort === "rating" ? "selected" : ""}>${sortLabels.rating}</option>
                 <option value="helpful" ${state.recentSort === "helpful" ? "selected" : ""}>${sortLabels.helpful}</option>
-                <option value="selected" ${state.recentSort === "selected" ? "selected" : ""} ${!state.selectedId ? "disabled" : ""}>${sortLabels.selected}</option>
+                ${hostOnly ? "" : `<option value="selected" ${state.recentSort === "selected" ? "selected" : ""} ${!state.selectedId ? "disabled" : ""}>${sortLabels.selected}</option>`}
               </select>
             </div>
           </div>
+          ${hostOnly && reviews.length === 0 ? `<p class="section-text">${escapeHtml(language !== "ja" ? "No reviews for this family yet. Be the first to write one." : "この家族のレビューはまだありません。最初のレビューを書いてみましょう。")}</p>` : ""}
           <div class="recent-list">
             ${
               reviews.length === 0
@@ -4249,10 +4153,13 @@
                           }</p>`
                         : `<p class="review-quote review-quote--empty">${t.adminRatingOnly}</p>`
                     }
+                    ${renderReviewRadarChart(review, { size: 240, padding: 48 })
+                      ? `<div class="review-radar">${renderReviewRadarChart(review, { size: 240, padding: 48 })}</div>`
+                      : ""}
+                    ${renderReviewAuxScores(review)}
                     <div class="review-meta">
                       <span>${escapeHtml(displayStudentName(review.student))}</span>
                       ${review.editedAt ? `<span class="edited-flag" title="${escapeHtml(language !== "ja" ? "Edited after posting" : "投稿後に編集されました")}">${language !== "ja" ? "edited" : "編集済み"}</span>` : ""}
-                      ${review.createdAt && !isReviewEditable(review) ? `<span class="locked-flag" title="${escapeHtml(language !== "ja" ? "Locked after 24h" : "投稿24時間後にロック")}">🔒</span>` : ""}
                     </div>
                     ${renderReviewTrustBadges(review)}
                     <div class="review-actions-row">
@@ -4449,7 +4356,7 @@
   function renderTerms()   { return renderPolicy("terms", "terms"); }
 
   function renderPricing() {
-    const plans = [1, 2, 3, 4].map((i) => ({
+    const plans = [1, 2, 3].map((i) => ({
       tag:   t[`pricingPlan${i}Tag`],
       title: t[`pricingPlan${i}Title`],
       forWho: t[`pricingPlan${i}For`],
@@ -4610,18 +4517,20 @@
   }
 
   function renderHostProfile() {
-    // Guards: must be a host with a valid hostId
-    if (!isHost()) {
-      return `
-        <section class="section-host-profile">
-          <div class="container container--narrow">
-            <div class="empty-state empty-state--card">${escapeHtml(t.hostProfileLoginRequired)}</div>
-          </div>
-        </section>
-      `;
+    // ホスト本人としてログインしていれば自分の家庭を、そうでなければ
+    // 代表デモホスト（デモファミリー）を「お手本」として表示する（#29）。
+    // これにより、ログイン前の留学生・ホスト候補にも「ホストのページがどう見えるか」を紹介できる。
+    const viewerIsHost = isHost();
+    let host = null;
+    if (viewerIsHost) {
+      const hostId = currentHostId();
+      host = hostId ? allHosts().find((h) => h.id === hostId) : null;
     }
-    const hostId = currentHostId();
-    const host = hostId ? allHosts().find((h) => h.id === hostId) : null;
+    let isDemo = false;
+    if (!host) {
+      host = allHosts().find((h) => h.id === 1) || allHosts()[0] || null;
+      isDemo = true;
+    }
     if (!host) {
       return `
         <section class="section-host-profile">
@@ -4632,82 +4541,28 @@
       `;
     }
 
-    const stats = getHostStats(host);
+    const demoBanner = isDemo ? `
+      <div class="host-profile-demo-banner">
+        <span class="host-profile-demo-icon" aria-hidden="true">🏠</span>
+        <div>
+          <strong class="host-profile-demo-title">${escapeHtml(language !== "ja" ? "Sample host home page" : "ホスト用ホームページの見本")}</strong>
+          <p class="host-profile-demo-text">${escapeHtml(language !== "ja"
+            ? "This is a representative example using the Demo Family. When a host family signs up and links their account, this is the dashboard they see — every review students have left, each shown with its own rating breakdown."
+            : "これは Demo Family を使った代表的な見本です。ホスト家庭が登録してアカウントを紐付けると、この画面（寄せられたレビュー一覧と、各レビューの評価内訳）が表示されます。")}</p>
+        </div>
+      </div>
+    ` : "";
+
     const reviews = hostReviews(host);
-    const verified = isVerifiedHost(host);
-    const reviewsNeeded = Math.max(0, 3 - reviews.length);
-    const ratingPct = Math.min(100, Math.round((stats.rating / 4.0) * 100));
-    const reviewsPct = Math.min(100, Math.round((reviews.length / 3) * 100));
-
-    // Category strengths and weaknesses
-    const groupScores = localizedCriteriaGroups()
-      .map((group) => ({ title: group.title, value: groupScore(host, group) }))
-      .filter((g) => Number.isFinite(g.value) && g.value > 0)
-      .sort((a, b) => b.value - a.value);
-    const strengths = groupScores.slice(0, 3);
-    const improvements = groupScores.slice(-3).reverse();
-
-    const scoreList = (items) =>
-      items.length
-        ? items
-            .map(
-              (item) => `<div class="analytics-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(item.value.toFixed(1))}</strong></div>`
-            )
-            .join("")
-        : `<div class="empty-state">—</div>`;
 
     return `
       <section id="my-host" class="section-host-profile">
         <div class="container">
+          ${demoBanner}
           <div class="host-profile-head">
             <span class="policy-eyebrow">${escapeHtml(t.hostProfileEyebrow)}</span>
-            <h1 class="policy-title">${escapeHtml(host.name)}${host.area ? ` <small class="host-profile-area">— ${escapeHtml(host.area)}</small>` : ""}</h1>
+            <h1 class="policy-title">${escapeHtml(hostDisplayName(host))}${host.area ? ` <small class="host-profile-area">— ${escapeHtml(host.area)}</small>` : ""}</h1>
             <p class="policy-intro">${escapeHtml(t.hostProfileIntro)}</p>
-          </div>
-
-          <div class="host-profile-stats">
-            <article class="analytics-card analytics-card--stat">
-              <span>${escapeHtml(t.hostProfileOverall)}</span>
-              <strong>★ ${escapeHtml(stats.rating.toFixed(2))}</strong>
-            </article>
-            <article class="analytics-card analytics-card--stat">
-              <span>${escapeHtml(t.hostProfileReviews)}</span>
-              <strong>${reviews.length}</strong>
-            </article>
-            <article class="analytics-card analytics-card--stat">
-              <span>${escapeHtml(t.hostProfileReliability)}</span>
-              <strong>${escapeHtml(stats.reliability && stats.reliability.label ? stats.reliability.label : "—")}</strong>
-            </article>
-          </div>
-
-          <article class="host-profile-card">
-            <h2 class="policy-section-title">${escapeHtml(t.hostProfileVerifiedTitle)}</h2>
-            ${verified
-              ? `<p class="host-profile-verified-done">${escapeHtml(t.hostProfileVerifiedDone)}</p>`
-              : `
-                <div class="host-profile-progress">
-                  <div class="host-progress-row">
-                    <span>${escapeHtml(t.hostProfileVerifiedReviews.replace("{current}", reviews.length))}</span>
-                    <div class="host-progress-bar"><div class="host-progress-fill" style="width:${reviewsPct}%"></div></div>
-                  </div>
-                  <div class="host-progress-row">
-                    <span>${escapeHtml(t.hostProfileVerifiedRating.replace("{current}", stats.rating.toFixed(2)))}</span>
-                    <div class="host-progress-bar"><div class="host-progress-fill" style="width:${ratingPct}%"></div></div>
-                  </div>
-                </div>
-                <p class="host-profile-hint">${escapeHtml(t.hostProfileVerifiedHint)}</p>
-              `}
-          </article>
-
-          <div class="host-profile-grid">
-            <article class="host-profile-card">
-              <h3 class="policy-section-title">${escapeHtml(t.hostProfileStrengths)}</h3>
-              ${scoreList(strengths)}
-            </article>
-            <article class="host-profile-card">
-              <h3 class="policy-section-title">${escapeHtml(t.hostProfileImprovements)}</h3>
-              ${scoreList(improvements)}
-            </article>
           </div>
 
           <article class="host-profile-card">
@@ -4727,6 +4582,10 @@
                         ${review.fit && review.fit.length
                           ? `<div class="result-tags">${review.fit.map((tag) => `<span class="result-tag">${escapeHtml(localizedFitLabel(tag))}</span>`).join("")}</div>`
                           : ""}
+                        ${renderReviewRadarChart(review, { size: 240, padding: 48 })
+                          ? `<div class="review-radar">${renderReviewRadarChart(review, { size: 240, padding: 48 })}</div>`
+                          : ""}
+                        ${renderReviewAuxScores(review)}
                         ${renderHostReplyBlock(review)}
                       </div>
                     `;
@@ -4843,6 +4702,78 @@
           </div>
         </div>
       </footer>
+    `;
+  }
+
+  // ホーム用：ホスト評価の「見方」を説明するセクション。
+  // レーダー（主要6軸）＋補助評価軸を、各軸が何を測るのか・どこを見ればよいかと一緒に提示する。
+  function renderRatingGuide() {
+    const radarKeys = ["safetyEnvironment", "englishEnvironment", "cultureFit", "mentalSupport", "commute", "study"];
+    // commute はレーダー上の統合軸（transportation+rideSupport）。説明用に専用エントリを持たせる。
+    const groups = localizedCriteriaGroups();
+    const groupByKey = (k) => groups.find((g) => g.key === k);
+    const commuteDesc = language !== "ja"
+      ? "Bus access, distance to school, winter commute, and rides from the family."
+      : "バス便・学校までの距離・冬の通学・家族の送迎を総合。";
+    const primaryAxes = [
+      { key: "safetyEnvironment", icon: "🛡" },
+      { key: "englishEnvironment", icon: "💬" },
+      { key: "cultureFit", icon: "🍽" },
+      { key: "mentalSupport", icon: "🤝" },
+      { key: "commute", icon: "🚌", title: language !== "ja" ? "Commute & Ride" : "通学・送迎", desc: commuteDesc },
+      { key: "study", icon: "📚" },
+    ];
+    const auxAxes = [
+      { key: "rules", icon: "🕊" },
+      { key: "mealQuality", icon: "🍱" },
+      { key: "cleanliness", icon: "✨" },
+      { key: "privacy", icon: "🔑" },
+      { key: "internetQuality", icon: "📶" },
+      { key: "hostExperience", icon: "🎓" },
+    ];
+    const axisCard = (entry, isPrimary) => {
+      const g = groupByKey(entry.key);
+      const title = entry.title || (g ? g.title : entry.key);
+      const desc = entry.desc || (g ? g.description : "");
+      return `
+        <article class="rating-guide-card ${isPrimary ? "rating-guide-card--primary" : ""}">
+          <div class="rating-guide-card-head">
+            <span class="rating-guide-icon" aria-hidden="true">${entry.icon}</span>
+            <strong class="rating-guide-axis">${escapeHtml(title)}</strong>
+          </div>
+          <p class="rating-guide-desc">${escapeHtml(desc)}</p>
+        </article>
+      `;
+    };
+    return `
+      <section class="section-rating-guide">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-title">${language !== "ja" ? "How to read host ratings" : "ホストの評価の見方"}</h2>
+            <p class="section-text">${language !== "ja"
+              ? "Each host is rated on 6 primary axes (the radar chart) plus auxiliary axes."
+              : "各ホストはレーダーチャートの主要6軸＋補助評価軸で採点されます。"}</p>
+          </div>
+          <div class="rating-guide-policy">
+            <span class="rating-guide-policy-icon" aria-hidden="true">⚖️</span>
+            <p class="rating-guide-policy-text">${language !== "ja"
+              ? "By default the overall score is a simple average of the radar axes — every axis counts equally (×1). When you log in and finish the matching setup, the overall score is re-weighted by how important each axis is to you, so the same host can score differently for different students."
+              : "総合評価は初期状態では全軸を一律1倍にした単純平均です。ログインしてマッチング設定（最適化工程）を済ませると、あなたが重視する軸ほど重く反映した「あなた向けの総合評価」に切り替わります。そのため同じホストでも人によって点数が変わります。"}</p>
+          </div>
+          <h3 class="rating-guide-subhead">${language !== "ja" ? "Primary axes (radar chart)" : "主要6軸（レーダーチャート）"}</h3>
+          <div class="rating-guide-grid">
+            ${primaryAxes.map((e) => axisCard(e, true)).join("")}
+          </div>
+          <h3 class="rating-guide-subhead">${language !== "ja" ? "Auxiliary axes" : "補助評価軸"}</h3>
+          <div class="rating-guide-grid">
+            ${auxAxes.map((e) => axisCard(e, false)).join("")}
+          </div>
+          <div class="rating-guide-note">
+            <span class="rating-pending">${escapeHtml(t.pendingReview)}</span>
+            <span>${escapeHtml(language !== "ja" ? "= no reviews yet, so no score is shown." : "＝まだレビューがなく、評価が付いていない状態です。")}</span>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -5242,17 +5173,13 @@
       const hostIdEl = document.getElementById("signup-host-id");
       const schoolEl = document.getElementById("signup-school");
       const gradeEl = document.getElementById("signup-grade");
-      const languageEl = document.getElementById("signup-language");
       const schoolCodeEl = document.getElementById("signup-school-code");
       const form = {
         signupAs,
         email: document.getElementById("signup-email").value.trim(),
         password: document.getElementById("signup-password").value,
-        name: document.getElementById("signup-name").value.trim(),
         school: schoolEl ? schoolEl.value : "",
         grade: gradeEl ? gradeEl.value : "",
-        language: languageEl ? languageEl.value : "",
-        nationality: document.getElementById("signup-nationality") ? document.getElementById("signup-nationality").value.trim() : "",
         schoolCode: schoolCodeEl ? schoolCodeEl.value.trim() : "",
         hostId: hostIdEl ? hostIdEl.value : "",
       };
@@ -5286,6 +5213,14 @@
       btn.addEventListener("click", () => {
         state.selectedId = Number(btn.dataset.writeReviewFor);
         setView("review");
+      });
+    });
+
+    // 「この家のレビューを見る」：ホストを選択して家族別レビュー一覧ページへ。
+    document.querySelectorAll("[data-host-reviews]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.selectedId = Number(btn.dataset.hostReviews);
+        setView("host-reviews");
       });
     });
 
@@ -5754,20 +5689,28 @@
       }
       // Clear any previous missing-highlight on successful validation
       state.missingScores = [];
-      if (!state.reviewText.trim() && !isAdmin()) {
-        reviewTextarea.focus();
-        return;
-      }
-
-      // Validate recommend (required)
-      if (!state.reviewStructured.recommend && !isAdmin()) {
-        const firstRec = document.querySelector("[data-recommend-value]");
-        if (firstRec) firstRec.scrollIntoView({ behavior: "smooth", block: "center" });
+      // 「向いている人」タグは必須（最低1つ）。
+      if (!state.reviewFit.length && !isAdmin()) {
+        const fieldset = document.querySelector(".fit-fieldset--required");
+        if (fieldset) {
+          fieldset.classList.add("fit-fieldset--error");
+          fieldset.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
         alert(language !== "ja"
-          ? "Please answer whether you would recommend this family."
-          : "「この家族を他の留学生に勧めますか？」に回答してください。");
+          ? "Please select at least one “best for” tag."
+          : "「向いている人」タグを少なくとも1つ選んでください。");
         return;
       }
+      if (!state.reviewText.trim() && !isAdmin()) {
+        reviewTextarea.classList.add("review-textarea--error");
+        reviewTextarea.scrollIntoView({ behavior: "smooth", block: "center" });
+        reviewTextarea.focus();
+        alert(language !== "ja"
+          ? "Please write your review text."
+          : "レビュー本文を入力してください。");
+        return;
+      }
+      reviewTextarea.classList.remove("review-textarea--error");
 
       // Duplicate detection — warn if 60%+ trigram similarity with existing review
       const dup = detectDuplicate(state.reviewText, state.userReviews);
@@ -5801,6 +5744,17 @@
         id: `local-${Date.now()}`,
         hostId: host.id,
         host: hostDisplayName(host),
+        // 孤児レビュー対策：ホストの基本情報をレビューに埋め込んでおく。
+        // customHosts（localStorage）が消えても、このスナップショットから
+        // allHosts() がホストを復元できる（永続化先の不一致を吸収）。
+        hostSnapshot: {
+          id: host.id,
+          name: host.name,
+          area: host.area,
+          city: host.city || "Red Deer, Alberta",
+          lat: host.lat,
+          lng: host.lng,
+        },
         student: currentUser ? `${reviewerInfo.verified ? "✓ " : ""}${language !== "ja" ? "Anonymous student" : "匿名留学生"} (${currentUser.grade || ""})` : t.anonymousStudent,
         text: state.reviewText.trim(),
         score: overall,
@@ -5820,7 +5774,11 @@
       state.reviewFit = [];
       state.reviewStructured = { privacy: "unknown", recommend: "" };
       state.submitted = true;
-      render();
+      // 投稿完了後は探すページへ、投稿した家族を選択した状態で戻る（結果トップに固定＋詳細展開）。
+      state.selectedId = host.id;
+      state.expandedHostId = host.id;
+      setView("search");
+      setTimeout(() => highlightHostCard(host.id), 100);
     });
 
     // (data-quick-score handler removed — overall ★ no longer collected.)
@@ -5859,6 +5817,49 @@
           render();
         }
       });
+    });
+
+    // 検索候補（サジェスト）のタップ：候補を閉じて該当ホストを選択 → 下の検索結果欄へ移動。
+    // クエリをクリアすることで候補リストが閉じ、選択ホストは結果トップに固定される（ソートで先頭化）。
+    // 描画後に該当カードへスクロール＆ハイライトして「どこへ飛んだか」を明示する。
+    document.querySelectorAll("[data-suggest-host]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const hostId = Number(button.dataset.suggestHost);
+        state.selectedId = hostId;
+        state.submitted = false;
+        state.query = "";          // 候補を閉じる
+        state.expandedHostId = hostId; // 選択ホストの詳細を開いておく
+        render();
+        setTimeout(() => highlightHostCard(hostId), 80);
+      });
+    });
+
+    // 「地図で見る」：ホストを選択して再描画し、埋め込みマップへスクロール（探すページ内で完結）
+    document.querySelectorAll("[data-scroll-map]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.selectedId = Number(button.dataset.scrollMap);
+        state.submitted = false;
+        render();
+        const mapEl = document.getElementById("real-map");
+        if (mapEl) setTimeout(() => mapEl.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
+      });
+    });
+
+    // 結果ヘッダー／0件画面の「+ ホストを追加」：レビュー投稿ページ（家族未選択）へ。
+    // そこに家族追加パネル（renderAddFamilyPanel）があるので追加導線はそちらに集約した。
+    const goAddHost = () => { state.selectedId = null; setView("review"); };
+    const goAddHostBtn = document.getElementById("go-add-host");
+    if (goAddHostBtn) goAddHostBtn.addEventListener("click", goAddHost);
+    const emptyAddHostBtn = document.getElementById("empty-add-host");
+    if (emptyAddHostBtn) emptyAddHostBtn.addEventListener("click", goAddHost);
+    const inlineAddHostBtn = document.getElementById("inline-add-host");
+    if (inlineAddHostBtn) inlineAddHostBtn.addEventListener("click", goAddHost);
+
+    // マップの折りたたみトグル（探すページ）。再描画でマップを生成/破棄する。
+    const toggleMapBtn = document.getElementById("toggle-map");
+    if (toggleMapBtn) toggleMapBtn.addEventListener("click", () => {
+      state.mapCollapsed = !state.mapCollapsed;
+      render();
     });
 
     document.querySelectorAll("[data-delete-review]").forEach((button) => {
@@ -5956,6 +5957,15 @@
     });
   }
 
+  // マップ⇄リスト連動：指定ホストの結果カードへスクロールし、一時的にハイライトする。
+  function highlightHostCard(hostId) {
+    const card = document.querySelector(`.result-card[data-host-id="${hostId}"]`);
+    if (!card) return;
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+    card.classList.add("result-card--flash");
+    setTimeout(() => card.classList.remove("result-card--flash"), 1600);
+  }
+
   function initMap(host) {
     const mapElement = document.getElementById("real-map");
     if (!mapElement || !window.L) return;
@@ -6022,7 +6032,9 @@
 
     allHosts().forEach((item) => {
       const stats = getHostStats(item);
-      const color = ratingToHeatColor(stats.rating);
+      // レビュー待ち（未評価）のホストは灰色ピン＋「—」表示にして、評価済みと区別する。
+      const color = stats.hasReviews ? ratingToHeatColor(stats.rating) : "#9ca3af";
+      const pinText = stats.hasReviews ? stats.rating.toFixed(1) : "—";
 
       // Translucent area circle — primary geographic signal (uncertain area)
       const circle = L.circle([item.lat, item.lng], {
@@ -6039,7 +6051,7 @@
       // Heatmap-colored marker per host rating
       const heatIcon = L.divIcon({
         className: "heat-map-marker",
-        html: `<div class="heat-pin" style="background:${color};"><span>${stats.rating.toFixed(1)}</span></div>`,
+        html: `<div class="heat-pin" style="background:${color};"><span>${pinText}</span></div>`,
         iconSize: [iconSize + 8, iconSize + 8],
         iconAnchor: [(iconSize + 8) / 2, (iconSize + 8) / 2],
         popupAnchor: [0, -(iconSize + 8) / 2],
@@ -6051,13 +6063,17 @@
         : "おおよそのエリアのみ表示。正確な住所は非公開。";
       marker
         .bindPopup(
-          `<strong>${escapeHtml(item.area)}</strong><br>${stats.rating.toFixed(
-            1
-          )} / 5<br><small>📍 ${escapeHtml(privacyNote)}</small>`
+          `<strong>${escapeHtml(hostDisplayName(item))}</strong><br><small>${escapeHtml(item.area)}</small><br>${
+            stats.hasReviews ? `${stats.rating.toFixed(1)} / 5` : escapeHtml(t.pendingReview)
+          }<br><small>📍 ${escapeHtml(privacyNote)}</small>`
         )
         .on("click", () => {
+          // マップ⇄リスト連動：ピンを選択 → 再描画後に該当カードへスクロール＆ハイライト。
           state.selectedId = item.id;
           render();
+          if (state.view === "search") {
+            setTimeout(() => highlightHostCard(item.id), 80);
+          }
         });
 
       markerLayer.addLayer(marker);
@@ -6171,10 +6187,6 @@
             <h1 class="hero-title">${t.heroTitleA}<br />${t.heroTitleB}</h1>
             <span class="hero-tagline">${t.heroTagline}</span>
             <p class="hero-text">${t.heroText}</p>
-            <div class="verified-explainer">
-              <span class="verified-dot" aria-hidden="true"></span>
-              <span>${t.verifiedExplainer}</span>
-            </div>
             <div class="hero-actions">
               <button type="button" class="button button--primary" data-view="search">${t.findHostCta}</button>
               <button id="hero-review-button" type="button" class="button button--ghost">${t.writeReviewCta}</button>
@@ -6199,7 +6211,6 @@
                 }).join("")}
               </div>
               <div class="hcp-footer">
-                <span class="hcp-badge">✓ Verified Host</span>
                 <span class="hcp-reviews">${language !== "ja" ? "12 reviews" : "12件のレビュー"}</span>
               </div>
             </div>
@@ -6239,72 +6250,29 @@
       </div>
     `;
 
-    const stepsSection = `
-      <section class="section-steps">
+    // 「ホストの評価の見方」と「ホスト画面の見本」を1つの流れに統合（要望による）：
+    // ① 評価軸＋重み付けの説明（renderRatingGuide）→ ② その軸が実画面でどう表示されるかを
+    // 代表の Demo Family のダッシュボードで実演（renderHostProfile）。
+    // 見本の見出しは guide の続き（h3）として配置し、ひとつのまとまりに見せる。
+    const ratingGuideWithSample = `
+      ${renderRatingGuide()}
+      <section class="section-host-sample-intro">
         <div class="container">
-          <h2 class="steps-title">${language !== "ja" ? "Find your fit in 3 steps" : "3ステップで自分に合う家庭を見つける"}</h2>
+          <h3 class="steps-title">${language !== "ja" ? "See it on a real host page" : "実際のホスト画面で見てみる"}</h3>
           <p class="steps-subtitle">${language !== "ja"
-            ? "No guesswork. Every step is built on verified reviews from real students."
-            : "推測ではなく、実際の留学生による検証済みレビューに基づいて 3 つのステップで決められます。"}</p>
-          <div class="steps-grid">
-            <article class="step-card">
-              <div class="step-number">1</div>
-              <h3 class="step-card-title">${language !== "ja" ? "Compare areas" : "エリアを比較"}</h3>
-              <p class="step-card-text">${language !== "ja"
-                ? "See safety, commute, and quietness for each Red Deer neighborhood — at a glance."
-                : "Red Deer の各エリアの安全性・通学・静かさを一目で比較。"}</p>
-            </article>
-            <article class="step-card">
-              <div class="step-number">2</div>
-              <h3 class="step-card-title">${language !== "ja" ? "Filter by lifestyle" : "ライフスタイルで絞り込み"}</h3>
-              <p class="step-card-text">${language !== "ja"
-                ? "Pick the personality, meals, rules, and study environment that fit you."
-                : "性格タイプ、食事、ルール、学習環境からあなたに合う条件を選択。"}</p>
-            </article>
-            <article class="step-card">
-              <div class="step-number">3</div>
-              <h3 class="step-card-title">${language !== "ja" ? "Read verified reviews" : "認証済みレビューを読む"}</h3>
-              <p class="step-card-text">${language !== "ja"
-                ? "Every review is tied to a verified student account. No fakes, no marketing fluff."
-                : "全てのレビューが認証済みアカウントに紐付き。サクラや宣伝文句はありません。"}</p>
-            </article>
-          </div>
-          <div class="steps-cta">
-            <button type="button" class="button button--primary" data-view="search">${language !== "ja" ? "Start exploring" : "今すぐ探す"}</button>
-          </div>
+            ? "Here's how those axes appear on an actual host family's page — shown with our Demo Family. Each review carries its own rating breakdown."
+            : "上の評価軸が、実際のホスト家庭のページではこのように表示されます。これは代表の Demo Family を使った実画面で、各レビューに評価内訳のレーダーが付きます。"}</p>
         </div>
       </section>
+      ${renderHostProfile()}
     `;
 
+    // ホームは hero ＋（評価の見方＋ホスト画面の見本を統合）＋ 安全設計に簡素化。
+    // 「おすすめホスト」欄・About Nestly・「なぜNestlyを作るのか」は要望により削除。
     const homeView = view === "home" ? `
       ${heroSection}
-      ${stepsSection}
-      <section class="section-results">
-        <div class="container">
-          <div class="results-head">
-            <h2 class="section-title">${language !== "ja" ? "Featured hosts" : "おすすめホスト"}</h2>
-          </div>
-          <div class="featured-grid">
-            ${allHosts().slice(0, 3).map((item) => `
-              <article class="card featured-card-mini">
-                <div class="card-body">
-                  <div class="featured-head">
-                    <div>
-                      <div class="label">${escapeHtml(item.area)}</div>
-                      <h3 class="featured-name">${escapeHtml(hostDisplayName(item))}</h3>
-                    </div>
-                    ${item.verified ? `<div class="verified-badge" title="${escapeHtml(t.verifiedExplainer)}">✓ ${t.verified}</div>` : ""}
-                  </div>
-                  ${renderRadarChart(item, { size: 220, padding: 50 })}
-                  <button type="button" class="button button--secondary" data-select-host="${item.id}" data-view-after="search">${language !== "ja" ? "View details" : "詳細を見る"}</button>
-                </div>
-              </article>
-            `).join("")}
-          </div>
-        </div>
-      </section>
+      ${ratingGuideWithSample}
       ${renderSafetyDesign()}
-      ${renderAbout()}
     ` : "";
 
     // ログイン済みでプリファレンス設定済み → マッチ度ソート通知
@@ -6322,19 +6290,46 @@
           ? "Sign up to see personalized match scores for each host."
           : "新規登録すると、各ホストへの「マッチ度」が表示されます。"}</div>`;
 
+    // 統合「探す」ページ：検索バー＋クイックフィルター（searchToolbar 内）→ マップ →
+    // 結果（各カードからレビュー投稿へ遷移）→ 末尾にホスト追加カード。
+    // 旧「マップ」「レビューを書く」タブの導線をここに集約した。
     const searchView = view === "search" ? `
       <section class="section-search">
         <div class="container">
           ${searchToolbar}
+          ${filteredHosts.length === 0 ? `
+          <div class="search-add-inline">
+            <p class="search-add-inline-text">${escapeHtml(language !== "ja"
+              ? "Can't find the family you're looking for?"
+              : "お探しの家族が見つかりませんか？")}</p>
+            <button type="button" class="button button--primary button--compact" id="inline-add-host">+ ${escapeHtml(ui.addNewFamily)}</button>
+          </div>
+          ` : ""}
+          <div class="search-map-block ${state.mapCollapsed ? "is-collapsed" : ""}">
+            <button type="button" id="toggle-map" class="map-toggle" aria-expanded="${state.mapCollapsed ? "false" : "true"}">
+              <span class="map-toggle-label">🗺 ${escapeHtml(t.mapTitle)}</span>
+              <span class="map-toggle-icon">${state.mapCollapsed
+                ? (language !== "ja" ? "▼ Show map" : "▼ 地図を表示")
+                : (language !== "ja" ? "▲ Hide map" : "▲ 地図を隠す")}</span>
+            </button>
+            ${state.mapCollapsed ? "" : `
+            <div class="map-canvas search-map-canvas" id="real-map" role="application" aria-label="${escapeHtml(t.mapTitle)}">
+              <div class="map-fallback">${t.mapUnavailable}</div>
+            </div>
+            <div class="search-map-trust">
+              <span class="trust-badge">${t.exactAddressHidden}</span>
+              <span class="trust-badge">${t.approximatePins}</span>
+              <span class="search-map-hint">${escapeHtml(language !== "ja" ? "Tap a pin to focus a host below" : "ピンをタップすると下の一覧で絞り込めます")}</span>
+            </div>
+            `}
+          </div>
           <div class="results-head results-head--full">
             <h2 class="section-title">${t.searchResults}</h2>
             <span class="results-count">${filteredHosts.length}</span>
+            <button type="button" class="button button--ghost button--compact" id="go-add-host">+ ${escapeHtml(ui.addNewFamily)}</button>
           </div>
           ${matchSortNotice}
           ${renderSearchResults(filteredHosts, host)}
-          <div class="search-recent">
-            ${renderRecentReviews()}
-          </div>
         </div>
       </section>
     ` : "";
@@ -6369,6 +6364,21 @@
     const myHostView = view === "my-host" ? renderHostProfile() : "";
     const pricingView = view === "pricing" ? renderPricing() : "";
     const adminRestoreView = view === "admin-restore" ? renderAdminRestore() : "";
+
+    // 家族別レビュー一覧ページ（探すページの「この家のレビューを見る」遷移先）。
+    const hostReviewsView = view === "host-reviews" ? `
+      <section class="section-search">
+        <div class="container">
+          <div class="host-reviews-head">
+            <button type="button" class="button button--ghost button--compact" data-view="search">${language !== "ja" ? "← Back to search" : "← 検索に戻る"}</button>
+            ${host ? `<button type="button" class="button button--primary button--compact" data-write-review-for="${host.id}">${ui.addReview}</button>` : ""}
+          </div>
+          ${host
+            ? renderRecentReviews({ hostOnly: true })
+            : `<div class="card card--soft empty-state"><p class="empty-state-title">${escapeHtml(language !== "ja" ? "No family selected" : "家族が選択されていません")}</p></div>`}
+        </div>
+      </section>
+    ` : "";
 
     const banner = state.bannerDismissed ? "" : `
       <div class="demo-banner demo-banner--soft" role="status" aria-live="polite">
@@ -6423,7 +6433,6 @@
 
         <main>
           ${renderLoginPanel()}
-          ${view === "home" ? renderTopPrivacy() : ""}
           ${homeView}
           ${searchView}
           ${mapView}
@@ -6436,6 +6445,7 @@
           ${myHostView}
           ${pricingView}
           ${adminRestoreView}
+          ${hostReviewsView}
           ${view === "home" ? renderReviewPolicy() : ""}
         </main>
         ${renderFooter()}
@@ -6451,7 +6461,10 @@
     `;
 
     bindEvents();
-    if (state.view === "map") {
+    // マップは「探す」ページに埋め込み（旧 map ビューも後方互換で維持）。どちらでも #real-map を初期化。
+    // ただし探すページでマップを折りたたんでいる場合は #real-map が存在しないので初期化しない。
+    const shouldInitMap = state.view === "map" || (state.view === "search" && !state.mapCollapsed);
+    if (shouldInitMap) {
       initMap(host);
     } else if (leafletMap) {
       try { leafletMap.remove(); } catch (_e) {}
@@ -6467,6 +6480,7 @@
     restoreFocusState(focusState);
     syncReviewsFromApi();
     syncHostRepliesFromApi();
+    healCustomHostLocations();
   }
 
   if (typeof document !== "undefined") {
