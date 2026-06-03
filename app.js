@@ -216,7 +216,7 @@
     footerNote: "Nestly はビジネスコンテスト出品中のプロトタイプです。",
     footerCopy: "© 2026 Nestly. Built in Red Deer, Alberta.",
     navAbout: "Nestlyについて",
-    navSearch: "探す",
+    navSearch: "レビューを探す・書く",
     navMap: "マップ",
     navReview: "レビューを書く",
     navSchool: "学校向け",
@@ -353,7 +353,7 @@
     reviewForm: "レビュー投稿フォーム",
     reviewLead: "レビューする家族を選び、カテゴリごとに星5段階で評価して本文を書き込めます。",
     reviewPlaceholder:
-      "レビュー例：英語で話す機会は多く、困った時に相談しやすかったです。門限や外泊ルールは最初に説明されました。",
+      "例）ホストは50代のご夫婦で、初日に家のルール（門限は平日22時、週末は事前に伝えればOK）を丁寧に説明してくれて安心できました。英語を話す機会は夕食のときを中心に多く、わからない単語はゆっくり言い換えてくれます。食事は野菜が多くバランスがよく、アレルギーにも対応してくれました。学校までは車で15分ほどで、雨の日は送ってくれることもありました。部屋は個室でWi-Fiも安定しています。困ったときにすぐ相談できる雰囲気だったので、初めての留学で不安な人にもおすすめです。\n\n※上のような文章はあくまで例です。家庭の雰囲気・英語環境・食事や部屋・通学やサポート・どんな人に向くか、を自分の言葉で書いてみてください。",
     submitReview: "匿名レビューを投稿する",
     submitted: "レビューを保存しました。検索結果と最近のレビューに反映されています。",
     recentReviews: "最近のレビュー",
@@ -373,6 +373,19 @@
     detailedScores: "評価カテゴリ",
     savedLocally: "保存済み",
     reviewTarget: "投稿先",
+    stayPeriodLabel: "住んでいた期間",
+    stayPeriodHint: "この家庭にどのくらい滞在しましたか？",
+    stayPeriodSelectDefault: "選択してください",
+    stayPeriodOptions: [
+      ["under1m", "1ヶ月未満"],
+      ["1to3m", "1〜3ヶ月"],
+      ["3to6m", "3〜6ヶ月"],
+      ["6to12m", "6〜12ヶ月"],
+      ["over1y", "1年以上"],
+      ["current", "現在も滞在中"],
+    ],
+    stayPeriodMissing: "「住んでいた期間」を選択してください。",
+    stayPeriodPrefix: "滞在期間：",
     reviewText: "レビュー本文",
     anonymousStudent: "匿名留学生",
     addNewHouse: "新しい家族を追加",
@@ -636,7 +649,7 @@
     footerNote: "Nestly is a prototype submitted to a business contest.",
     footerCopy: "© 2026 Nestly. Built in Red Deer, Alberta.",
     navAbout: "About",
-    navSearch: "Search",
+    navSearch: "Find & write reviews",
     navMap: "Map",
     navReview: "Write a review",
     navSchool: "For schools",
@@ -772,7 +785,7 @@
     reviewForm: "Review form",
     reviewLead: "Choose a family, rate each category from 1 to 5 stars, and write your review.",
     reviewPlaceholder:
-      "Example: I had many chances to speak English and it was easy to ask for help. Curfew and overnight rules were explained at the beginning.",
+      "Example: My hosts were a couple in their 50s who explained the house rules on day one (weekday curfew at 10pm, weekends OK with advance notice), which put me at ease. I had plenty of chances to speak English, especially at dinner, and they patiently rephrased words I didn't know. Meals were balanced with lots of vegetables, and they accommodated my allergies. School was about a 15-minute drive, and they sometimes gave me a ride on rainy days. I had a private room with stable Wi-Fi. It was easy to ask for help whenever I needed it, so I'd recommend them especially to first-time students who feel anxious.\n\nNote: the text above is just an example. In your own words, try to cover the atmosphere, the English environment, meals and your room, the commute and support, and who this family would suit.",
     submitReview: "Post anonymous review",
     submitted: "Review saved. It now appears in search results and recent reviews.",
     recentReviews: "Recent reviews",
@@ -792,6 +805,19 @@
     detailedScores: "Rating categories",
     savedLocally: "Saved",
     reviewTarget: "Review target",
+    stayPeriodLabel: "Length of stay",
+    stayPeriodHint: "How long did you live with this family?",
+    stayPeriodSelectDefault: "Select...",
+    stayPeriodOptions: [
+      ["under1m", "Under 1 month"],
+      ["1to3m", "1–3 months"],
+      ["3to6m", "3–6 months"],
+      ["6to12m", "6–12 months"],
+      ["over1y", "Over 1 year"],
+      ["current", "Currently staying"],
+    ],
+    stayPeriodMissing: "Please select your length of stay.",
+    stayPeriodPrefix: "Stay: ",
     reviewText: "Review text",
     anonymousStudent: "Anonymous student",
     addNewHouse: "Add a new family",
@@ -1460,6 +1486,7 @@
     selectedId: null,
     reviewText: "",
     reviewScores: { ...defaultScores },
+    reviewStayPeriod: "",  // レビュー対象家庭に住んでいた期間（structured.stayPeriod として永続化）
     reviewFit: [],
     reviewStructured: {
       privacy: "unknown",
@@ -1491,6 +1518,7 @@
     favorites: loadFavorites(),
     helpfulVotes: loadHelpful(),  // { [reviewId]: vote count }
     bottomSheetOpen: false,  // mobile filter sheet
+    quickFiltersOpen: false, // desktop inline quick-filter panel: open/closed toggle
     matchReasonHostId: null, // for showing match reason popover
     dateFilter: "all",       // "all" | "year"
     isLoading: false,        // for skeleton states
@@ -2301,6 +2329,14 @@
     return [...grouped.values()];
   }
 
+  // 公開リスト：探すページ・マップ・選択UI で使う。Demo Family（isDemo）は
+  // ホームの解説（renderHostProfile）専用なので、ここから除外する。
+  // 注意：allHosts() からは除外しない（除外すると Demo の seed レビューが
+  // 孤児扱いになり、復元ロジックで Demo が再生成されてしまうため）。
+  function publicHosts() {
+    return allHosts().filter((h) => !h.isDemo);
+  }
+
   async function syncReviewsFromApi() {
     if (apiSyncStarted || typeof fetch === "undefined") return;
     apiSyncStarted = true;
@@ -2655,6 +2691,22 @@
   function structuredLabel(field, value) {
     const key = structuredOptionLabels[value] || `${field}.${value}`;
     return t[key] || value;
+  }
+
+  // 滞在期間キー（under1m など）→ 現在の言語のラベルへ変換。
+  function stayPeriodLabelFromKey(key) {
+    if (!key) return "";
+    const opts = Array.isArray(t.stayPeriodOptions) ? t.stayPeriodOptions : [];
+    const found = opts.find(([k]) => k === key);
+    return found ? found[1] : "";
+  }
+
+  // レビュー内の滞在期間バッジ（structured.stayPeriod に保存）。無ければ空。
+  function renderStayPeriodBadge(review) {
+    const key = review && review.structured && review.structured.stayPeriod;
+    const label = stayPeriodLabelFromKey(key);
+    if (!label) return "";
+    return `<span class="review-stay-badge">🗓 ${escapeHtml((t.stayPeriodPrefix || "") + label)}</span>`;
   }
 
   function hostInsights(host) {
@@ -3037,8 +3089,8 @@
       { key: "home",   label: navHome },
       { key: "search", label: t.navSearch || "Search" },
       { key: "favorites", label: `${favLabel}${favCount ? ` (${favCount})` : ""}` },
-      { key: "school", label: t.navSchool || "Schools" },
       { key: "how-to", label: t.navHowTo || "How to use" },
+      { key: "school", label: t.navSchool || "Schools" },
     ];
     if (isHost()) {
       tabs.push({ key: "my-host", label: `🏠 ${t.navMyHost || "My family"}` });
@@ -3191,7 +3243,7 @@
   function renderBottomSheet() {
     if (!state.bottomSheetOpen) return "";
     // Compute how many hosts match if pending filters were applied
-    const matchCount = filterHosts(allHosts(), state.query || "", state.pendingFilters).length;
+    const matchCount = filterHosts(publicHosts(), state.query || "", state.pendingFilters).length;
 
     // Filter chips bound to pendingFilters (instead of activeFilters)
     const pendingFilterPanel = `
@@ -3327,8 +3379,8 @@
   function renderSearchSuggestions(query) {
     const q = String(query || "").trim().toLowerCase();
     if (!q) return "";
-    // 検索候補はホストのみを対象にする（レビュー本文は検索しない）。
-    const hostMatches = filterHosts(allHosts(), query, []).slice(0, 8);
+    // 検索候補はホストのみを対象にする（レビュー本文は検索しない）。Demo は除外。
+    const hostMatches = filterHosts(publicHosts(), query, []).slice(0, 8);
     if (!hostMatches.length) {
       return `<div class="search-suggestions search-suggestions--empty">${language !== "ja" ? "No matches" : "一致する結果がありません"}</div>`;
     }
@@ -3492,7 +3544,7 @@
       const f = state.signupForm;
       const grades = language !== "ja" ? GRADES_EN : GRADES_JA;
       const signupAs = f.signupAs === "host" ? "host" : "user";
-      const hostOptions = allHosts()
+      const hostOptions = publicHosts()
         .slice()
         .sort((a, b) => String(a.area || "").localeCompare(String(b.area || "")))
         .map((h) => `<option value="${h.id}" ${Number(f.hostId) === h.id ? "selected" : ""}>${escapeHtml(h.name)}${h.area ? ` — ${escapeHtml(h.area)}` : ""}</option>`)
@@ -3650,7 +3702,7 @@
           ? "Based on your preferences, here are your top matches."
           : "あなたの希望条件をもとに、相性の高い家庭をご紹介します。"}</p>
         <div class="onboarding-preview">
-          ${allHosts()
+          ${publicHosts()
             .map((h) => ({ host: h, score: computeMatchScore(h, { preferences: p }) }))
             .sort((a, b) => b.score - a.score)
             .slice(0, 3)
@@ -3729,7 +3781,7 @@
                 : ""
             }
             <div class="map-list">
-              ${allHosts()
+              ${publicHosts()
                 .map((item) => {
                   const itemStats = getHostStats(item);
                   return `
@@ -3766,7 +3818,7 @@
       // would yield results? Sort by yield (most → least).
       const suggestions = [];
       if (state.activeFilters && state.activeFilters.length) {
-        const allHostsList = allHosts();
+        const allHostsList = publicHosts();
         state.activeFilters.forEach((key) => {
           const remaining = state.activeFilters.filter((k) => k !== key);
           const count = filterHosts(allHostsList, state.query || "", remaining).length;
@@ -3958,7 +4010,7 @@
 
   function renderReviewForm(host) {
     if (!host) {
-      const allList = allHosts();
+      const allList = publicHosts();
       return `
         <article id="review" class="card review-card">
           <div class="card-body">
@@ -3990,10 +4042,27 @@
           <div class="review-target">
             <label for="review-host-select">${t.reviewTarget} <span class="required-mark">*</span></label>
             <select id="review-host-select" class="host-select">
-              ${allHosts()
-                .map(
-                  (item) =>
-                    `<option value="${item.id}" ${item.id === host.id ? "selected" : ""}>${escapeHtml(hostDisplayName(item))}</option>`
+              ${(() => {
+                // Demo は選択肢から除外。ただし現在選択中が Demo の場合は表示を保つ。
+                const opts = publicHosts();
+                if (host.isDemo && !opts.some((o) => o.id === host.id)) opts.unshift(host);
+                return opts
+                  .map(
+                    (item) =>
+                      `<option value="${item.id}" ${item.id === host.id ? "selected" : ""}>${escapeHtml(hostDisplayName(item))}</option>`
+                  )
+                  .join("");
+              })()}
+            </select>
+          </div>
+          <div class="review-stay-period">
+            <label for="review-stay-period">${t.stayPeriodLabel} <span class="required-mark">*</span></label>
+            <p class="form-intro form-intro--compact">${escapeHtml(t.stayPeriodHint)}</p>
+            <select id="review-stay-period" class="host-select">
+              <option value="" ${!state.reviewStayPeriod ? "selected" : ""}>${escapeHtml(t.stayPeriodSelectDefault)}</option>
+              ${(Array.isArray(t.stayPeriodOptions) ? t.stayPeriodOptions : [])
+                .map(([key, label]) =>
+                  `<option value="${escapeHtml(key)}" ${state.reviewStayPeriod === key ? "selected" : ""}>${escapeHtml(label)}</option>`
                 )
                 .join("")}
             </select>
@@ -4177,6 +4246,7 @@
                     ${renderReviewAuxScores(review)}
                     <div class="review-meta">
                       <span>${escapeHtml(displayStudentName(review.student))}</span>
+                      ${renderStayPeriodBadge(review)}
                       ${review.editedAt ? `<span class="edited-flag" title="${escapeHtml(language !== "ja" ? "Edited after posting" : "投稿後に編集されました")}">${language !== "ja" ? "edited" : "編集済み"}</span>` : ""}
                     </div>
                     ${renderReviewTrustBadges(review)}
@@ -4595,6 +4665,7 @@
                         <div class="review-header">
                           ${renderStars(review.score)}
                           <span class="review-date-muted">${escapeHtml(displayStudentName(review.student))}</span>
+                          ${renderStayPeriodBadge(review)}
                         </div>
                         ${reviewText ? `<p class="review-quote">${language === "ja" ? "「" : "\""}${escapeHtml(reviewText)}${language === "ja" ? "」" : "\""}</p>` : ""}
                         ${review.fit && review.fit.length
@@ -5289,6 +5360,7 @@
       state.reviewScores = draft.scores || state.reviewScores;
       state.reviewFit = draft.fit || [];
       state.reviewStructured = draft.structured || state.reviewStructured;
+      state.reviewStayPeriod = draft.stayPeriod || "";
       if (draft.hostId) state.selectedId = draft.hostId;
       render();
     });
@@ -5489,6 +5561,13 @@
       el.addEventListener("click", () => { state.matchReasonHostId = null; render(); });
     });
 
+    // デスクトップのインライン・クイックフィルター：検索バー直下のトグルで開閉。
+    const toggleQuickFiltersBtn = document.getElementById("toggle-quick-filters");
+    if (toggleQuickFiltersBtn) toggleQuickFiltersBtn.addEventListener("click", () => {
+      state.quickFiltersOpen = !state.quickFiltersOpen;
+      render();
+    });
+
     // Bottom sheet open/close
     const openSheetBtn = document.getElementById("open-sheet-btn");
     if (openSheetBtn) openSheetBtn.addEventListener("click", () => {
@@ -5570,6 +5649,19 @@
       state.selectedId = Number(event.target.value);
       state.submitted = false;
       render();
+    });
+
+    const stayPeriodSelect = document.getElementById("review-stay-period");
+    if (stayPeriodSelect) stayPeriodSelect.addEventListener("change", (event) => {
+      state.reviewStayPeriod = event.target.value;
+      // エラー表示を解除（再選択で復帰）。再レンダリングはせず選択状態を保持。
+      stayPeriodSelect.classList.remove("review-stay-period--error");
+      // 下書きにも反映（本文の自動保存と同じ箱を更新）。
+      const draft = loadDraft() || {};
+      draft.stayPeriod = state.reviewStayPeriod;
+      draft.hostId = state.selectedId;
+      draft.savedAt = new Date().toISOString();
+      saveDraft(draft);
     });
 
     if (addHouseButton) addHouseButton.addEventListener("click", async () => {
@@ -5662,6 +5754,7 @@
           scores: state.reviewScores,
           fit: state.reviewFit,
           structured: state.reviewStructured,
+          stayPeriod: state.reviewStayPeriod,
           hostId: state.selectedId,
           savedAt: new Date().toISOString(),
         });
@@ -5717,6 +5810,17 @@
         alert(language !== "ja"
           ? "Please select at least one “best for” tag."
           : "「向いている人」タグを少なくとも1つ選んでください。");
+        return;
+      }
+      // 「住んでいた期間」は必須。
+      if (!state.reviewStayPeriod && !isAdmin()) {
+        const stayEl = document.getElementById("review-stay-period");
+        if (stayEl) {
+          stayEl.classList.add("review-stay-period--error");
+          stayEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          stayEl.focus();
+        }
+        alert(t.stayPeriodMissing);
         return;
       }
       if (!state.reviewText.trim() && !isAdmin()) {
@@ -5778,7 +5882,8 @@
         score: overall,
         criteria: reviewCriteria,
         fit: [...state.reviewFit.map(fitKeyFromLabel)],
-        structured: { ...state.reviewStructured },
+        // 滞在期間は structured（jsonb）に同梱して永続化（専用カラム追加不要）。
+        structured: { ...state.reviewStructured, stayPeriod: state.reviewStayPeriod },
         reviewer: reviewerInfo,
         createdAt: new Date().toISOString(),
         editedAt: null,
@@ -5789,6 +5894,7 @@
       clearDraft();
       state.reviewText = "";
       state.reviewScores = Object.fromEntries(Object.keys(defaultScores).map((k) => [k, 0]));
+      state.reviewStayPeriod = "";
       state.reviewFit = [];
       state.reviewStructured = { privacy: "unknown", recommend: "" };
       state.submitted = true;
@@ -6049,7 +6155,7 @@
     const PRIVACY_RADIUS_M = 250;
     const circleLayer = L.layerGroup();
 
-    allHosts().forEach((item) => {
+    publicHosts().forEach((item) => {
       const stats = getHostStats(item);
       // レビュー待ち（未評価）のホストは灰色ピン＋「—」表示にして、評価済みと区別する。
       const color = stats.hasReviews ? ratingToHeatColor(stats.rating) : "#9ca3af";
@@ -6152,7 +6258,7 @@
       maxZoom: 14,
     }).addTo(leafletMiniMap);
 
-    allHosts().forEach((h) => {
+    publicHosts().forEach((h) => {
       if (!h.lat || !h.lng) return;
       const selected = state.selectedId && (h.id === state.selectedId || (h.duplicateIds || []).includes(state.selectedId));
       const marker = window.L.circleMarker([h.lat, h.lng], {
@@ -6181,7 +6287,7 @@
     if (!root) return;
 
     const host = selectedHost();
-    const filteredHosts = filterHosts(allHosts(), state.query);
+    const filteredHosts = filterHosts(publicHosts(), state.query);
     const focusState = captureFocusState();
 
     document.title = `${BRAND_NAME} | ${t.subtitle}`;
@@ -6262,10 +6368,15 @@
         ` : ""}
         ${renderSearchSuggestions(state.query)}
         <p class="search-hint">${escapeHtml(searchPlaceholderHint)}</p>
+        <button type="button" class="filter-toggle-btn ${state.quickFiltersOpen ? "is-open" : ""}" id="toggle-quick-filters"
+          aria-expanded="${state.quickFiltersOpen ? "true" : "false"}" aria-controls="quick-filter-wrap">
+          <span class="filter-toggle-label">⚙ ${language !== "ja" ? "Quick filters" : "クイックフィルター"}${state.activeFilters.length ? ` <span class="filter-badge">${state.activeFilters.length}</span>` : ""}</span>
+          <span class="filter-toggle-caret" aria-hidden="true">${state.quickFiltersOpen ? "▴" : "▾"}</span>
+        </button>
         <button type="button" class="open-sheet-btn" id="open-sheet-btn" aria-label="${language !== "ja" ? "Open filters" : "フィルターを開く"}">
           ☰ ${language !== "ja" ? "Filters" : "フィルター"} ${state.activeFilters.length ? `<span class="filter-badge">${state.activeFilters.length}</span>` : ""}
         </button>
-        <div class="quick-filter-wrap">${renderQuickFilters()}</div>
+        <div class="quick-filter-wrap ${state.quickFiltersOpen ? "is-open" : ""}" id="quick-filter-wrap">${renderQuickFilters()}</div>
       </div>
     `;
 

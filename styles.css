@@ -1397,6 +1397,38 @@ button {
   font-weight: 700;
 }
 
+/* 滞在期間（レビュー入力） */
+.review-stay-period {
+  margin: 14px 0 4px;
+}
+
+.review-stay-period label {
+  font-weight: 700;
+}
+
+.form-intro--compact {
+  margin: 4px 0 8px;
+}
+
+.review-stay-period--error {
+  border-color: var(--danger, #dc2626) !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.18);
+}
+
+/* 滞在期間バッジ（レビュー表示） */
+.review-stay-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--primary-soft, #eef2ff);
+  color: var(--primary, #4f46e5);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .metric {
   padding: 18px;
   border-radius: var(--radius-lg);
@@ -3605,6 +3637,68 @@ body {
 }
 
 /* Open-sheet button: visible only on mobile */
+/* --- Desktop: collapsible quick-filter toggle (integrated with search bar) --- */
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.filter-toggle-btn:hover {
+  border-color: var(--primary);
+  background: var(--surface, #f8fafc);
+}
+
+/* 開いているときは下の角を丸めず、下のパネルと一体に見せる */
+.filter-toggle-btn.is-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
+
+.filter-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-toggle-caret {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* インライン・クイックフィルターのラッパ：既定は閉じ、.is-open で展開（アニメ付き） */
+.quick-filter-wrap {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.28s ease, opacity 0.2s ease;
+}
+
+.quick-filter-wrap.is-open {
+  max-height: 1600px;
+  opacity: 1;
+}
+
+/* 開いたときはトグルボタンと地続きに見えるよう上の角を丸めない */
+.quick-filter-wrap.is-open .filter-panel {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .open-sheet-btn {
   display: none;
   align-items: center;
@@ -3636,6 +3730,8 @@ body {
 }
 
 @media (max-width: 720px) {
+  /* モバイルはボトムシートを使うので、インライントグル/パネルは隠す */
+  .filter-toggle-btn { display: none; }
   .open-sheet-btn { display: flex; }
   .quick-filter-wrap { display: none; }
 }
