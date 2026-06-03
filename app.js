@@ -2346,7 +2346,17 @@
         const reviews = await response.json();
         if (Array.isArray(reviews)) {
           const serverIds = new Set(reviews.map((r) => String(r.id)));
-          const pendingLocal = state.userReviews.filter((r) => !serverIds.has(String(r.id)));
+          // サーバー一覧に無いローカルレビューの扱い：
+          //   - `local-` ID … まだサーバーへ未送信の下書き投稿の可能性 → 残す。
+          //   - `server-` / `seed-` ID … 一度はサーバー由来だったのに今は無い
+          //     ＝サーバー側で削除されたとみなして除外する。
+          // これをしないと、削除済みレビューが localStorage に残り続け、allHosts()
+          // の孤児復元ロジックが「消したはずのホスト」を毎回ゴースト復活させてしまう。
+          const pendingLocal = state.userReviews.filter((r) => {
+            const id = String(r.id);
+            if (serverIds.has(id)) return false; // 下で最新版を入れ直すため除外
+            return id.startsWith("local-");        // 未送信ローカルのみ温存
+          });
           state.userReviews = [...pendingLocal, ...reviews];
           saveReviews();
           render();
