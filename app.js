@@ -3632,7 +3632,6 @@
               <input id="login-password" class="text-input" type="password" autocomplete="current-password" placeholder="${t.loginPassword}" />
               <button id="login-submit" type="button" class="button button--primary">${t.loginSubmit}</button>
             </div>
-            <p class="section-text login-help">${language !== "ja" ? "Demo accounts: moderator / admin (password: demo) — or sign up below" : "デモ：moderator / admin (パスワード: demo) — または新規登録してください"}</p>
             ${errorBlock}
           </div>
         </div>
@@ -6518,20 +6517,8 @@
       </section>
     ` : "";
 
-    const banner = state.bannerDismissed ? "" : `
-      <div class="demo-banner demo-banner--soft" role="status" aria-live="polite">
-        <div class="container demo-banner-inner">
-          <span class="demo-banner-dot" aria-hidden="true"></span>
-          <strong>${t.demoBannerLabel}</strong>
-          <span class="demo-banner-text">${t.demoBannerText}</span>
-          <button id="dismiss-banner" type="button" class="demo-banner-close" aria-label="Dismiss">×</button>
-        </div>
-      </div>
-    `;
-
     root.innerHTML = `
       <div class="site-shell">
-        ${banner}
         <header class="site-header">
           <div class="container header-inner">
             <div class="brand">
