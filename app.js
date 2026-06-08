@@ -354,6 +354,9 @@
     searchResults: "検索結果",
     pendingReview: "レビュー待ち",
     pendingReviewHint: "まだレビューがありません。最初のレビューを書いて評価を始めましょう。",
+    hostModerationNote: "このホストに投稿された1件のレビューを、コミュニティガイドライン違反（個人攻撃・差別的表現）のため削除しました。これはレビューの表現に対する措置であり、ホスト家庭への評価ではありません。",
+    trustSafetyTitle: "信頼と安全（モデレーション透明性）",
+    trustSafetyBody: "モデレーション実績：これまでに{count}件を、個人攻撃・差別的表現のガイドライン違反により削除しました。Nestlyは正直な低評価は保護し、攻撃的・差別的な投稿のみを除去します。",
     noResults: "条件に一致するホストファミリーが見つかりません。",
     reviewForm: "レビュー投稿フォーム",
     reviewLead: "レビューする家族を選び、カテゴリごとに星5段階で評価して本文を書き込めます。",
@@ -792,6 +795,9 @@
     searchResults: "Search results",
     pendingReview: "Awaiting review",
     pendingReviewHint: "No reviews yet. Be the first to write one and start the rating.",
+    hostModerationNote: "1 review for this host was removed for violating our community guidelines (personal attacks / discriminatory language). This reflects the review's content, not a judgment of the host.",
+    trustSafetyTitle: "Trust & Safety",
+    trustSafetyBody: "Moderation to date: {count} reviews removed for violating our guidelines (personal attacks / discriminatory language). Nestly protects honest negative reviews and removes only abusive or discriminatory content.",
     noResults: "No host families match those conditions.",
     reviewForm: "Review form",
     reviewLead: "Choose a family, rate each category from 1 to 5 stars, and write your review.",
@@ -1485,7 +1491,55 @@
         hostingYears: 4.0,
       },
     },
+    // モデレーションで全レビューを削除した家庭。マップ・一覧には残すため恒久登録する。
+    // 評価データ（criteria）は持たせず、レビュー0件＝「レビュー募集中」状態で表示される。
+    {
+      id: 1780480419270,
+      name: "Nollido Family",
+      city: "Red Deer, Alberta",
+      area: "Johnstone Park",
+      lat: 52.3032193,
+      lng: -113.8401426,
+      reviews: 0,
+      moderated: true,
+      tags: ["Johnstone Park"],
+      tagsEn: ["Johnstone Park"],
+      fit: [],
+      summary: "",
+      summaryEn: "",
+      criteria: {},
+    },
+    {
+      id: 1780478547456,
+      name: "Liza melgar Family",
+      city: "Red Deer, Alberta",
+      area: "Red Deer area",
+      lat: 52.2711,
+      lng: -113.8142,
+      reviews: 0,
+      moderated: true,
+      tags: ["Red Deer area"],
+      tagsEn: ["Red Deer area"],
+      fit: [],
+      summary: "",
+      summaryEn: "",
+      criteria: {},
+    },
   ];
+
+  // モデレーション記録（本文は保存しない＝透明化のための最小ログ）。
+  // プロトタイプのため定数で保持。実運用では Supabase の moderation_log 等へ移す想定。
+  const MODERATION_LOG = [
+    { hostId: 1780480419270, host: "Nollido Family", removedAt: "2026-06-07", reasonCategory: "personal_attack_discrimination" },
+    { hostId: 1780478547456, host: "Liza melgar Family", removedAt: "2026-06-07", reasonCategory: "personal_attack_discrimination" },
+  ];
+  function hostModerationCount(host) {
+    if (!host) return 0;
+    return MODERATION_LOG.filter((m) => Number(m.hostId) === Number(host.id) || m.host === host.name).length;
+  }
+  function totalModerationCount() {
+    return MODERATION_LOG.length;
+  }
 
   const defaultScores = Object.fromEntries(criteriaGroups.map((group) => [group.key, 0]));
 
@@ -2898,6 +2952,12 @@
     return { rating, reviews: reviews.length, stddev, reliability, hasReviews };
   }
 
+  // モデレーションで削除した家庭に出す中立な注記（赤い警告ではなく控えめに）。
+  function renderModerationNote(host) {
+    if (hostModerationCount(host) <= 0) return "";
+    return `<div class="moderation-note">🛈 ${escapeHtml(t.hostModerationNote)}</div>`;
+  }
+
   function getHostFit(host) {
     if (!host) return [];
     const added = hostReviews(host).flatMap((review) => review.fit || []);
@@ -3576,9 +3636,10 @@
           <button type="button" class="button button--ghost button--compact" data-collapse-detail aria-label="Close">×</button>
         </div>
         <div class="inline-detail-body">
-          ${renderRadarChart(host, { size: 240, padding: 50 })}
+          ${stats.hasReviews ? renderRadarChart(host, { size: 240, padding: 50 }) : ""}
           <div class="inline-detail-side">
-            <p class="featured-summary">${escapeHtml(localizedHostSummary(host))}</p>
+            ${localizedHostSummary(host) ? `<p class="featured-summary">${escapeHtml(localizedHostSummary(host))}</p>` : ""}
+            ${renderModerationNote(host)}
             ${renderInsightChips(host, 4)}
             <div class="inline-detail-actions">
               <button type="button" class="button button--primary" data-write-review-for="${host.id}">${t.writeReviewCta}</button>
@@ -5065,6 +5126,25 @@
           <div class="rating-guide-note">
             <span class="rating-pending">${escapeHtml(t.pendingReview)}</span>
             <span>${escapeHtml(language !== "ja" ? "= no reviews yet, so no score is shown." : "＝まだレビューがなく、評価が付いていない状態です。")}</span>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  // Trust & Safety（モデレーション透明化）：削除実績を控えめな集計で提示する。
+  function renderTrustSafety() {
+    const count = totalModerationCount();
+    if (!count) return "";
+    return `
+      <section class="section-trust-safety">
+        <div class="container">
+          <div class="trust-safety-card">
+            <span class="trust-safety-icon" aria-hidden="true">🛡️</span>
+            <div>
+              <h3 class="trust-safety-title">${escapeHtml(t.trustSafetyTitle)}</h3>
+              <p class="trust-safety-text">${escapeHtml(t.trustSafetyBody.replace("{count}", String(count)))}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -6627,6 +6707,7 @@
       ${heroSection}
       ${ratingGuideWithSample}
       ${renderSafetyDesign()}
+      ${renderTrustSafety()}
     ` : "";
 
     // ログイン済みでプリファレンス設定済み → マッチ度ソート通知

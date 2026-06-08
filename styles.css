@@ -969,6 +969,46 @@ button {
   line-height: 1.8;
 }
 
+/* モデレーション：家庭カードの中立な削除注記（控えめ・グレー） */
+.moderation-note {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Trust & Safety（モデレーション透明化）セクション：小さく中立に */
+.section-trust-safety {
+  padding: 6px 0 0;
+}
+.trust-safety-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+.trust-safety-icon {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.trust-safety-title {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+.trust-safety-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
 /* レビュー本文の機械翻訳の注記・トグル */
 .review-tx-note {
   margin: 4px 0 0;
