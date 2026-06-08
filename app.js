@@ -300,7 +300,7 @@
     howToStudent3Title: "STEP 3：保存・選ぶ",
     howToStudent3Body: "気になるホストはハート（♥）でお気に入りに保存。エージェントや家族との相談材料にお使いください。",
     howToStudent4Title: "STEP 4：滞在後にレビューを書く",
-    howToStudent4Body: "家族を選んで主要6軸＋補助評価軸を星で評価し、向いている人タグ・おすすめ度・本文を記入して投稿。あなたの声が次の留学生を支えます。",
+    howToStudent4Body: "家族を選んで11軸を星で評価し、向いている人タグ・おすすめ度・本文を記入して投稿。あなたの声が次の留学生を支えます。",
     howToHostSection: "2. ホストファミリーへ",
     howToHostIntro: "自分の受け入れ方を磨き、信頼を可視化する仕組みです。",
     howToHost1Title: "自分の家庭の評価を見る",
@@ -325,7 +325,7 @@
     loginSubmit: "ログインする",
     loginFailed: "ユーザー名またはパスワードが違います。",
     loggedInAs: "ログイン中",
-    demoAccounts: "デモ: student / moderator / admin、パスワードは demo",
+    demoAccounts: "メールアドレスで新規登録してご利用ください。",
     badge: "本人確認済みレビューでホームステイの不安を減らす",
     heroTagline: "運ではなく、情報で選ぶ。",
     findHostCta: "ホストを探す",
@@ -360,6 +360,7 @@
     noResults: "条件に一致するホストファミリーが見つかりません。",
     reviewForm: "レビュー投稿フォーム",
     reviewLead: "レビューする家族を選び、カテゴリごとに星5段階で評価して本文を書き込めます。",
+    verificationPilotNote: "現在はプロトタイプのため、本人確認なしで匿名投稿できます。滞在証明・学校発行コードによる本人確認は、Red Deer での実証運用で順次導入予定です。",
     reviewPlaceholder:
       "例）ホストは50代のご夫婦で、初日に家のルール（門限は平日22時、週末は事前に伝えればOK）を丁寧に説明してくれて安心できました。英語を話す機会は夕食のときを中心に多く、わからない単語はゆっくり言い換えてくれます。食事は野菜が多くバランスがよく、アレルギーにも対応してくれました。学校までは車で15分ほどで、雨の日は送ってくれることもありました。部屋は個室でWi-Fiも安定しています。困ったときにすぐ相談できる雰囲気だったので、初めての留学で不安な人にもおすすめです。\n\n※上のような文章はあくまで例です。家庭の雰囲気・英語環境・食事や部屋・通学やサポート・どんな人に向くか、を自分の言葉で書いてみてください。",
     submitReview: "匿名レビューを投稿する",
@@ -368,7 +369,7 @@
     noReviewsYet: "まだ投稿レビューはありません。最初のレビューを書き込めます。",
     schoolTitle: "学校・エージェント向け分析機能",
     schoolText:
-      "英語環境、自由度、学習環境、文化適応、メンタル面、交通、安全の傾向を可視化し、問題の早期発見とホームステイ品質の改善につなげます。",
+      "英語環境、自由度、学習環境、食事、メンタル面、交通・送迎、安全の傾向を可視化し、問題の早期発見とホームステイ品質の改善につなげます。",
     schoolPilotNotice:
       "※ 現在表示中のスコアはプロトタイプ用のサンプルです。実際の地域別傾向データは、Red Deer での実証運用を通じて蓄積予定です。",
     document: "資料を見る",
@@ -742,7 +743,7 @@
     howToStudent3Title: "STEP 3: Save and choose",
     howToStudent3Body: "Save promising hosts with the heart icon (♥). Use them as talking points with your agent or family.",
     howToStudent4Title: "STEP 4: Write a review after your stay",
-    howToStudent4Body: "Pick a family, rate the 6 primary axes plus auxiliary axes, choose “best for” tags and a recommendation, and write your review — to support the next student.",
+    howToStudent4Body: "Pick a family, rate all 11 axes, choose “best for” tags and a recommendation, and write your review — to support the next student.",
     howToHostSection: "2. For host families",
     howToHostIntro: "Refine your hosting and make your reliability visible.",
     howToHost1Title: "See your own ratings",
@@ -767,7 +768,7 @@
     loginSubmit: "Log in",
     loginFailed: "Username or password is incorrect.",
     loggedInAs: "Signed in",
-    demoAccounts: "Demo: student / moderator / admin, password: demo",
+    demoAccounts: "Sign up with your email to get started.",
     badge: "Reduce homestay uncertainty with verified student reviews",
     heroTagline: "Find your nest. Not by luck, but by choice.",
     findHostCta: "Find a host",
@@ -801,6 +802,7 @@
     noResults: "No host families match those conditions.",
     reviewForm: "Review form",
     reviewLead: "Choose a family, rate each category from 1 to 5 stars, and write your review.",
+    verificationPilotNote: "This is a prototype, so reviews can be posted anonymously without identity checks. Identity verification via proof of stay and school-issued codes will be rolled out during the Red Deer pilot.",
     reviewPlaceholder:
       "Example: My hosts were a couple in their 50s who explained the house rules on day one (weekday curfew at 10pm, weekends OK with advance notice), which put me at ease. I had plenty of chances to speak English, especially at dinner, and they patiently rephrased words I didn't know. Meals were balanced with lots of vegetables, and they accommodated my allergies. School was about a 15-minute drive, and they sometimes gave me a ride on rainy days. I had a private room with stable Wi-Fi. It was easy to ask for help whenever I needed it, so I'd recommend them especially to first-time students who feel anxious.\n\nNote: the text above is just an example. In your own words, try to cover the atmosphere, the English environment, meals and your room, the commute and support, and who this family would suit.",
     submitReview: "Post anonymous review",
@@ -809,7 +811,7 @@
     noReviewsYet: "No reviews have been posted yet. You can write the first one.",
     schoolTitle: "Analytics for schools and agencies",
     schoolText:
-      "Visualize trends in English environment, freedom, study conditions, cultural fit, mental support, transportation, and safety to detect issues early and improve homestay quality.",
+      "Visualize trends in English environment, freedom, study conditions, meals, mental support, transportation and rides, and safety to detect issues early and improve homestay quality.",
     schoolPilotNotice:
       "Note: the scores shown are prototype samples. Real regional trend data will be accumulated through our pilot operation in Red Deer.",
     document: "View document",
@@ -950,11 +952,14 @@
   },
   };
 
-  // Legacy demo accounts (username/password) — kept for moderator/admin demo.
-  const accounts = [
-    { username: "moderator", password: "demo", role: "moderator", name: "Moderator" },
-    { username: "admin", password: "demo", role: "admin", name: "Admin" },
-  ];
+  // セキュリティ上の理由で、公開ビルドには admin / moderator のデモアカウントを
+  // 一切含めない（クライアント JS は誰でも閲覧できるため、ここに認証情報を書くと
+  // 第三者がそのままログインして削除・モデレーションなどの破壊的操作を実行できてしまう）。
+  // モデレーションはオーナーが管理スクリプト経由で行う運用。将来的に管理 UI を公開で
+  // 使う場合は、Supabase 側の認証 + RLS（行レベルセキュリティ = 行ごとのアクセス権限制御）で
+  // サーバー側からも破壊的操作を保護すること。ローカルでだけ管理 UI を試したい時は
+  // この配列に一時的にアカウントを足す（コミット・デプロイしない）。
+  const accounts = [];
 
   // ----- User store (email-based registrations) -----------------------
   function loadUsers() {
@@ -1849,6 +1854,8 @@
 
   let leafletMap = null;
   let leafletMiniMap = null; // レビュー選択確認用ミニマップ
+  let mapRetryTimer = null;  // Leaflet(CDN) 未ロード時のリトライ用タイマー
+  let mapRetryCount = 0;     // リトライ回数（CDN が遅い時の一時的失敗をリカバリ）
   let apiSyncStarted = false;
   let repliesSyncStarted = false;
   let locationHealStarted = false;
@@ -1866,13 +1873,15 @@
   }
 
   function loadView() {
-    if (typeof window !== "undefined" && window.location && window.location.hash) {
-      const fromHash = window.location.hash.replace(/^#\/?/, "");
-      if (VIEWS.includes(fromHash)) return fromHash;
+    // URL のハッシュ（#/search など）を「正」としてビューを解決する。
+    // - ハッシュがあり既知のビュー → そのビュー（ディープリンク・リロード・共有が機能）
+    // - ハッシュがあるが未知のルート → home へフォールバック
+    // - ハッシュが無い（トップURL直打ち）→ home（前回ビューが残って混乱するのを防ぐ）
+    if (typeof window !== "undefined" && window.location) {
+      const fromHash = (window.location.hash || "").replace(/^#\/?/, "").trim();
+      if (fromHash) return VIEWS.includes(fromHash) ? fromHash : "home";
     }
-    if (typeof localStorage === "undefined") return "home";
-    const saved = localStorage.getItem(VIEW_KEY);
-    return VIEWS.includes(saved) ? saved : "home";
+    return "home";
   }
 
   function saveView() {
@@ -1941,7 +1950,10 @@
     if (!store) return null;
     try {
       const parsed = JSON.parse(store.getItem(SESSION_KEY) || "null");
-      return parsed && ["user", "moderator", "admin", "host"].includes(parsed.role) ? parsed : null;
+      // admin / moderator は公開ビルドでは取得不可能なロール。過去に旧デモアカウントで
+      // ログインした端末に残っている特権セッションは復元せず、ログアウト扱いにする
+      // （クライアントだけで特権を持ち続けられないようにするため）。
+      return parsed && ["user", "host"].includes(parsed.role) ? parsed : null;
     } catch (_error) {
       return null;
     }
@@ -2952,10 +2964,12 @@
     return { rating, reviews: reviews.length, stddev, reliability, hasReviews };
   }
 
-  // モデレーションで削除した家庭に出す中立な注記（赤い警告ではなく控えめに）。
-  function renderModerationNote(host) {
-    if (hostModerationCount(host) <= 0) return "";
-    return `<div class="moderation-note">🛈 ${escapeHtml(t.hostModerationNote)}</div>`;
+  // モデレーション透明化は「ホーム下部の Trust & Safety 集計のみ」で行う方針。
+  // 実名の家庭カードに『1件削除』と個別表示すると、その家庭への示唆的な名誉毀損リスクが
+  // あるため、ホスト別注記は出さない（削除済み家庭は無印の「レビュー待ち」になる）。
+  // 集計件数は MODERATION_LOG / totalModerationCount() から引き続き算出される。
+  function renderModerationNote(_host) {
+    return "";
   }
 
   function getHostFit(host) {
@@ -3709,7 +3723,10 @@
   }
 
   function renderCriteriaSummary(host) {
+    // 廃止軸（文化適応・プライバシー・家事手伝い）は内訳からも除外し、
+    // 全画面で同じ11軸だけを表示する。
     return localizedCriteriaGroups()
+      .filter((group) => !DEPRECATED_GROUP_KEYS.includes(group.key))
       .map((group) => {
         const weight = axisWeights[group.key] || 1.0;
         const isMain = weight >= 2.0;
@@ -4315,6 +4332,7 @@
         <div class="card-body">
           <h2 class="section-title">${t.reviewForm}</h2>
           <p class="section-text">${t.reviewLead}</p>
+          <p class="form-pilot-note">ℹ️ ${escapeHtml(t.verificationPilotNote)}</p>
           <div class="review-target">
             <label for="review-host-select">${t.reviewTarget} <span class="required-mark">*</span></label>
             <select id="review-host-select" class="host-select">
@@ -4343,21 +4361,20 @@
                 .join("")}
             </select>
           </div>
-          <h4 class="detail-subhead detail-subhead--top">${language !== "ja" ? "Primary 6 axes (required)" : "主要 6 軸（必須）"}</h4>
+          <h4 class="detail-subhead detail-subhead--top">${language !== "ja" ? "Primary axes (required)" : "主要軸（必須）"}</h4>
           <p class="form-intro">${language !== "ja"
             ? "Rate each axis from 1 to 5 stars. These are the core signal."
             : "各項目を 1〜5 星で評価してください。これがコア評価です。"}</p>
           <div class="review-score-rows">
-            ${radarAxesLocalized().map((axis) => {
-              const sourceKey = axis.sourceKeys[0];
-              const mirrorKeys = axis.sourceKeys.slice(1);
-              return renderStarRowInput(sourceKey, axis.displayLabel, { required: true, mirrorKeys });
+            ${["safetyEnvironment", "englishEnvironment", "mealQuality", "mentalSupport", "study"].map((key) => {
+              const group = localizedCriteriaGroups().find((g) => g.key === key);
+              return group ? renderStarRowInput(key, group.title, { required: true }) : "";
             }).join("")}
           </div>
 
-          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (freedom / internet / cleanliness / host experience — required)" : "補助評価（自由度 / 通信 / 清潔さ / 受け入れ経験 — 必須）"}</h4>
+          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (transportation / ride / freedom / internet / cleanliness / host experience — required)" : "補助評価（交通 / 送迎 / 自由度 / 通信 / 清潔さ / 受け入れ経験 — 必須）"}</h4>
           <div class="review-score-rows">
-            ${["rules", "internetQuality", "cleanliness", "hostExperience"].map((key) => {
+            ${["transportation", "rideSupport", "rules", "internetQuality", "cleanliness", "hostExperience"].map((key) => {
               const group = localizedCriteriaGroups().find((g) => g.key === key);
               return group ? renderStarRowInput(key, group.title, { required: true }) : "";
             }).join("")}
@@ -5065,22 +5082,19 @@
   // ホーム用：ホスト評価の「見方」を説明するセクション。
   // レーダー（主要6軸）＋補助評価軸を、各軸が何を測るのか・どこを見ればよいかと一緒に提示する。
   function renderRatingGuide() {
-    const radarKeys = ["safetyEnvironment", "englishEnvironment", "mealQuality", "mentalSupport", "commute", "study"];
-    // commute はレーダー上の統合軸（transportation+rideSupport）。説明用に専用エントリを持たせる。
+    // 全画面で同じ11軸（通学＝交通 と 送迎 は別軸）。主要軸はレーダーチャートにも表示する。
     const groups = localizedCriteriaGroups();
     const groupByKey = (k) => groups.find((g) => g.key === k);
-    const commuteDesc = language !== "ja"
-      ? "Bus access, distance to school, winter commute, and rides from the family."
-      : "バス便・学校までの距離・冬の通学・家族の送迎を総合。";
     const primaryAxes = [
       { key: "safetyEnvironment", icon: "🛡" },
       { key: "englishEnvironment", icon: "💬" },
       { key: "mealQuality", icon: "🍽" },
       { key: "mentalSupport", icon: "🤝" },
-      { key: "commute", icon: "🚌", title: language !== "ja" ? "Commute & Ride" : "通学・送迎", desc: commuteDesc },
       { key: "study", icon: "📚" },
     ];
     const auxAxes = [
+      { key: "transportation", icon: "🚌" },
+      { key: "rideSupport", icon: "🚗" },
       { key: "rules", icon: "🕊" },
       { key: "cleanliness", icon: "✨" },
       { key: "internetQuality", icon: "📶" },
@@ -5106,8 +5120,8 @@
           <div class="section-head">
             <h2 class="section-title">${language !== "ja" ? "How to read host ratings" : "ホストの評価の見方"}</h2>
             <p class="section-text">${language !== "ja"
-              ? "Each host is rated on 6 primary axes (the radar chart) plus auxiliary axes."
-              : "各ホストはレーダーチャートの主要6軸＋補助評価軸で採点されます。"}</p>
+              ? "Each host is rated on 11 axes — primary axes appear on the radar chart and the rest as auxiliary axes."
+              : "各ホストは11軸で採点されます。主要軸はレーダーチャートに、残りは補助評価軸として表示されます。"}</p>
           </div>
           <div class="rating-guide-policy">
             <span class="rating-guide-policy-icon" aria-hidden="true">⚖️</span>
@@ -5115,7 +5129,7 @@
               ? "By default the overall score is a simple average of the radar axes — every axis counts equally (×1). When you log in and finish the matching setup, the overall score is re-weighted by how important each axis is to you, so the same host can score differently for different students."
               : "総合評価は初期状態では全軸を一律1倍にした単純平均です。ログインしてマッチング設定（最適化工程）を済ませると、あなたが重視する軸ほど重く反映した「あなた向けの総合評価」に切り替わります。そのため同じホストでも人によって点数が変わります。"}</p>
           </div>
-          <h3 class="rating-guide-subhead">${language !== "ja" ? "Primary axes (radar chart)" : "主要6軸（レーダーチャート）"}</h3>
+          <h3 class="rating-guide-subhead">${language !== "ja" ? "Primary axes (radar chart)" : "主要軸（レーダーチャート）"}</h3>
           <div class="rating-guide-grid">
             ${primaryAxes.map((e) => axisCard(e, true)).join("")}
           </div>
@@ -6073,20 +6087,15 @@
       const host = selectedHost();
       if (!host) return;
 
-      // Validate all required axes are rated.
-      // NOTE: rideSupport is paired with transportation under the combined
-      // "通学・送迎" axis. The star handler mirrors clicks so both keys are set
-      // in sync. We only check transportation here to avoid validating a
-      // hidden mirror twice (the star is invisible to the user).
-      const visibleRequired = requiredAxisKeys.filter((k) => k !== "rideSupport");
+      // Validate all required axes are rated. transportation と rideSupport は
+      // それぞれ独立した入力欄になったので、両方を検証する（11軸すべて必須）。
+      const visibleRequired = requiredAxisKeys;
       const missing = visibleRequired.filter((k) => !(state.reviewScores[k] > 0));
       if (missing.length && !isAdmin()) {
         // Highlight all missing fields + name them explicitly
         state.missingScores = missing;
         const missingLabels = missing.map((k) => {
-          // Prefer the user-facing display label used in the form (radar label for combined axes)
-          const axis = radarAxesLocalized().find((a) => a.sourceKeys[0] === k);
-          if (axis) return axis.displayLabel;
+          // フォームの各入力ラベルと一致させるため criteriaGroups のタイトルを使う。
           const group = localizedCriteriaGroups().find((g) => g.key === k);
           return group ? group.title : k;
         });
@@ -6397,7 +6406,24 @@
 
   function initMap(host) {
     const mapElement = document.getElementById("real-map");
-    if (!mapElement || !window.L) return;
+    if (!mapElement) return;
+
+    // Leaflet（地図ライブラリ・CDN 配信）がまだ読み込まれていないことがある。
+    // その場合は即「読み込めませんでした」と諦めず、短い間隔で最大10回（約5秒）
+    // 再試行する。ロードが間に合えば地図が自動表示され、デモ中にエラー文が出にくくなる。
+    if (!window.L) {
+      if (mapRetryCount < 10) {
+        mapRetryCount += 1;
+        clearTimeout(mapRetryTimer);
+        mapRetryTimer = setTimeout(() => {
+          const wantsMap = state.view === "map" || (state.view === "search" && !state.mapCollapsed);
+          if (wantsMap) initMap(host);
+        }, 500);
+      }
+      return;
+    }
+    mapRetryCount = 0;
+    clearTimeout(mapRetryTimer);
 
     if (leafletMap) {
       leafletMap.remove();
@@ -6623,6 +6649,7 @@
           </div>
           <div class="hero-visual" aria-hidden="true">
             <div class="hero-card-preview">
+              <div class="hcp-sample-badge">${language !== "ja" ? "Sample image" : "表示はイメージです"}</div>
               <div class="hcp-head">
                 <span class="hcp-avatar">🏠</span>
                 <div>
@@ -6906,6 +6933,20 @@
     syncReviewsFromApi();
     syncHostRepliesFromApi();
     healCustomHostLocations();
+  }
+
+  // URL のハッシュが（ブラウザの戻る/進む・アドレスバー編集・外部リンクで）変わったら
+  // ビューを再解決して描画し直す。自前のナビゲーション（saveView の replaceState）は
+  // hashchange を発火しないので、無限ループにはならない。
+  if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
+    window.addEventListener("hashchange", () => {
+      const next = loadView();
+      if (next !== state.view) {
+        state.view = next;
+        render();
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+    });
   }
 
   if (typeof document !== "undefined") {
