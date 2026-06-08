@@ -136,12 +136,12 @@
     pricingPlan2Tag: "B2B",
     pricingPlan2Title: "エージェント向けデータプラン",
     pricingPlan2For: "留学エージェント向け",
-    pricingPlan2Price: "CA$1,500／年",
+    pricingPlan2Price: "CA$2,500／年",
     pricingPlan2Features: "地域別の満足度傾向\nホスト品質の分析\n月次推移トレンド\nCSV／PDFエクスポート\n専任サポート",
     pricingPlan3Tag: "B2B",
     pricingPlan3Title: "ホームステイ運営団体向け分析",
     pricingPlan3For: "ホームステイ運営団体・学校向け",
-    pricingPlan3Price: "CA$2,000／年",
+    pricingPlan3Price: "CA$1,500／年",
     pricingPlan3Features: "匿名化された満足度分析\nマッチング傾向データ\n地域別レポート\n個人を特定しない集計形式",
     aboutStoryHeading: "なぜNestlyを作るのか",
     aboutStoryParagraph1: "私は現在カナダRed Deerで高校留学中の高校生です。ある友人はホストファミリーとの会話を通じて英語力を伸ばし大学進学を決めた一方、別の友人は孤独感から塞ぎ込み、3ヶ月で帰国を考えました。",
@@ -191,6 +191,11 @@
     geocodeFailed: "住所から位置を取得できませんでした。住所を確認してください。",
     familyNameSameAsArea: "家族名とエリア名は分けて入力してください。",
     adminRatingOnly: "管理者による評価のみ",
+    translatedNote: "機械翻訳",
+    translatingNote: "翻訳中…",
+    translateFailed: "翻訳できませんでした（原文を表示中）",
+    showOriginal: "原文を表示",
+    showTranslation: "翻訳を表示",
     refineSearch: "検索条件を変えてもう一度探してください。",
     noResultsHint: "別のキーワードやフィルターで試してみましょう。",
     clearFiltersButton: "フィルターをリセット",
@@ -203,10 +208,10 @@
     demoBannerText: "表示中のレビューと一部のホスト情報はプロトタイプ用のサンプルです。本番リリース時には20名のヒアリングを匿名化した実データに差し替えます。",
     aboutEyebrow: "About Nestly",
     aboutTitle: "Red Deerの留学生が、20名の声からつくっています。",
-    aboutText: "Nestlyは、カナダRed Deerで高校留学中の開発者が、2025年から現地留学生20名にヒアリングを行い、9カテゴリの評価軸を設計したプロジェクトです。「事前にどんな情報があれば不安が減ったか」を一次データから抽出し、レビューの構造に落とし込みました。情報の空白を埋め、留学を「運任せ」から「納得の選択」へ変えることが、私たちの目標です。",
+    aboutText: "Nestlyは、カナダRed Deerで高校留学中の開発者が、2025年から現地留学生20名にヒアリングを行い、11カテゴリの評価軸を設計したプロジェクトです。「事前にどんな情報があれば不安が減ったか」を一次データから抽出し、レビューの構造に落とし込みました。情報の空白を埋め、留学を「運任せ」から「納得の選択」へ変えることが、私たちの目標です。",
     aboutStat1Value: "20名",
     aboutStat1Label: "現地留学生ヒアリング",
-    aboutStat2Value: "9カテゴリ",
+    aboutStat2Value: "11カテゴリ",
     aboutStat2Label: "構造化評価軸",
     aboutStat3Value: "5項目",
     aboutStat3Label: "生活条件レビュー",
@@ -360,7 +365,9 @@
     noReviewsYet: "まだ投稿レビューはありません。最初のレビューを書き込めます。",
     schoolTitle: "学校・エージェント向け分析機能",
     schoolText:
-      "英語環境、生活ルール、学習環境、文化適応、メンタル面、交通、安全の傾向を可視化し、問題の早期発見とホームステイ品質の改善につなげます。",
+      "英語環境、自由度、学習環境、文化適応、メンタル面、交通、安全の傾向を可視化し、問題の早期発見とホームステイ品質の改善につなげます。",
+    schoolPilotNotice:
+      "※ 現在表示中のスコアはプロトタイプ用のサンプルです。実際の地域別傾向データは、Red Deer での実証運用を通じて蓄積予定です。",
     document: "資料を見る",
     tests: "プロトタイプ動作確認",
     testsText: "検索・レビュー保存・カテゴリ評価・地図座標の簡易テストを実行済みです。",
@@ -463,7 +470,7 @@
     analyticsStrongest: "強いカテゴリ",
     analyticsAttention: "改善が必要な領域",
     noAnalytics: "レビューや家族データが増えると分析が表示されます。",
-    riskLowRules: "ルールの不一致",
+    riskLowRules: "自由度の低さ",
     riskCommute: "通学・冬の移動",
     riskSupport: "相談しにくさ",
     criteria: {
@@ -568,12 +575,12 @@
     pricingPlan2Tag: "B2B",
     pricingPlan2Title: "Agent data plan",
     pricingPlan2For: "For study-abroad agents",
-    pricingPlan2Price: "CA$1,500 / year",
+    pricingPlan2Price: "CA$2,500 / year",
     pricingPlan2Features: "Regional satisfaction trends\nHost quality analysis\nMonthly trend tracking\nCSV / PDF export\nDedicated support",
     pricingPlan3Tag: "B2B",
     pricingPlan3Title: "Homestay-org analytics",
     pricingPlan3For: "For homestay organizations & schools",
-    pricingPlan3Price: "CA$2,000 / year",
+    pricingPlan3Price: "CA$1,500 / year",
     pricingPlan3Features: "De-identified satisfaction analytics\nMatching-trend data\nRegional reports\nAnonymity-preserving aggregation",
     aboutStoryHeading: "Why I'm building Nestly",
     aboutStoryParagraph1: "I'm a high school student currently studying in Red Deer, Canada. One friend grew her English through dinner-table conversations and went on to university; another friend grew so isolated that within three months she was thinking of going home.",
@@ -623,6 +630,11 @@
     geocodeFailed: "Could not place the pin from that address. Check the address and try again.",
     familyNameSameAsArea: "Enter a family name that is different from the area name.",
     adminRatingOnly: "Admin rating only",
+    translatedNote: "Machine-translated",
+    translatingNote: "Translating…",
+    translateFailed: "Translation unavailable (showing original)",
+    showOriginal: "Show original",
+    showTranslation: "Show translation",
     refineSearch: "Change the search terms and try again.",
     noResultsHint: "Try a different keyword or adjust the filters.",
     clearFiltersButton: "Reset filters",
@@ -635,10 +647,10 @@
     demoBannerText: "Reviews and some host details shown here are prototype samples. They will be replaced with anonymized data from 20 student interviews before launch.",
     aboutEyebrow: "About Nestly",
     aboutTitle: "Built in Red Deer, from 20 student voices.",
-    aboutText: "Nestly is a project by a high-school exchange student in Red Deer, Canada. Starting in 2025, the developer interviewed 20 international students locally and used their stories to design the 9-category rating axis you see today. The core question — 'what information would have eased your anxiety before you arrived?' — drove every part of the data model. Our goal: turn studying abroad from a gamble into an informed choice.",
+    aboutText: "Nestly is a project by a high-school exchange student in Red Deer, Canada. Starting in 2025, the developer interviewed 20 international students locally and used their stories to design the 11-category rating system you see today. The core question — 'what information would have eased your anxiety before you arrived?' — drove every part of the data model. Our goal: turn studying abroad from a gamble into an informed choice.",
     aboutStat1Value: "20",
     aboutStat1Label: "Students interviewed locally",
-    aboutStat2Value: "9",
+    aboutStat2Value: "11",
     aboutStat2Label: "Structured rating categories",
     aboutStat3Value: "5",
     aboutStat3Label: "Living-condition review fields",
@@ -791,7 +803,9 @@
     noReviewsYet: "No reviews have been posted yet. You can write the first one.",
     schoolTitle: "Analytics for schools and agencies",
     schoolText:
-      "Visualize trends in English environment, house rules, study conditions, cultural fit, mental support, transportation, and safety to detect issues early and improve homestay quality.",
+      "Visualize trends in English environment, freedom, study conditions, cultural fit, mental support, transportation, and safety to detect issues early and improve homestay quality.",
+    schoolPilotNotice:
+      "Note: the scores shown are prototype samples. Real regional trend data will be accumulated through our pilot operation in Red Deer.",
     document: "View document",
     tests: "Prototype checks",
     testsText: "Basic checks for search, review saving, category ratings, and map coordinates have been run.",
@@ -894,7 +908,7 @@
     analyticsStrongest: "Strongest categories",
     analyticsAttention: "Areas needing attention",
     noAnalytics: "Analytics will appear as host and review data grows.",
-    riskLowRules: "Rules mismatch",
+    riskLowRules: "Low freedom",
     riskCommute: "Commute and winter access",
     riskSupport: "Low support signals",
     criteria: {
@@ -961,7 +975,7 @@
   const defaultImportance = {
     safetyEnvironment: 5,
     englishEnvironment: 4,
-    cultureFit: 3,
+    mealQuality: 3,
     mentalSupport: 4,
     commute: 3,
     study: 3,
@@ -976,7 +990,7 @@
     const radarValues = {
       safetyEnvironment: radarValue(host, radarAxes[0]),
       englishEnvironment: radarValue(host, radarAxes[1]),
-      cultureFit: radarValue(host, radarAxes[2]),
+      mealQuality: radarValue(host, radarAxes[2]),
       mentalSupport: radarValue(host, radarAxes[3]),
       commute: radarValue(host, radarAxes[4]),
       study: radarValue(host, radarAxes[5]),
@@ -984,6 +998,7 @@
     let weightedSum = 0;
     let maxPossible = 0;
     for (const key of Object.keys(importance)) {
+      if (!(key in radarValues)) continue; // 旧 cultureFit など廃止軸の保存値はスキップ
       const imp = Number(importance[key]) || 0;
       const val = Number(radarValues[key]) || 0;
       weightedSum += imp * val;
@@ -1191,7 +1206,7 @@
     },
     {
       key: "rules",
-      title: "自由度・柔軟性",
+      title: "自由度",
       description: "高い＝柔軟・自由度高め / 低い＝厳しめ・規則が多い（門限・外泊・自由時間）",
       itemKeys: ["freedom", "curfew", "overnight"],
       direction: "higherIsFreer",  // ★5 = freer / flexible, ★1 = stricter
@@ -1272,11 +1287,11 @@
 
   // レビューフォームから外した評価軸。集計・分析の表示からは除外する
   // （ベイクド・イン ホストの基礎データには値が残っているため明示的に弾く）。
-  const DEPRECATED_GROUP_KEYS = ["hostExperience", "chores"];
+  const DEPRECATED_GROUP_KEYS = ["cultureFit", "privacy", "chores"];
 
   // 補助評価軸（レーダーの主要6軸に含まれない現行の評価グループ）。
   // レビュー閲覧時にレーダーの下へ内訳として表示する。
-  const AUX_GROUP_KEYS = ["rules", "mealQuality", "cleanliness", "privacy", "internetQuality"];
+  const AUX_GROUP_KEYS = ["rules", "internetQuality", "cleanliness", "hostExperience"];
 
   // Tiered weighted scoring (revised based on student wellbeing research):
   //   T1 Safety/wellbeing (×2.5)   T2 Daily QoL & study-abroad value (×2.0)
@@ -1287,13 +1302,11 @@
     mentalSupport: 2.5,      // T1
     mealQuality: 2.0,        // T2 (promoted from aux)
     englishEnvironment: 2.0, // T2
-    cultureFit: 2.0,         // T2
     study: 1.5,              // T3
     transportation: 1.0,     // T3
     rideSupport: 1.0,        // T3
     rules: 1.0,              // T4
     cleanliness: 1.0,        // T4
-    privacy: 1.0,            // T4（補助評価に統合・2026-05-31）
     internetQuality: 0.5,    // T5
     hostExperience: 0.5,     // T5
   };
@@ -1301,13 +1314,10 @@
   // Axes whose star input is REQUIRED on review submit. hostExperience is
   // intentionally excluded — many reviewers can't fairly assess it.
   const requiredAxisKeys = [
-    "safetyEnvironment", "englishEnvironment", "cultureFit", "mentalSupport",
+    "safetyEnvironment", "englishEnvironment", "mealQuality", "mentalSupport",
     "transportation", "rideSupport", "study",
-    "rules", "internetQuality", "mealQuality", "cleanliness", "privacy",
+    "rules", "internetQuality", "cleanliness", "hostExperience",
   ];
-
-  // Auxiliary axes (not in main 6 radar, shown in detail table).
-  const auxiliaryAxisKeys = ["rules", "internetQuality", "mealQuality", "cleanliness", "hostExperience"];
 
   const fitOptions = [
     ["introvert",     "内向的な人向け"],
@@ -1595,18 +1605,19 @@
     const importance = user.preferences.importance || defaultImportance;
     const reasons = [];
     const labels = language === "ja"
-      ? { safetyEnvironment: "安全", englishEnvironment: "英語環境", cultureFit: "文化適応", mentalSupport: "メンタルサポート", commute: "通学・送迎", study: "学習向き" }
-      : { safetyEnvironment: "Safety", englishEnvironment: "English", cultureFit: "Culture fit", mentalSupport: "Mental support", commute: "Commute", study: "Study fit" };
+      ? { safetyEnvironment: "安全", englishEnvironment: "英語環境", mealQuality: "食事", mentalSupport: "メンタルサポート", commute: "通学・送迎", study: "学習向き" }
+      : { safetyEnvironment: "Safety", englishEnvironment: "English", mealQuality: "Meal", mentalSupport: "Mental support", commute: "Commute", study: "Study fit" };
     const radarValues = {
       safetyEnvironment: radarValue(host, radarAxes[0]),
       englishEnvironment: radarValue(host, radarAxes[1]),
-      cultureFit: radarValue(host, radarAxes[2]),
+      mealQuality: radarValue(host, radarAxes[2]),
       mentalSupport: radarValue(host, radarAxes[3]),
       commute: radarValue(host, radarAxes[4]),
       study: radarValue(host, radarAxes[5]),
     };
     // Identify top contributing + concerning axes
     Object.keys(importance).forEach((key) => {
+      if (!(key in radarValues)) return; // 旧 cultureFit など廃止軸の保存値はスキップ
       const imp = importance[key] || 0;
       const val = radarValues[key] || 0;
       if (imp >= 4 && val >= 4.3) reasons.push({ type: "plus", label: labels[key], detail: `${language !== "ja" ? "high importance & strong" : "重視度高 + 強い"} (${val.toFixed(1)})` });
@@ -1721,7 +1732,7 @@
   const radarAxes = [
     { key: "safetyEnvironment", label: "安全", labelEn: "Safety", sourceKeys: ["safetyEnvironment"] },
     { key: "englishEnvironment", label: "英語環境", labelEn: "English", sourceKeys: ["englishEnvironment"] },
-    { key: "cultureFit", label: "文化・食事", labelEn: "Culture & Food", sourceKeys: ["cultureFit"] },
+    { key: "mealQuality", label: "食事", labelEn: "Meal", sourceKeys: ["mealQuality"] },
     { key: "mentalSupport", label: "メンタルサポート", labelEn: "Mental support", sourceKeys: ["mentalSupport"] },
     { key: "commute", label: "通学・送迎", labelEn: "Commute & Ride", sourceKeys: ["transportation", "rideSupport"] },
     { key: "study", label: "学習向き", labelEn: "Study fit", sourceKeys: ["study"] },
@@ -2174,6 +2185,184 @@
     return cleaned.startsWith("「") && cleaned.endsWith("」") ? cleaned.slice(1, -1).trim() : cleaned;
   }
 
+  // ===== レビュー本文の機械翻訳（設定言語へ自動翻訳）=====
+  // 学生が書く本文は日本語が前提。サイト言語が日本語以外のとき、無料の
+  // MyMemory API（APIキー不要・ブラウザから直接呼べる）で翻訳して表示する。
+  // 翻訳結果は localStorage にキャッシュし、再表示・言語再切替を高速化＆API節約。
+  // 失敗時（上限・通信エラー等）は原文にフォールバックする。
+  const REVIEW_TX_KEY = "nestly.reviewTx.v1";
+  // サイト言語コード → MyMemory が受け付ける言語コード
+  const MT_LANG = { en: "en", zh: "zh-CN", ko: "ko", vi: "vi", es: "es", pt: "pt-BR" };
+  let reviewTxCache = loadReviewTx();      // { "id::lang": "翻訳文" }
+  const reviewTxFailed = {};               // 同セッションで失敗したキー（再試行しない）
+  const reviewTxPending = new Set();        // 取得中のキー
+  let reviewTxQueue = [];                   // 翻訳待ち [{ key, id, text, lang }]
+  const translationShowOriginal = new Set(); // 「原文を表示」中のレビューID
+
+  function loadReviewTx() {
+    if (typeof localStorage === "undefined") return {};
+    try {
+      const parsed = JSON.parse(localStorage.getItem(REVIEW_TX_KEY) || "{}");
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch (_e) {
+      return {};
+    }
+  }
+  function saveReviewTx() {
+    if (typeof localStorage === "undefined") return;
+    try {
+      localStorage.setItem(REVIEW_TX_KEY, JSON.stringify(reviewTxCache));
+    } catch (_e) {
+      /* 容量超過などは無視（翻訳はあくまで補助） */
+    }
+  }
+
+  // MyMemory は1リクエスト約500文字まで。文末で区切ってチャンク分割する。
+  function chunkForTranslation(text, max) {
+    const parts = String(text).split(/(?<=[。．.!?！？\n])/);
+    const chunks = [];
+    let cur = "";
+    for (const p of parts) {
+      if ((cur + p).length > max && cur) {
+        chunks.push(cur);
+        cur = p;
+      } else {
+        cur += p;
+      }
+      while (cur.length > max) {
+        chunks.push(cur.slice(0, max));
+        cur = cur.slice(max);
+      }
+    }
+    if (cur) chunks.push(cur);
+    return chunks.length ? chunks : [String(text)];
+  }
+
+  function decodeBasicEntities(str) {
+    return String(str)
+      .replace(/&#39;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&");
+  }
+
+  // 1本のレビュー本文を翻訳して返す（失敗時は throw）。
+  async function mtTranslate(text, lang) {
+    const tl = MT_LANG[lang] || lang;
+    const chunks = chunkForTranslation(text, 480);
+    const out = [];
+    for (const chunk of chunks) {
+      const url =
+        "https://api.mymemory.translated.net/get?q=" +
+        encodeURIComponent(chunk) +
+        "&langpair=" +
+        encodeURIComponent("ja|" + tl);
+      const res = await fetch(url, { headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("translate http " + res.status);
+      const data = await res.json();
+      const status = Number(data && data.responseStatus);
+      const tx = data && data.responseData && data.responseData.translatedText;
+      // 上限超過などは responseStatus=403 や警告文が返る → 失敗扱い
+      if (status >= 400 || !tx || /MYMEMORY WARNING|INVALID|PLEASE SELECT/i.test(tx)) {
+        throw new Error("translate unavailable");
+      }
+      out.push(decodeBasicEntities(tx));
+    }
+    return out.join(" ");
+  }
+
+  // 翻訳待ちに追加（重複・取得済み・失敗済みはスキップ）。
+  function enqueueTranslation(id, text, lang) {
+    const key = id + "::" + lang;
+    if (reviewTxCache[key] || reviewTxPending.has(key) || reviewTxFailed[key]) return;
+    if (reviewTxQueue.some((q) => q.key === key)) return;
+    reviewTxQueue.push({ key, id, text, lang });
+  }
+
+  // 描画後に呼ぶ。キューを順番に翻訳し、終わったら再描画して反映する。
+  async function processTranslationQueue() {
+    if (!reviewTxQueue.length) return;
+    const batch = reviewTxQueue;
+    reviewTxQueue = [];
+    let changed = false;
+    for (const item of batch) {
+      if (reviewTxCache[item.key] || reviewTxPending.has(item.key) || reviewTxFailed[item.key]) continue;
+      reviewTxPending.add(item.key);
+      try {
+        const translated = await mtTranslate(item.text, item.lang);
+        if (translated && translated.trim()) {
+          reviewTxCache[item.key] = translated;
+          changed = true;
+        } else {
+          reviewTxFailed[item.key] = true;
+        }
+      } catch (_e) {
+        reviewTxFailed[item.key] = true;
+      } finally {
+        reviewTxPending.delete(item.key);
+      }
+    }
+    if (changed) saveReviewTx();
+    // 翻訳が入った／失敗が確定したら、注記や本文を更新するため再描画。
+    // ただし入力中（フォーカスが input/textarea）の場合は再描画を見送り、
+    // 次の自然な再描画でキャッシュから反映する（入力の中断を防ぐ）。
+    const ae = document.activeElement;
+    const typing = ae && (ae.tagName === "INPUT" || ae.tagName === "TEXTAREA" || ae.isContentEditable);
+    if (!typing) render();
+  }
+
+  // レビュー本文の表示テキストと状態を返す。
+  // mode: "none"(翻訳不要) | "translated" | "showing-original" | "pending" | "failed"
+  function translatedReviewText(review, original) {
+    if (language === "ja" || !original) return { text: original, mode: "none" };
+    const id = String(review.id);
+    const key = id + "::" + language;
+    const cached = reviewTxCache[key];
+    if (translationShowOriginal.has(id) && cached) {
+      return { text: original, mode: "showing-original" };
+    }
+    if (cached) return { text: cached, mode: "translated" };
+    if (reviewTxFailed[key]) return { text: original, mode: "failed" };
+    enqueueTranslation(id, original, language);
+    return { text: original, mode: "pending" };
+  }
+
+  function renderTranslationNote(review, info) {
+    const id = escapeHtml(String(review.id));
+    if (info.mode === "pending") {
+      return `<div class="review-tx-note">🌐 ${escapeHtml(t.translatingNote)}</div>`;
+    }
+    if (info.mode === "failed") {
+      return `<div class="review-tx-note review-tx-note--failed">🌐 ${escapeHtml(t.translateFailed)}</div>`;
+    }
+    if (info.mode === "translated") {
+      return `<div class="review-tx-note">🌐 ${escapeHtml(t.translatedNote)} · <button type="button" class="review-tx-toggle" data-translate-original="${id}">${escapeHtml(t.showOriginal)}</button></div>`;
+    }
+    if (info.mode === "showing-original") {
+      return `<div class="review-tx-note"><button type="button" class="review-tx-toggle" data-translate-translated="${id}">${escapeHtml(t.showTranslation)}</button></div>`;
+    }
+    return "";
+  }
+
+  // レビュー本文（引用）＋翻訳注記をまとめて描画。両方の表示箇所で共用。
+  function renderReviewQuote(review, opts) {
+    const emptyPlaceholder = !!(opts && opts.emptyPlaceholder);
+    const original = displayReviewText(review.text);
+    if (!original) {
+      return emptyPlaceholder
+        ? `<p class="review-quote review-quote--empty">${t.adminRatingOnly}</p>`
+        : "";
+    }
+    const open = language === "ja" ? "「" : '"';
+    const close = language === "ja" ? "」" : '"';
+    const info = translatedReviewText(review, original);
+    return (
+      `<p class="review-quote">${open}${escapeHtml(info.text)}${close}</p>` +
+      renderTranslationNote(review, info)
+    );
+  }
+
   function loadReviews() {
     if (typeof localStorage === "undefined") return [];
     try {
@@ -2259,6 +2448,25 @@
     }
   }
 
+  // カスタムホストのタグ/説明文は「追加した時点の言語」で文字列が焼き込まれて保存される。
+  // 別言語で閲覧すると日本語などが残って見えるため、表示時に現在の言語へ正規化する。
+  const KNOWN_CUSTOM_HOST_TAGS = ["新規追加", "New entry"];
+  const KNOWN_CUSTOM_HOST_SUMMARIES = [
+    "ユーザーが追加したホストファミリー。レビュー投稿後に評価が反映されます。",
+    "A host family added by the user. Ratings update after reviews are posted.",
+  ];
+  function localizeCustomHostStrings(host) {
+    if (!host) return host;
+    let tags = host.tags;
+    if (Array.isArray(tags) && tags.some((tg) => KNOWN_CUSTOM_HOST_TAGS.includes(tg))) {
+      tags = tags.map((tg) => (KNOWN_CUSTOM_HOST_TAGS.includes(tg) ? t.customHostTag : tg));
+    }
+    let summary = host.summary;
+    if (KNOWN_CUSTOM_HOST_SUMMARIES.includes(summary)) summary = t.customHostSummary;
+    if (tags === host.tags && summary === host.summary) return host;
+    return { ...host, tags, summary };
+  }
+
   function allHosts() {
     const grouped = new Map();
     // admin が論理削除した host id（duplicateIds を含む）はここで除外する。
@@ -2324,7 +2532,7 @@
       }
     });
 
-    return [...grouped.values()];
+    return [...grouped.values()].map(localizeCustomHostStrings);
   }
 
   // 公開リスト：探すページ・マップ・選択UI で使う。Demo Family（isDemo）は
@@ -3524,7 +3732,7 @@
             <div class="tag-row">${renderTagRow(getHostFit(host))}</div>
           </div>
           <details class="details-panel">
-            <summary>${t.detailedScores} (${language !== "ja" ? "12 axes — main x2 + auxiliary x1" : "全12軸：主要×2 + 補助×1"})</summary>
+            <summary>${t.detailedScores} (${language !== "ja" ? "11 axes" : "全11軸"})</summary>
             <div class="criteria-grid">${renderCriteriaSummary(host)}</div>
           </details>
         </div>
@@ -3647,7 +3855,7 @@
     const axesForOnboarding = [
       { key: "safetyEnvironment", labelJa: "安全", labelEn: "Safety" },
       { key: "englishEnvironment", labelJa: "英語環境", labelEn: "English environment" },
-      { key: "cultureFit", labelJa: "文化・食事適応", labelEn: "Culture & food fit" },
+      { key: "mealQuality", labelJa: "食事", labelEn: "Meal" },
       { key: "mentalSupport", labelJa: "メンタルサポート", labelEn: "Mental support" },
       { key: "commute", labelJa: "通学・送迎", labelEn: "Commute & ride" },
       { key: "study", labelJa: "学習向き", labelEn: "Study fit" },
@@ -4086,9 +4294,9 @@
             }).join("")}
           </div>
 
-          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (rules / internet / meal / cleanliness / privacy — required)" : "補助評価（ルール / 通信 / 食事 / 清潔さ / プライバシー — 必須）"}</h4>
+          <h4 class="detail-subhead">${language !== "ja" ? "Auxiliary axes (freedom / internet / cleanliness / host experience — required)" : "補助評価（自由度 / 通信 / 清潔さ / 受け入れ経験 — 必須）"}</h4>
           <div class="review-score-rows">
-            ${["rules", "internetQuality", "mealQuality", "cleanliness", "privacy"].map((key) => {
+            ${["rules", "internetQuality", "cleanliness", "hostExperience"].map((key) => {
               const group = localizedCriteriaGroups().find((g) => g.key === key);
               return group ? renderStarRowInput(key, group.title, { required: true }) : "";
             }).join("")}
@@ -4206,7 +4414,6 @@
                 : reviews
                     .map(
                       (review) => {
-                        const reviewText = displayReviewText(review.text);
                         return `
                   <article class="review-item">
                     <div class="review-header">
@@ -4240,13 +4447,7 @@
                             .join("")}</div>`
                         : ""
                     }
-                    ${
-                      reviewText
-                        ? `<p class="review-quote">${language === "ja" ? "「" : "\""}${escapeHtml(reviewText)}${
-                            language === "ja" ? "」" : "\""
-                          }</p>`
-                        : `<p class="review-quote review-quote--empty">${t.adminRatingOnly}</p>`
-                    }
+                    ${renderReviewQuote(review, { emptyPlaceholder: true })}
                     ${renderReviewRadarChart(review, { size: 240, padding: 48 })
                       ? `<div class="review-radar">${renderReviewRadarChart(review, { size: 240, padding: 48 })}</div>`
                       : ""}
@@ -4666,7 +4867,6 @@
               ? `<div class="empty-state">${escapeHtml(t.hostProfileNoReviews)}</div>`
               : reviews
                   .map((review) => {
-                    const reviewText = displayReviewText(review.text);
                     return `
                       <div class="review-item host-profile-review">
                         <div class="review-header">
@@ -4674,7 +4874,7 @@
                           <span class="review-date-muted">${escapeHtml(displayStudentName(review.student))}</span>
                           ${renderStayPeriodBadge(review)}
                         </div>
-                        ${reviewText ? `<p class="review-quote">${language === "ja" ? "「" : "\""}${escapeHtml(reviewText)}${language === "ja" ? "」" : "\""}</p>` : ""}
+                        ${renderReviewQuote(review)}
                         ${review.fit && review.fit.length
                           ? `<div class="result-tags">${review.fit.map((tag) => `<span class="result-tag">${escapeHtml(localizedFitLabel(tag))}</span>`).join("")}</div>`
                           : ""}
@@ -4804,7 +5004,7 @@
   // ホーム用：ホスト評価の「見方」を説明するセクション。
   // レーダー（主要6軸）＋補助評価軸を、各軸が何を測るのか・どこを見ればよいかと一緒に提示する。
   function renderRatingGuide() {
-    const radarKeys = ["safetyEnvironment", "englishEnvironment", "cultureFit", "mentalSupport", "commute", "study"];
+    const radarKeys = ["safetyEnvironment", "englishEnvironment", "mealQuality", "mentalSupport", "commute", "study"];
     // commute はレーダー上の統合軸（transportation+rideSupport）。説明用に専用エントリを持たせる。
     const groups = localizedCriteriaGroups();
     const groupByKey = (k) => groups.find((g) => g.key === k);
@@ -4814,16 +5014,14 @@
     const primaryAxes = [
       { key: "safetyEnvironment", icon: "🛡" },
       { key: "englishEnvironment", icon: "💬" },
-      { key: "cultureFit", icon: "🍽" },
+      { key: "mealQuality", icon: "🍽" },
       { key: "mentalSupport", icon: "🤝" },
       { key: "commute", icon: "🚌", title: language !== "ja" ? "Commute & Ride" : "通学・送迎", desc: commuteDesc },
       { key: "study", icon: "📚" },
     ];
     const auxAxes = [
       { key: "rules", icon: "🕊" },
-      { key: "mealQuality", icon: "🍱" },
       { key: "cleanliness", icon: "✨" },
-      { key: "privacy", icon: "🔑" },
       { key: "internetQuality", icon: "📶" },
       { key: "hostExperience", icon: "🎓" },
     ];
@@ -5096,6 +5294,7 @@
             <div>
               <h2 class="section-title">${t.schoolTitle}</h2>
               <p class="section-text">${t.schoolText}</p>
+              <p class="school-pilot-note">${t.schoolPilotNotice}</p>
             </div>
             <div class="analytics-export">
               <button type="button" id="analytics-export-csv" class="button button--ghost button--compact" title="${escapeHtml(t.analyticsExportHint)}">
@@ -5392,6 +5591,24 @@
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         toggleHelpful(btn.dataset.helpfulId);
+        render();
+      });
+    });
+
+    // レビュー翻訳トグル（原文を表示／翻訳を表示）
+    document.querySelectorAll("[data-translate-original]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        translationShowOriginal.add(String(btn.dataset.translateOriginal));
+        render();
+      });
+    });
+    document.querySelectorAll("[data-translate-translated]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        translationShowOriginal.delete(String(btn.dataset.translateTranslated));
         render();
       });
     });
@@ -6586,6 +6803,8 @@
     `;
 
     bindEvents();
+    // レビュー本文の機械翻訳を非同期で取得（取得後に再描画して反映）。
+    processTranslationQueue();
     // マップは「探す」ページに埋め込み（旧 map ビューも後方互換で維持）。どちらでも #real-map を初期化。
     // ただし探すページでマップを折りたたんでいる場合は #real-map が存在しないので初期化しない。
     const shouldInitMap = state.view === "map" || (state.view === "search" && !state.mapCollapsed);
